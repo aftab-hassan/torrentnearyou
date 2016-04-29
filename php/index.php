@@ -135,21 +135,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         $handle = fopen($url, "r");
         if ($handle)
         {
-            $torcachelinksarray = array();
-            $sizeMBarray = array();
-
-            /* iterating to find the sizes of the torrents */
-            while (($line = fgets($handle)) !== false)
-            {
-                // find all torcache links on page -  one shot process using file_get_html, no for loop used
-                if (strpos($line, "torcache.net/torrent") !== false)
-                    array_push($torcachelinksarray,$line);
-
-                // process the line read.
-                //<td class="nobr center">797.92 <span>MB</span></td>
-                if (strpos($line, "<span>MB</span>") !== false)
-                    array_push($sizeMBarray, $line);
-            }
+            array_push($torrentlinkarray,$url);
         }
         else
         {

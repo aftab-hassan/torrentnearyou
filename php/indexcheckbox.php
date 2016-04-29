@@ -124,18 +124,34 @@ if(isset($_GET['language']) && isset($_GET['year']))
     //print_r($movienamearray);
 
     /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
-    $base = "https://kat.cr/usearch/";
+    $base = "compress.zlib://https://kat.cr/usearch/";
     $pattern_torrent_notpresent = "Nothing found!";
     $torrentlinkarray = array();
 
-    for($i = 0;$i < count($movienamearray);$i++)
-    {
-        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
+//    for($i = 0;$i < count($movienamearray);$i++)
+//    {
+//        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
+        $url = $base.str_replace(" ","%20","kali")."%20".$_GET['year']."%20".$_GET['language'];
 
         $handle = fopen($url, "r");
         if ($handle)
         {
-            array_push($torrentlinkarray,$url);
+            /* arrays for storing links and sizes */
+            $torcachelinksarray = array();
+            $sizeMBarray = array();
+
+            /* iterating to find the sizes of the torrents */
+            while (($line = fgets($handle)) !== false)
+            {
+                // find all torcache links on page -  one shot process using file_get_html, no for loop used
+                if (strpos($line, "torcache.net/torrent") !== false)
+                    array_push($torcachelinksarray,$line);
+
+                // process the line read.
+                //<td class="nobr center">797.92 <span>MB</span></td>
+                if (strpos($line, "<span>MB</span>") !== false)
+                    array_push($sizeMBarray, $line);
+            }
         }
         else
         {
@@ -143,8 +159,9 @@ if(isset($_GET['language']) && isset($_GET['year']))
             array_push($torrentlinkarray,"404");
         }
         fclose($handle);
-    }
-    //print_r($torrentlinkarray);
+        print_r($torcachelinksarray);
+        print_r($sizeMBarray);
+//    }
 
     /* putting it in a table */
     echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
