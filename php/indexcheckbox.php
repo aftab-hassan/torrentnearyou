@@ -126,7 +126,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
         echo "could not open the wikipedia URL!";
     }
     fclose($handle);
-    //print_r($movienamearray);
+    print_r($movienamearray);
+    echo "</br>";
 
     /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
     $base = "compress.zlib://https://kat.cr/usearch/";
@@ -164,24 +165,24 @@ if(isset($_GET['language']) && isset($_GET['year']))
             array_push($torrentlinkarray,"404");
         }
         fclose($handle);
-        print_r($torcachelinksarray);
-        print_r($sizeMBarray);
+        print_r($torcachelinksarray);echo "</br>";
+        print_r($sizeMBarray);echo "</br>";
 //    }
 
-    /* putting it in a table */
-    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
-    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
-    for($i = 0;$i < count($torrentlinkarray);$i++)
-    {
-        if($torrentlinkarray[$i] == "404")
-            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
-
-        else
-        {
-            $link=$torrentlinkarray[$i];
-            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
-        }
-    }
-    echo "</table>";
+//    /* putting it in a table */
+//    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
+//    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
+//    for($i = 0;$i < count($torrentlinkarray);$i++)
+//    {
+//        if($torrentlinkarray[$i] == "404")
+//            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
+//
+//        else
+//        {
+//            $link=$torrentlinkarray[$i];
+//            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
+//        }
+//    }
+//    echo "</table>";
 }
 ?>
