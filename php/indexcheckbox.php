@@ -169,10 +169,16 @@ if(isset($_GET['language']) && isset($_GET['year']))
                 // process the line read.
                 //<td class="nobr center">797.92 <span>MB</span></td>
                 if (strpos($line, "<span>MB</span>") !== false)
+                {
+                    echo $line;
                     array_push($sizeMBarray, substr(0,-2,$line));
+                }
 
                 if (strpos($line, "<span>GB</span>") !== false)
+                {
+                    echo $line*1000;
                     array_push($sizeMBarray, substr(0,-2,$line*1000));
+                }
             }
         }
         else
