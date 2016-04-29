@@ -155,6 +155,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
                     $ch = curl_init("http://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv");
                     curl_exec($ch);
 
+                    header('Location: '."http://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv");
+
                     array_push($torcachelinksarray,$line);
                 }
 
