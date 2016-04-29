@@ -129,8 +129,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
         echo "could not open the wikipedia URL!";
     }
     fclose($handle);
-    print_r($movienamearray);echo "</br>";echo "</br>";
-    echo "</br>";
+//    print_r($movienamearray);echo "</br>";echo "</br>";
+//    echo "</br>";
 
     /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
     $base = "compress.zlib://https://kat.cr/usearch/";
@@ -140,7 +140,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
 
     for($i = 0;$i < count($movienamearray);$i++)
     {
-        echo "---------------------------------</br>";
+//        echo "---------------------------------</br>";
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 
@@ -227,8 +227,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
         }
         fclose($handle);
     }//end of for loop across all movies
-    print_r($torrentlinkarray);
-    print_r($sizeMBarray);
+//    print_r($torrentlinkarray);
+//    print_r($sizeMBarray);
 
     /* putting it in a table */
     echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
