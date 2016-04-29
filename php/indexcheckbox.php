@@ -146,7 +146,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         if ($handle)
         {
             /* arrays for storing links and sizes */
-            $torcachelinksarray = array();
+            $torcachelinksarray_pertorrent = array();
             $sizeMBarray = array();
 
             /* Nice way to do it using file_get_html */
@@ -156,7 +156,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
 //            {
 //                if (strpos($element->href, "torcache.net/torrent") !== false)
 //                {
-//                    array_push($torcachelinksarray,$element->href);
+//                    array_push($torcachelinksarray_pertorrent,$element->href);
 //                }
 //            }
 
@@ -167,8 +167,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
                 if (strpos($line, "torcache.net/torrent") !== false)
                 {
                     $data = GetBetween("href=\"","\" class=\"",$line);
-                    echo $data."</br>";
-                    array_push($torcachelinksarray,$data);
+//                    echo $data."</br>";
+                    array_push($torcachelinksarray_pertorrent,$data);
                 }
 
                 // process the line read.
@@ -176,7 +176,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
                 if (strpos($line, "<span>MB</span>") !== false)
                 {
                     $data = GetBetween("<td class=\"nobr center\">"," <span>MB</span></td>",$line);
-                    echo $data."</br>";
+//                    echo $data."</br>";
                     array_push($sizeMBarray,$data);
                 }
 
@@ -184,7 +184,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
                 if (strpos($line, "<span>GB</span>") !== false)
                 {
                     $data = GetBetween("<td class=\"nobr center\">"," <span>GB</span></td>",$line);
-                    echo $data."</br>";
+//                    echo $data."</br>";
                     array_push($sizeMBarray,$data*1000);
                 }
             }
@@ -195,9 +195,26 @@ if(isset($_GET['language']) && isset($_GET['year']))
             array_push($torrentlinkarray,"404");
         }
         fclose($handle);
-        print_r($torcachelinksarray);echo "</br>";
+        print_r($torcachelinksarray_pertorrent);echo "</br>";
         print_r($sizeMBarray);echo "</br>";
-//    }
+
+        /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
+        $largestsizeindex = 0;
+        for($j = 0;$j < count($torcachelinksarray_pertorrent);$j++)
+        {
+            if($sizeMBarray[$j] > $largestsizeindex)
+            {
+                $largestsizeindex = $j;
+            }
+        }
+        if($sizeMBarray[$largestsizeindex] > 500)
+            array_push($torrentlinkarray,$torcachelinksarray_pertorrent[$largestsizeindex]);
+        else
+            array_push($torrentlinkarray,"404");
+
+//    }//end of for loop across all movies
+        print_r($torrentlinkarray);
+
 
 //    /* putting it in a table */
 //    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
