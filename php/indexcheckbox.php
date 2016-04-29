@@ -202,7 +202,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         $largestsizeindex = 0;
         for($j = 0;$j < count($torcachelinksarray_pertorrent);$j++)
         {
-            if($sizeMBarray[$j] > $largestsizeindex)
+            if($sizeMBarray[$j] > $sizeMBarray[$largestsizeindex])
             {
                 $largestsizeindex = $j;
             }
