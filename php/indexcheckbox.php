@@ -227,7 +227,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         }
         fclose($handle);
     }//end of for loop across all movies
-//    print_r($torrentlinkarray);
+    print_r($torrentlinkarray);
 //    print_r($sizeMBarray);
 
     /* putting it in a table */
