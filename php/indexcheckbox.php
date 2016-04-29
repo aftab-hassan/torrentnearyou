@@ -13,13 +13,14 @@
 </div>
 
 <body>
-<form method="get" action="index.php">
+<form method="get" action="indexcheckbox.php">
     <select name="language">
 <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
         <option value = "tamil">Tamil</option>
         <option value = "hindi">Hindi</option>
         <option value = "english">English</option>
+        <option value = "tagalog">Tagalog</option>
     </select>
     </br>
 
@@ -81,6 +82,10 @@ if(isset($_GET['language']) && isset($_GET['year']))
             break;
         case "tamil":
             $base = "https://en.wikipedia.org/wiki/List_of_Tamil_films_of_";
+            $url = $base.$_GET['year'];
+            break;
+        case "tagalog":
+            $base = "https://en.wikipedia.org/wiki/List_of_Philippine_films_of_";
             $url = $base.$_GET['year'];
             break;
     }
