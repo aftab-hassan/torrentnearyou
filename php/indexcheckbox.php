@@ -151,11 +151,16 @@ if(isset($_GET['language']) && isset($_GET['year']))
             {
                 // find all torcache links on page -  one shot process using file_get_html, no for loop used
                 if (strpos($line, "torcache.net/torrent") !== false)
+                {
+                    $ch = curl_init("http://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv");
+                    curl_exec($ch);
+
                     array_push($torcachelinksarray,$line);
+                }
 
                 // process the line read.
                 //<td class="nobr center">797.92 <span>MB</span></td>
-                if (strpos($line, "<span>MB</span>") !== false)
+                if ( (strpos($line, "<span>MB</span>") !== false) || (strpos($line, "<span>GB</span>") !== false) )
                     array_push($sizeMBarray, $line);
             }
         }
