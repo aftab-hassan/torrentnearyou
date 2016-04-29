@@ -241,7 +241,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
         else
         {
             $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
-            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>"."insert cb code"."</td>"."</tr>";
+            $cbcode = "<input id=\"cb\" type=\"checkbox\" onchange=\"window.location.href='".$torrentlinkarray[$i]."'\">";
+            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$cbcode."</td>"."</tr>";
         }
     }
     echo "</table>";
