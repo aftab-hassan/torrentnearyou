@@ -22,7 +22,7 @@
         <option value = "english">English</option>
         <option value = "tagalog">Tagalog</option>
     </select>
-    </br>
+<!--    </br>-->
 
     <select name="year">
         <option value="2010">2010</option>
@@ -232,7 +232,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
 
     /* putting it in a table */
     echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
-    echo "<tr><th>Serial</th><th>Movie</th><th>Page link</th><th>Direct link(click to download)</th></tr>";
+    echo "<tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr>";
     for($i = 0;$i < count($torrentlinkarray);$i++)
     {
         if($torrentlinkarray[$i] == "404")
