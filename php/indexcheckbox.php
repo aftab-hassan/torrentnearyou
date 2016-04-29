@@ -188,7 +188,24 @@ if(isset($_GET['language']) && isset($_GET['year']))
 //                    echo $data."</br>";
                     array_push($sizeMBarray,$data*1000);
                 }
+            }//finished iterating across all torrents
+
+            print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
+            print_r($sizeMBarray);echo "</br>";echo "</br>";
+
+            /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
+            $largestsizeindex = 0;
+            for($j = 0;$j < count($torcachelinksarray_pertorrent);$j++)
+            {
+                if($sizeMBarray[$j] > $sizeMBarray[$largestsizeindex])
+                {
+                    $largestsizeindex = $j;
+                }
             }
+            if($sizeMBarray[$largestsizeindex] > 500)
+                array_push($torrentlinkarray,$torcachelinksarray_pertorrent[$largestsizeindex]);
+            else
+                array_push($torrentlinkarray,"404");
         }
         else
         {
@@ -196,23 +213,6 @@ if(isset($_GET['language']) && isset($_GET['year']))
             array_push($torrentlinkarray,"404");
         }
         fclose($handle);
-        print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
-        print_r($sizeMBarray);echo "</br>";echo "</br>";
-
-        /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
-        $largestsizeindex = 0;
-        for($j = 0;$j < count($torcachelinksarray_pertorrent);$j++)
-        {
-            if($sizeMBarray[$j] > $sizeMBarray[$largestsizeindex])
-            {
-                $largestsizeindex = $j;
-            }
-        }
-        if($sizeMBarray[$largestsizeindex] > 500)
-            array_push($torrentlinkarray,$torcachelinksarray_pertorrent[$largestsizeindex]);
-        else
-            array_push($torrentlinkarray,"404");
-
     }//end of for loop across all movies
     print_r($torrentlinkarray);
 
