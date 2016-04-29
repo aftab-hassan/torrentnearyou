@@ -174,14 +174,14 @@ if(isset($_GET['language']) && isset($_GET['year']))
                 if (strpos($line, "<span>MB</span>") !== false)
                 {
                     $data = GetBetween("<td class=\"nobr center\">"," <span>MB</span></td>",$line);
-                    echo $data;
+                    echo $data."</br>";
                 }
 
                 /* <td class="nobr center">1.6 <span>GB</span></td> */
                 if (strpos($line, "<span>GB</span>") !== false)
                 {
                     $data = GetBetween("<td class=\"nobr center\">"," <span>GB</span></td>",$line);
-                    echo $data;
+                    echo $data."</br>";
                 }
             }
         }
