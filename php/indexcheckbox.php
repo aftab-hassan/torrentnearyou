@@ -166,7 +166,9 @@ if(isset($_GET['language']) && isset($_GET['year']))
                 /* <a data-download title="Download torrent file" href="//torcache.net/torrent/81D283993C9BEB993D567E2D8CF618A350C44FD7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.1cd.x264.aac.esubs.chaps.drc.release" class="icon16"><i class="ka ka16 ka-arrow-down"></i></a> */
                 if (strpos($line, "torcache.net/torrent") !== false)
                 {
-                    array_push($torcachelinksarray,$line);
+                    $data = GetBetween("href=\"","\" class=\"",$line);
+                    echo $data."</br>";
+                    array_push($torcachelinksarray,$data);
                 }
 
                 // process the line read.
