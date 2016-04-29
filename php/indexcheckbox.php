@@ -137,10 +137,10 @@ if(isset($_GET['language']) && isset($_GET['year']))
     $pattern_torrent_notpresent = "Nothing found!";
     $torrentlinkarray = array();
 
-//    for($i = 0;$i < count($movienamearray);$i++)
-//    {
-//        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
-        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
+    for($i = 0;$i < count($movienamearray);$i++)
+    {
+        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
+//        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 
         $handle = fopen($url, "r");
         if ($handle)
@@ -212,9 +212,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
         else
             array_push($torrentlinkarray,"404");
 
-//    }//end of for loop across all movies
-        print_r($torrentlinkarray);
-
+    }//end of for loop across all movies
+    print_r($torrentlinkarray);
 
 //    /* putting it in a table */
 //    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
