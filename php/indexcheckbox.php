@@ -196,8 +196,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
             }//finished iterating across all torrents
 
             //printing page summary of what's useful to me
-            print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
-            print_r($sizeMBarray_pertorrent);echo "</br>";echo "</br>";
+//            print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
+//            print_r($sizeMBarray_pertorrent);echo "</br>";echo "</br>";
 
             /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
             $largestsizeindex = 0;
@@ -230,20 +230,20 @@ if(isset($_GET['language']) && isset($_GET['year']))
     print_r($torrentlinkarray);
     print_r($sizeMBarray);
 
-//    /* putting it in a table */
-//    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
-//    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
-//    for($i = 0;$i < count($torrentlinkarray);$i++)
-//    {
-//        if($torrentlinkarray[$i] == "404")
-//            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
-//
-//        else
-//        {
-//            $link=$torrentlinkarray[$i];
-//            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
-//        }
-//    }
-//    echo "</table>";
+    /* putting it in a table */
+    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
+    echo "<tr><th>Serial</th><th>Movie</th><th>Page link</th><th>Direct link(click to download)</th></tr>";
+    for($i = 0;$i < count($torrentlinkarray);$i++)
+    {
+        if($torrentlinkarray[$i] == "404")
+            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."<td>"."torrent not present"."</td>"."</tr>";
+
+        else
+        {
+            $link = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
+            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>"."insert cb code"."</td>"."</tr>";
+        }
+    }
+    echo "</table>";
 }
 ?>
