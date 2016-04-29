@@ -69,15 +69,21 @@ if(isset($_GET['language']) && isset($_GET['year']))
     {
         case "malayalam":
             $base = "https://en.wikipedia.org/wiki/List_of_Malayalam_films_of_";
+            $url = $base.$_GET['year'];
             break;
         case "hindi":
-            $base = "https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_2016";
+            $base = "https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_";
+            $url = $base.$_GET['year'];
             break;
         case "english":
-            $base = "https://en.wikipedia.org/wiki/2016_in_film";
+            $base = "https://en.wikipedia.org/wiki/";
+            $url = $base.$_GET['year']."_in_film";
+            break;
+        case "tamil":
+            $base = "https://en.wikipedia.org/wiki/List_of_Tamil_films_of_";
+            $url = $base.$_GET['year'];
             break;
     }
-    $url = $base.$_GET['year'];
 
     $pattern_without_translation = "</a></i></td>";
     $pattern_with_translation = "</a></i><br />";
