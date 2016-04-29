@@ -211,7 +211,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
             if($sizeMBarray_pertorrent[$largestsizeindex] > 500)
             {
                 array_push($torrentlinkarray,$torcachelinksarray_pertorrent[$largestsizeindex]);
-                array_push($sizeMBarray,$sizeMBarray[$largestsizeindex]);
+                array_push($sizeMBarray,$sizeMBarray_pertorrent[$largestsizeindex]);
             }
             else
             {
