@@ -151,7 +151,12 @@ if(isset($_GET['language']) && isset($_GET['year']))
             // Find all links
             $html = file_get_html($url);
             foreach($html->find('a') as $element)
-                echo $element->href . '<br>';
+            {
+                if (strpos($element->href, "torcache.net/torrent") !== false)
+                {
+                    echo $element->href . '<br>';
+                }
+            }
 
 //            /* iterating to find the sizes of the torrents */
 //            while (($line = fgets($handle)) !== false)
