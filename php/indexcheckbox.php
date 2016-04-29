@@ -129,7 +129,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         echo "could not open the wikipedia URL!";
     }
     fclose($handle);
-//    print_r($movienamearray);
+    print_r($movienamearray);echo "</br>";echo "</br>";
     echo "</br>";
 
     /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
@@ -139,6 +139,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
 
     for($i = 0;$i < count($movienamearray);$i++)
     {
+        echo "---------------------------------</br>";
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 
@@ -195,8 +196,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
             array_push($torrentlinkarray,"404");
         }
         fclose($handle);
-        print_r($torcachelinksarray_pertorrent);echo "</br>";
-        print_r($sizeMBarray);echo "</br>";
+        print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
+        print_r($sizeMBarray);echo "</br>";echo "</br>";
 
         /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
         $largestsizeindex = 0;
