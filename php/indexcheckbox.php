@@ -231,7 +231,6 @@ if(isset($_GET['language']) && isset($_GET['year']))
 //    print_r($sizeMBarray);
 
     /* putting it in a table */
-    echo "<html>";
     echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
     echo "<tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr>";
     for($i = 0;$i < count($torrentlinkarray);$i++)
@@ -249,6 +248,5 @@ if(isset($_GET['language']) && isset($_GET['year']))
         }
     }
     echo "</table>";
-    echo "</html>";
 }
 ?>
