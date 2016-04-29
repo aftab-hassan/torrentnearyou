@@ -227,7 +227,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         }
         fclose($handle);
     }//end of for loop across all movies
-    print_r($torrentlinkarray);
+//    print_r($torrentlinkarray);
 //    print_r($sizeMBarray);
 
     /* putting it in a table */
@@ -243,7 +243,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         else
         {
             $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
-            $cbcode = "<input id=\"cb\" type=\"checkbox\" onchange=\"window.location.href='".$torrentlinkarray[$i]."'\">";
+            $cbcode = "<label><input id=\"cb\" type=\"checkbox\" onchange=\"window.location.href='".$torrentlinkarray[$i]."'\">Click to download</label>";
             echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$cbcode."</td>"."</tr>";
         }
     }
