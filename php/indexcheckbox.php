@@ -175,6 +175,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
                 {
                     $data = GetBetween("<td class=\"nobr center\">"," <span>MB</span></td>",$line);
                     echo $data."</br>";
+                    array_push($sizeMBarray,$data);
                 }
 
                 /* <td class="nobr center">1.6 <span>GB</span></td> */
@@ -182,6 +183,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
                 {
                     $data = GetBetween("<td class=\"nobr center\">"," <span>GB</span></td>",$line);
                     echo $data."</br>";
+                    array_push($sizeMBarray,$data*1000);
                 }
             }
         }
