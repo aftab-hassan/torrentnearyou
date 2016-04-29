@@ -148,19 +148,24 @@ if(isset($_GET['language']) && isset($_GET['year']))
             $torcachelinksarray = array();
             $sizeMBarray = array();
 
-            // Find all links
-            $html = file_get_html($url);
-            foreach($html->find('a') as $element)
-            {
-                if (strpos($element->href, "torcache.net/torrent") !== false)
-                {
-                    array_push($torcachelinksarray,$element->href);
-                }
-            }
+//            // Find all links
+//            $html = file_get_html($url);
+//            foreach($html->find('a') as $element)
+//            {
+//                if (strpos($element->href, "torcache.net/torrent") !== false)
+//                {
+//                    array_push($torcachelinksarray,$element->href);
+//                }
+//            }
 
             /* iterating to find the sizes of the torrents */
             while (($line = fgets($handle)) !== false)
             {
+                if (strpos($line, "torcache.net/torrent") !== false)
+                {
+                    array_push($torcachelinksarray,$line);
+                }
+
                 // process the line read.
                 //<td class="nobr center">797.92 <span>MB</span></td>
                 if (strpos($line, "<span>MB</span>") !== false)
