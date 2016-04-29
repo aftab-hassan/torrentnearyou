@@ -128,7 +128,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         echo "could not open the wikipedia URL!";
     }
     fclose($handle);
-    print_r($movienamearray);
+//    print_r($movienamearray);
     echo "</br>";
 
     /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
@@ -176,7 +176,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
 
                 if (strpos($line, "<span>GB</span>") !== false)
                 {
-                    echo $line*1000;
+                    echo $line;
 //                    array_push($sizeMBarray, substr(0,-2,$line*1000));
                 }
             }
