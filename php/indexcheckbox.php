@@ -107,6 +107,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
             // process the line read.
             if ((strpos($line, $pattern_without_translation) !== false) || (strpos($line, $pattern_with_translation) !== false))
             {
+                /* <td style="text-align:center;"><i><a href="/wiki/Marupuram_(2016_film)" title="Marupuram (2016 film)">Marupuram</a></i></td> */
                 $data = GetBetween("title","</a></i></td>",$line);
                 $moviename = substr($data, strpos($data, ">") + 1);
                 array_push($movienamearray, $moviename);
@@ -148,6 +149,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
             $torcachelinksarray = array();
             $sizeMBarray = array();
 
+            /* Nice way to do it using file_get_html */
 //            // Find all links
 //            $html = file_get_html($url);
 //            foreach($html->find('a') as $element)
@@ -161,23 +163,25 @@ if(isset($_GET['language']) && isset($_GET['year']))
             /* iterating to find the sizes of the torrents */
             while (($line = fgets($handle)) !== false)
             {
+                /* <a data-download title="Download torrent file" href="//torcache.net/torrent/81D283993C9BEB993D567E2D8CF618A350C44FD7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.1cd.x264.aac.esubs.chaps.drc.release" class="icon16"><i class="ka ka16 ka-arrow-down"></i></a> */
                 if (strpos($line, "torcache.net/torrent") !== false)
                 {
                     array_push($torcachelinksarray,$line);
                 }
 
                 // process the line read.
-                //<td class="nobr center">797.92 <span>MB</span></td>
+                /* <td class="nobr center">800.89 <span>MB</span></td> */
                 if (strpos($line, "<span>MB</span>") !== false)
                 {
-                    echo $line;
-//                    array_push($sizeMBarray, substr(0,-2,$line));
+                    $data = GetBetween("<td class=\"nobr center\">"," <span>MB</span></td>",$line);
+                    echo $data;
                 }
 
+                /* <td class="nobr center">1.6 <span>GB</span></td> */
                 if (strpos($line, "<span>GB</span>") !== false)
                 {
-                    echo $line;
-//                    array_push($sizeMBarray, substr(0,-2,$line*1000));
+                    $data = GetBetween("<td class=\"nobr center\">"," <span>GB</span></td>",$line);
+                    echo $data;
                 }
             }
         }
