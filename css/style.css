@@ -1,0 +1,18 @@
+body {
+    /*background: url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRZQXod-TpW5bx9oSysCVEdpsYS_9ssKwfbS04asZ2L9xzSnOiHdhFWxFS9') no-repeat center center;*/
+    /*opacity: 0.2;*/
+    /*background-size: cover;*/
+    margin: 0;
+    padding: 0;
+}
+.jumbotron {
+    padding: 0;
+    margin: 0;
+}
+form {
+    text-align: center
+}
+.select {
+    float: left;
+    margin-right: 10px
+}
