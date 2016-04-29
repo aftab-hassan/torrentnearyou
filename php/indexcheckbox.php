@@ -171,13 +171,13 @@ if(isset($_GET['language']) && isset($_GET['year']))
                 if (strpos($line, "<span>MB</span>") !== false)
                 {
                     echo $line;
-                    array_push($sizeMBarray, substr(0,-2,$line));
+//                    array_push($sizeMBarray, substr(0,-2,$line));
                 }
 
                 if (strpos($line, "<span>GB</span>") !== false)
                 {
                     echo $line*1000;
-                    array_push($sizeMBarray, substr(0,-2,$line*1000));
+//                    array_push($sizeMBarray, substr(0,-2,$line*1000));
                 }
             }
         }
