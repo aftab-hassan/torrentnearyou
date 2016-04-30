@@ -13,7 +13,7 @@
 </div>
 
 <body>
-<form method="get" action="indexcheckboxdebug.php">
+<!--<form method="get" action="indexcheckboxdebug.php">-->
     <select name="language">
 <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
@@ -41,7 +41,7 @@
     </select>
 
 <!--    <input type="submit" value="submit">-->
-</form>
+<!--</form>-->
 </body>
 </html>
 
