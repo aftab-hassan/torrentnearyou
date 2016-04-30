@@ -46,6 +46,7 @@
 </html>
 
 <?php
+echo "hello";
 /**
  * Created by PhpStorm.
  * User: aftab
