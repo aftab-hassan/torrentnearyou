@@ -52,18 +52,18 @@
  * Date: 4/28/2016
  * Time: 12:07 PM
  */
-include('simple_html_dom.php');
-
-function GetBetween($var1="",$var2="",$pool){
-    $temp1 = strpos($pool,$var1)+strlen($var1);
-    $result = substr($pool,$temp1,strlen($pool));
-    $dd=strpos($result,$var2);
-    if($dd == 0){
-        $dd = strlen($result);
-    }
-
-    return substr($result,0,$dd);
-}
+//include('simple_html_dom.php');
+//
+//function GetBetween($var1="",$var2="",$pool){
+//    $temp1 = strpos($pool,$var1)+strlen($var1);
+//    $result = substr($pool,$temp1,strlen($pool));
+//    $dd=strpos($result,$var2);
+//    if($dd == 0){
+//        $dd = strlen($result);
+//    }
+//
+//    return substr($result,0,$dd);
+//}
 
 /* Remmeber, the whole point of this is to generate the table code */
 //if(isset($_GET['language']) && isset($_GET['year']))
