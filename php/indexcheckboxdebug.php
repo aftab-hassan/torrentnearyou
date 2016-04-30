@@ -68,68 +68,68 @@ function GetBetween($var1="",$var2="",$pool){
 /* Remmeber, the whole point of this is to generate the table code */
 if(isset($_GET['language']) && isset($_GET['year']))
 {
-    /* wikipedia */
-    switch ($_GET['language'])
-    {
-        case "malayalam":
-            $base = "https://en.wikipedia.org/wiki/List_of_Malayalam_films_of_";
-            $url = $base.$_GET['year'];
-            break;
-        case "hindi":
-            $base = "https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_";
-            $url = $base.$_GET['year'];
-            break;
-        case "english":
-            $base = "https://en.wikipedia.org/wiki/";
-            $url = $base.$_GET['year']."_in_film";
-            break;
-        case "tamil":
-            $base = "https://en.wikipedia.org/wiki/List_of_Tamil_films_of_";
-            $url = $base.$_GET['year'];
-            break;
-        case "tagalog":
-            $base = "https://en.wikipedia.org/wiki/List_of_Philippine_films_of_";
-            $url = $base.$_GET['year'];
-            break;
-    }
-
-    $pattern_without_translation = "</a></i></td>";
-    $pattern_with_translation = "</a></i><br />";
-    $pattern_ending = "</table>";
-    $moviecount = 0;
-    $movienamearray = array();
-    $i = 1;
-    $handle = fopen($url, "r");
-
-    if ($handle)
-    {
-        while (($line = fgets($handle)) !== false)
-        {
-            // process the line read.
-            if ((strpos($line, $pattern_without_translation) !== false) || (strpos($line, $pattern_with_translation) !== false))
-            {
-                /* <td style="text-align:center;"><i><a href="/wiki/Marupuram_(2016_film)" title="Marupuram (2016 film)">Marupuram</a></i></td> */
-                $data = GetBetween("title","</a></i></td>",$line);
-                $moviename = substr($data, strpos($data, ">") + 1);
-                array_push($movienamearray, $moviename);
-
-                $moviecount++;;
-                $i++;
-            }
-
-            // process the line read.
-            if ( ($moviecount > 0) && (strpos($line, $pattern_ending) !== false) )
-            {
-                break;
-            }
-        }
-    }
-    else
-    {
-        // error opening the file.
-        echo "could not open the wikipedia URL!";
-    }
-    fclose($handle);
+//    /* wikipedia */
+//    switch ($_GET['language'])
+//    {
+//        case "malayalam":
+//            $base = "https://en.wikipedia.org/wiki/List_of_Malayalam_films_of_";
+//            $url = $base.$_GET['year'];
+//            break;
+//        case "hindi":
+//            $base = "https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_";
+//            $url = $base.$_GET['year'];
+//            break;
+//        case "english":
+//            $base = "https://en.wikipedia.org/wiki/";
+//            $url = $base.$_GET['year']."_in_film";
+//            break;
+//        case "tamil":
+//            $base = "https://en.wikipedia.org/wiki/List_of_Tamil_films_of_";
+//            $url = $base.$_GET['year'];
+//            break;
+//        case "tagalog":
+//            $base = "https://en.wikipedia.org/wiki/List_of_Philippine_films_of_";
+//            $url = $base.$_GET['year'];
+//            break;
+//    }
+//
+//    $pattern_without_translation = "</a></i></td>";
+//    $pattern_with_translation = "</a></i><br />";
+//    $pattern_ending = "</table>";
+//    $moviecount = 0;
+//    $movienamearray = array();
+//    $i = 1;
+//    $handle = fopen($url, "r");
+//
+//    if ($handle)
+//    {
+//        while (($line = fgets($handle)) !== false)
+//        {
+//            // process the line read.
+//            if ((strpos($line, $pattern_without_translation) !== false) || (strpos($line, $pattern_with_translation) !== false))
+//            {
+//                /* <td style="text-align:center;"><i><a href="/wiki/Marupuram_(2016_film)" title="Marupuram (2016 film)">Marupuram</a></i></td> */
+//                $data = GetBetween("title","</a></i></td>",$line);
+//                $moviename = substr($data, strpos($data, ">") + 1);
+//                array_push($movienamearray, $moviename);
+//
+//                $moviecount++;;
+//                $i++;
+//            }
+//
+//            // process the line read.
+//            if ( ($moviecount > 0) && (strpos($line, $pattern_ending) !== false) )
+//            {
+//                break;
+//            }
+//        }
+//    }
+//    else
+//    {
+//        // error opening the file.
+//        echo "could not open the wikipedia URL!";
+//    }
+//    fclose($handle);
 //    print_r($movienamearray);echo "</br>";echo "</br>";
 //    echo "</br>";
 
