@@ -40,7 +40,7 @@
         <option value="2020">2022</option>
     </select>
 
-    <input type="submit" value="submit">
+<!--    <input type="submit" value="submit">-->
 </form>
 </body>
 </html>
