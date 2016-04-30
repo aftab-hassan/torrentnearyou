@@ -65,6 +65,7 @@ function GetBetween($var1="",$var2="",$pool){
     return substr($result,0,$dd);
 }
 
+/* Remmeber, the whole point of this is to generate the table code */
 if(isset($_GET['language']) && isset($_GET['year']))
 {
     /* wikipedia */
@@ -231,23 +232,25 @@ if(isset($_GET['language']) && isset($_GET['year']))
 //    print_r($sizeMBarray);
 
     /* putting it in a table */
-    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
-    echo "<tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr>";
-    for($i = 0;$i < count($torrentlinkarray);$i++)
-    {
-        $serial = $i + 1;
-
-        if($torrentlinkarray[$i] == "404")
-            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."<td>"."torrent not present"."</td>"."</tr>";
-
-        else
-        {
-            $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
-            $cbcode = "<label><input id=\"cb".$i."\" type=\"checkbox\" onchange=\"window.location.href='".$torrentlinkarray[$i]."'\">Click to download</label>";
-//            $cbcode = "<input id=\"cb".$i."\" type=\"checkbox\" onchange=\"window.location.href='https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv'\">";
-            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$cbcode."</td>"."</tr>";
-        }
-    }
-    echo "</table>";
+//    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
+//    echo "<tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr>";
+//    for($i = 0;$i < count($torrentlinkarray);$i++)
+//    {
+//        $serial = $i + 1;
+//
+//        if($torrentlinkarray[$i] == "404")
+//            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."<td>"."torrent not present"."</td>"."</tr>";
+//
+//        else
+//        {
+//            $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
+//            $cbcode = "<label><input id=\"cb".$i."\" type=\"checkbox\" onchange=\"window.location.href='".$torrentlinkarray[$i]."'\">Click to download</label>";
+////            $cbcode = "<input id=\"cb".$i."\" type=\"checkbox\" onchange=\"window.location.href='https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv'\">";
+//            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$cbcode."</td>"."</tr>";
+//        }
+//    }
+//    echo "</table>";
+    echo "<table width=100% border=1 cellspacing=0 cellpadding=0><tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr><tr><td>2</td><td>Style</td><td><a href = \"https://kat.cr/usearch/Style%202016%20malayalam\">Click here to visit the torrent page.</a></td><td><label><input id=\"cb1\" type=\"checkbox\" onchange=\"window.location.href='//torcache.net/torrent/4D4BB5D17A7AD7299B6C2342300687CA53A83733.torrent?title=[kat.cr]style.2016.malayalam.1cd.dvdrip.x264.mp3.esub.chaps.drc.release'\">Click to download</label></td></tr></table>";
 }
+
 ?>

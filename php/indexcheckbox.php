@@ -65,6 +65,7 @@ function GetBetween($var1="",$var2="",$pool){
     return substr($result,0,$dd);
 }
 
+/* Remmeber, the whole point of this is to generate the table code */
 if(isset($_GET['language']) && isset($_GET['year']))
 {
     /* wikipedia */
