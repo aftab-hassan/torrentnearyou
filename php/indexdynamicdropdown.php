@@ -13,7 +13,7 @@
 </div>
 
 <body>
-<form method="get" action="indexdirectdownloadlink.php">
+<form method="get" action="indexdynamicdropdown.php">
     <select name="languagedropdown">
 <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
