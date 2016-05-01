@@ -29,7 +29,7 @@
 
     <input type="submit" value="submit">
 
-    <lable id="remainingMovieCountLbl"></lable>
+    <label id="remainingMovieCountLbl"></label>
 </form>
 </body>
 <script>

@@ -13,7 +13,7 @@
 </div>
 
 <body>
-<form method="get" action="indexoriginal.php">
+<form method="get" action="indexoriginal1.php">
     <select name="language">
 <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>

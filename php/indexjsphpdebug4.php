@@ -13,7 +13,7 @@
 </div>
 
 <body>
-<form method="get" action="indexjsphpdebug.php">
+<form method="get" action="indexjsphpdebug4.php">
     <select name="languagedropdown" id="languagedropdown">
 <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
