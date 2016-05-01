@@ -31,9 +31,9 @@
 </form>
 </body>
 <script>
-    for(var i = 2010; i <= new Date().getFullYear();i++)
+    for(var i = 2010; i <= new Date().getFullYear()+1;i++)
     {
-        console.log("added "+i);
+//        console.log("added "+i);
         var dropdownListID = document.getElementById("yeardropdown");
         var year = new Option(i,i);
         dropdownListID.options[i-2010] = year;
