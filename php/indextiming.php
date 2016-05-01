@@ -44,7 +44,7 @@
     function updateLabelText(remainingMovieCount)
     {
         console.log("came inside updateLabelText with the value : "+remainingMovieCount);
-//        alert("hello");
+        alert("came inside the javascript function...");
 
         if(remainingMovieCount > 0)
         {
@@ -72,13 +72,11 @@
 if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 {
     echo "<br/>";
-    for($i = 10;$i >= 0;$i--)
+    for($i = 10;$i > 0;$i--)
     {
         for($j = 30000;$j>=-30000;$j--){console.log("hello1");}
         for($j = 30000;$j>=-30000;$j--){console.log("hello2");}
         for($j = 30000;$j>=-30000;$j--){console.log("hello3");}
-        for($j = 30000;$j>=-30000;$j--){console.log("hello4");}
-        for($j = 30000;$j>=-30000;$j--){console.log("hello5");}
 
         /* updating the label */
         //<script>updateLabelText(45)</script>
