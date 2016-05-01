@@ -250,7 +250,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
 //            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$cbcode."</td>"."</tr>";
 
             //using ahref : <a href="https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv" download>Click here</a>
-            $ahrefcode = "a href="."\""."https:".$torrentlinkarray[$i]."\""." download>Click here</a>";
+            $ahrefcode = "<a href="."\""."https:".$torrentlinkarray[$i]."\""." download>Click here</a>";
             echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$ahrefcode."</td>"."</tr>";
         }
     }
