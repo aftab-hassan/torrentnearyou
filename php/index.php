@@ -47,7 +47,12 @@
         alert("hello");
 
         if(remainingMovieCount > 0)
-            document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movies. Check back in a couple of minutes !";
+        {
+            if(remainingMovieCount  == 1)
+                document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movie. Check back shortly !";
+            else
+                document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movies. Check back in a couple of minutes !";
+        }
         else
             document.getElementById("remainingMovieCountLbl").innerHTML = "";
     }
