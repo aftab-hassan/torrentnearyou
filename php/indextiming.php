@@ -81,9 +81,11 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         /* updating the label */
         //<script>updateLabelText(45)</script>
         echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval($i).");"."</script>";
+        echo "$i";
     }//end of for loop across all movies
 
     //to get rid of the label
     echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval($i).");"."</script>";
+    echo "$i";
 }
 ?>
