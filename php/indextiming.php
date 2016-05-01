@@ -4,6 +4,7 @@
 <form method="get" action="indextiming.php">
     <input type="text" name="myTextbox" id="myTextbox">
     <label id="myLabel"></label>
+    <input type="submit" name="submit" id="submit">
 </form>
 </body>
 <script>
