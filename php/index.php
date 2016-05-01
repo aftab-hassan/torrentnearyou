@@ -28,6 +28,8 @@
     </select>
 
     <input type="submit" value="submit">
+
+    <lable id="remainingMovieCountLbl"></lable>
 </form>
 </body>
 <script>
@@ -37,6 +39,11 @@
         var dropdownListID = document.getElementById("yeardropdown");
         var year = new Option(i,i);
         dropdownListID.options[i-2010] = year;
+    }
+
+    function updateLabelText(remainingMovieCount)
+    {
+        document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movies. Check back in a couple of minutes !";
     }
 </script>
 
@@ -142,6 +149,11 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 
     for($i = 0;$i < count($movienamearray);$i++)
     {
+        /* updating the label */
+        //updateLabelText
+        //<script>updateLabelText(45)</script>
+        echo "<script>"."updateLabelText"."(".count($movienamearray)-$i.")"."</script>";
+
 //        echo "---------------------------------</br>";
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
