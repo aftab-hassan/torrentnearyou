@@ -14,7 +14,7 @@
 
 <body>
 <form method="get" action="indexdynamicdropdown.php">
-    <select name="languagedropdown">
+    <select name="languagedropdown" id="languagedropdown">
 <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
         <option value = "tamil">Tamil</option>
@@ -24,7 +24,7 @@
     </select>
 <!--    </br>-->
 
-    <select id="yeardropdown">
+    <select name="yeardropdown" id="yeardropdown">
     </select>
 
     <input type="submit" value="submit">
