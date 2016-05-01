@@ -1,0 +1,12 @@
+1.The browser does not/doesn't have to convert Js to html. If it did, then view page source would not give you JS, it would
+ give you only plain HTML (converted).
+
+ That means, the browser can understand both HTML and JS
+
+2.It's php code which is converted to html and JS by the php interpreter
+
+3.Why web server
+  Yes, it's the php interpreter which does all the heavy lifting, and converts php code to what the browser can understand (HTML and JS)
+  But when hosted on a remove server, and not on localhost, SOMETHING needs to call the php interpreter and call to duty.
+  Also, that SOMETHING needs to send this converted HTML and JS back to the same port/client/IP address from where the reqeust was sent.
+  This is probably where the web server comes in.

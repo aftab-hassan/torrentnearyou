@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <label id="myLabel">This is a label</label>
+</body>
+
+<script>
+    document.getElementById('myLabel').innerHTML = "This is a label";
+
+    for(var i = 0;i<10;i++)
+    {
+        alert("updating to "+i);
+
+        document.getElementById('myLabel').innerHTML = i;
+    }
+</script>
+</html>
