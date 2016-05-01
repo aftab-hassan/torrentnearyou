@@ -14,7 +14,7 @@
 
 <body>
 <form method="get" action="indexdirectdownloadlink.php">
-    <select name="language">
+    <select name="languagedropdown">
 <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
         <option value = "tamil">Tamil</option>
@@ -24,25 +24,22 @@
     </select>
 <!--    </br>-->
 
-    <select name="year">
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
-        <option value="2020">2020</option>
-        <option value="2020">2021</option>
-        <option value="2020">2022</option>
+    <select id="yeardropdown">
     </select>
 
     <input type="submit" value="submit">
 </form>
 </body>
+<script>
+    for(var i = 2010; i <= new Date().getFullYear();i++)
+    {
+        console.log("added "+i);
+        var dropdownListID = document.getElementById("yeardropdown");
+        var year = new Option(i,i);
+        dropdownListID.options[i-2010] = year;
+    }
+</script>
+
 </html>
 
 <?php
@@ -66,30 +63,30 @@ function GetBetween($var1="",$var2="",$pool){
 }
 
 /* Remmeber, the whole point of this is to generate the table code */
-if(isset($_GET['language']) && isset($_GET['year']))
+if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 {
     /* wikipedia */
-    switch ($_GET['language'])
+    switch ($_GET['languagedropdown'])
     {
         case "malayalam":
             $base = "https://en.wikipedia.org/wiki/List_of_Malayalam_films_of_";
-            $url = $base.$_GET['year'];
+            $url = $base.$_GET['yeardropdown'];
             break;
         case "hindi":
             $base = "https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_";
-            $url = $base.$_GET['year'];
+            $url = $base.$_GET['yeardropdown'];
             break;
         case "english":
             $base = "https://en.wikipedia.org/wiki/";
-            $url = $base.$_GET['year']."_in_film";
+            $url = $base.$_GET['yeardropdown']."_in_film";
             break;
         case "tamil":
             $base = "https://en.wikipedia.org/wiki/List_of_Tamil_films_of_";
-            $url = $base.$_GET['year'];
+            $url = $base.$_GET['yeardropdown'];
             break;
         case "tagalog":
             $base = "https://en.wikipedia.org/wiki/List_of_Philippine_films_of_";
-            $url = $base.$_GET['year'];
+            $url = $base.$_GET['yeardropdown'];
             break;
     }
 
@@ -142,7 +139,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
     for($i = 0;$i < count($movienamearray);$i++)
     {
 //        echo "---------------------------------</br>";
-        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
+        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 
         $handle = fopen($url, "r");
@@ -243,7 +240,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
 
         else
         {
-            $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
+            $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 
 //            //using checkbox : <input id="cb1" type="checkbox" onchange="window.location.href='https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv'" download>
 //            $cbcode = "<label><input id=\"cb".$i."\" type=\"checkbox\" onchange=\"window.location.href='".$torrentlinkarray[$i]."'\" download>Click here for direct download</label>";
