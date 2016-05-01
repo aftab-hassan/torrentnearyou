@@ -44,7 +44,11 @@
     function updateLabelText(remainingMovieCount)
     {
         console.log("came inside updateLabelText with the value : "+remainingMovieCount);
-        document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movies. Check back in a couple of minutes !";
+
+        if(remainingMovieCount > 0)
+            document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movies. Check back in a couple of minutes !";
+        else
+            document.getElementById("remainingMovieCountLbl").innerHTML = "";
     }
 </script>
 
@@ -242,6 +246,9 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         }
         fclose($handle);
     }//end of for loop across all movies
+
+    //to get rid of the label
+    echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
 //    print_r($torrentlinkarray);
 //    print_r($sizeMBarray);
 
