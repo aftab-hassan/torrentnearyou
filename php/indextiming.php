@@ -74,6 +74,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     echo "<br/>";
     for($i = 10;$i >= 0;$i--)
     {
+        for($j = 30000;$j>=-30000;$j--){}
+
         /* updating the label */
         //<script>updateLabelText(45)</script>
         echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval($i).");"."</script>";
