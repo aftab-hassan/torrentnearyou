@@ -43,6 +43,7 @@
 
     function updateLabelText(remainingMovieCount)
     {
+        console.log("came inside updateLabelText with the value : "+remainingMovieCount);
         document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movies. Check back in a couple of minutes !";
     }
 </script>
@@ -149,11 +150,10 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 
     for($i = 0;$i < count($movienamearray);$i++)
     {
-        echo "hello";
         /* updating the label */
         //updateLabelText
         //<script>updateLabelText(45)</script>
-        echo "<script>"."updateLabelText"."(".count($movienamearray)-$i.")"."</script>";
+        echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
 
 //        echo "---------------------------------</br>";
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
