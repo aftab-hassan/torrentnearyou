@@ -2,8 +2,7 @@
 
 <body>
 <form method="get" action="indextiming.php">
-    <input type="submit" value="submit">
-
+    <input type="text" name="myTextbox" id="myTextbox">
     <label id="myLabel"></label>
 </form>
 </body>
@@ -18,6 +17,8 @@
 </html>
 
 <?php
+if(isset($_GET['myTextbox']))
+{
     for($i = 10;$i > 0;$i--)
     {
         //to consume time
@@ -29,4 +30,5 @@
         echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval($i).");"."</script>";
         echo "$i";
     }
+}
 ?>
