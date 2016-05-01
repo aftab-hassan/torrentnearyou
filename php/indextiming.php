@@ -44,7 +44,7 @@
     function updateLabelText(remainingMovieCount)
     {
         console.log("came inside updateLabelText with the value : "+remainingMovieCount);
-        alert("hello");
+//        alert("hello");
 
         if(remainingMovieCount > 0)
         {
@@ -71,7 +71,7 @@
 /* Remmeber, the whole point of this is to generate the table code */
 if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 {
-    echo "</br>";
+    echo "<br/>";
     for($i = 10;$i >= 0;$i--)
     {
         /* updating the label */

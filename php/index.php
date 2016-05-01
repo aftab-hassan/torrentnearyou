@@ -158,7 +158,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     $torrentlinkarray = array();
     $sizeMBarray = array();
 
-    echo "</br>";
+    echo "<br/>";
     for($i = 0;$i < count($movienamearray);$i++)
     {
         /* updating the label */
