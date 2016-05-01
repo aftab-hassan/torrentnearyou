@@ -124,7 +124,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     else
     {
         // error opening the file.
-        echo "could not open the wikipedia URL!";
+//        echo "could not open the wikipedia URL!";
         echo "could not find any ". $_GET['languagedropdown']." movies for the year ".$_GET['yeardropdown']." !";
     }
     fclose($handle);
