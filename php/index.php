@@ -149,6 +149,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 
     for($i = 0;$i < count($movienamearray);$i++)
     {
+        echo "hello";
         /* updating the label */
         //updateLabelText
         //<script>updateLabelText(45)</script>
