@@ -1,7 +1,7 @@
 <html>
 
 <body>
-<form method="get" action="indextiming.php">
+<form method="get" action="indextiming5.php">
     <input type="text" name="myTextbox" id="myTextbox">
     <label id="myLabel"></label>
     <input type="submit" name="submit" id="submit">
@@ -10,7 +10,7 @@
 <script>
     function updateLabelText(val)
     {
-        alert("came inside the javascript function with val == ..."+val);
+        alert("came inside the javascript function with val == "+val);
         document.getElementById("myLabel").innerHTML = val;
     }
 </script>
