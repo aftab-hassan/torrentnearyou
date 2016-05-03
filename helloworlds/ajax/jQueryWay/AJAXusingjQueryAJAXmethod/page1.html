@@ -1,0 +1,23 @@
+<!--Refer : http://stackoverflow.com/questions/11069986/jquery-ajax-get-method-nothing-happend-when-success-->
+<html>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#submit").click(function(){
+            $.ajax({
+                type: 'GET',
+                url: "http://localhost:63342/torrentnearyou/helloworlds/ajax/jQueryWay/AJAXusingjQueryAJAXmethod/page1.html",
+                success:function(data){
+                    alert(data);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</head>
+
+<body>
+<input type="button" id="submit" value="submit" />
+</body>
+</html>
