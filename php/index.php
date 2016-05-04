@@ -146,7 +146,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 
-        $url = "https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/";
+        $url = "compress.zlib://https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/";
         $handle = fopen($url, "r");
         if ($handle)
         {
