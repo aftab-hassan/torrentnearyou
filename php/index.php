@@ -40,9 +40,45 @@
         <option value="2020">2022</option>
     </select>
 
+    <label id="mylabel" name="mylabel">-1</label>
     <input type="submit" value="submit">
 </form>
 </body>
+
+<script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+    var ajaxFunction = function()
+    {
+        $.get(
+            url:"index.php",
+            success:function(data)
+            {
+//                $("mylabel").innerHTML = data;
+                $("mylabel").html(data);
+                setTimeout(ajaxFunction,1000);
+            }
+        )
+    }
+    ajaxFunction();
+
+//    var clearTimeoutID = 0;
+//    var ajaxFunction = function() {
+//        $.get(
+//            "fileonserver.txt",
+//            function(data) {
+//                $('#stage').html(data);
+//
+//                if(data == "end of data")
+//                    clearTimeout(clearTimeoutID);
+//                else
+//                    clearTimeoutID = setTimeout(ajaxFunction,1000);
+//            }
+//        );
+//    }
+//    $(document).ready(ajaxFunction());
+</script>
+
+
 </html>
 
 <?php
