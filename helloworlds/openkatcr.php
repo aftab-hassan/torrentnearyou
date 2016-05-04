@@ -20,4 +20,7 @@
             echo $line;
         }
     }
+    else{
+        echo "could not open the URL!";
+    }
 ?>
