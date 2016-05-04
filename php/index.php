@@ -56,7 +56,9 @@ if(isset($_GET['language']) && isset($_GET['year']))
         fwrite($myfile, $txt);
         fclose($myfile);
 
-        for($j = 0;$j < 30000; $j++){}
+        for($j = -100000;$j < 100000; $j++){}
+        for($j = -100000;$j < 100000; $j++){}
+        for($j = -100000;$j < 100000; $j++){}
     }
 }
 ?>
