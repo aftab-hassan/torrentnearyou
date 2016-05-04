@@ -66,7 +66,8 @@
     var clearTimeoutID = 0;
     var ajaxFunction = function() {
         $.get(
-            "fileonserver.txt",
+//            "fileonserver.txt",
+            "index.php",
             function(data) {
                 console.log("inside the get with data == ..."+data);
                 $('#mylabel').html(data);
@@ -174,6 +175,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
 
     for($i = 0;$i < count($movienamearray);$i++)
     {
+        echo "now at movie no.".$i;
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
 
         $handle = fopen($url, "r");
@@ -195,8 +197,6 @@ if(isset($_GET['language']) && isset($_GET['year']))
     echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
     for($i = 0;$i < count($torrentlinkarray);$i++)
     {
-        echo "now at movie no.".$i;
-
         if($torrentlinkarray[$i] == "404")
             echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
 
