@@ -56,6 +56,7 @@
 //                $("mylabel").innerHTML = data;
                 $("mylabel").html(data);
                 setTimeout(ajaxFunction,1000);
+                console.log("inside the get...");
             }
         );
     }
