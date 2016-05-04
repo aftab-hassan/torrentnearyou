@@ -49,8 +49,11 @@
 <?php
 if(isset($_GET['language']) && isset($_GET['year']))
 {
+    echo "did not come inside the if condition!";
     for($i = 0;$i < 30;$i++)
     {
+        echo "i==".$i;
+
         $myfile = fopen("fileonserver.txt", "w") or die("Unable to open file!");
         $txt = "now at movie no.".$i;
         fwrite($myfile, $txt);
@@ -64,5 +67,9 @@ if(isset($_GET['language']) && isset($_GET['year']))
         for($j = 0;$j < 10000; $j++){console.log("hello");}
         for($j = 0;$j < 10000; $j++){console.log("hello");}
     }
+}
+else
+{
+    echo "did not come inside the if condition!";
 }
 ?>
