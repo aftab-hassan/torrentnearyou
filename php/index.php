@@ -58,6 +58,11 @@ if(isset($_GET['language']) && isset($_GET['year']))
 
         for($j = 0;$j < 10000; $j++){console.log("hello");}
         for($j = 0;$j < 10000; $j++){console.log("hello");}
+        for($j = 0;$j < 10000; $j++){console.log("hello");}
+        for($j = 0;$j < 10000; $j++){console.log("hello");}
+        for($j = 0;$j < 10000; $j++){console.log("hello");}
+        for($j = 0;$j < 10000; $j++){console.log("hello");}
+        for($j = 0;$j < 10000; $j++){console.log("hello");}
     }
 }
 ?>
