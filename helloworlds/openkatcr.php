@@ -10,6 +10,7 @@
 </html>
 
 <?php
+/* Method 1 */
 //    $url = "compress.zlib://https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/";
     $url = "https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/";
 //    $handle = fopen($url, "r");
@@ -25,6 +26,7 @@
 //        echo "could not open the URL!";
 //    }
 
+/* Method 2 */
 $ch = curl_init();
 curl_setopt_array($ch, array(
     CURLOPT_URL => $url
