@@ -47,37 +47,37 @@
 
 <script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript">
-    var ajaxFunction = function()
-    {
-        $.get(
-//            "index.php",
-            "fileonserver.txt",
-            function(data)
-            {
-//                $("mylabel").innerHTML = data;
-                $("mylabel").html(data);
-                setTimeout(ajaxFunction,1000);
-                console.log("inside the get...");
-            }
-        );
-    }
-    ajaxFunction();
-
-//    var clearTimeoutID = 0;
-//    var ajaxFunction = function() {
+//    var ajaxFunction = function()
+//    {
 //        $.get(
+////            "index.php",
 //            "fileonserver.txt",
-//            function(data) {
-//                $('#stage').html(data);
-//
-//                if(data == "end of data")
-//                    clearTimeout(clearTimeoutID);
-//                else
-//                    clearTimeoutID = setTimeout(ajaxFunction,1000);
+//            function(data)
+//            {
+////                $("mylabel").innerHTML = data;
+//                $("mylabel").html(data);
+//                setTimeout(ajaxFunction,1000);
+//                console.log("inside the get...");
 //            }
 //        );
 //    }
-//    $(document).ready(ajaxFunction());
+//    ajaxFunction();
+
+    var clearTimeoutID = 0;
+    var ajaxFunction = function() {
+        $.get(
+            "fileonserver.txt",
+            function(data) {
+                $('#stage').html(data);
+
+                if(data == "end of data")
+                    clearTimeout(clearTimeoutID);
+                else
+                    clearTimeoutID = setTimeout(ajaxFunction,1000);
+            }
+        );
+    }
+    $(document).ready(ajaxFunction());
 </script>
 
 
