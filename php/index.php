@@ -156,6 +156,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
     echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
     for($i = 0;$i < count($torrentlinkarray);$i++)
     {
+        echo "now at movie no.".$i;
+
         if($torrentlinkarray[$i] == "404")
             echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
 
