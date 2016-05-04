@@ -226,6 +226,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         }
         else
         {
+            echo "unable to open the compress.zlib link!";
             // error opening the file.
             array_push($torrentlinkarray,"404");
             array_push($sizeMBarray,-1);
