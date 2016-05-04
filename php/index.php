@@ -68,7 +68,8 @@
         $.get(
             "fileonserver.txt",
             function(data) {
-                $('#stage').html(data);
+                console.log("inside the get with data == ..."+data);
+                $('#mylabel').html(data);
 
                 if(data == "end of data")
                     clearTimeout(clearTimeoutID);
