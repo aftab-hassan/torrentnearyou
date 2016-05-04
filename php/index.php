@@ -50,7 +50,8 @@
     var ajaxFunction = function()
     {
         $.get(
-            "index.php",
+//            "index.php",
+            "fileonserver.txt",
             function(data)
             {
 //                $("mylabel").innerHTML = data;
