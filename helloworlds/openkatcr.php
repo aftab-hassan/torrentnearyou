@@ -10,6 +10,14 @@
 </html>
 
 <?php
-$url = "compress.zlib://https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/";
-echo $data = file_get_contents($url, false, stream_context_create(array('http'=>array('header'=>"Accept-Encoding: gzip\r\n"))));
+    $url = "compress.zlib://https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/";
+    $handle = fopen($url, "r");
+    if($handle)
+    {
+        /* iterating to find the sizes of the torrents */
+        while (($line = fgets($handle)) !== false)
+        {
+            echo $line;
+        }
+    }
 ?>
