@@ -57,7 +57,7 @@
                 $("mylabel").html(data);
                 setTimeout(ajaxFunction,1000);
             }
-        )
+        );
     }
     ajaxFunction();
 
