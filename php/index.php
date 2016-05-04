@@ -140,12 +140,13 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     $torrentlinkarray = array();
     $sizeMBarray = array();
 
-    for($i = 0;$i < count($movienamearray);$i++)
+    for($i = 0;$i < 1;$i++)
     {
 //        echo "---------------------------------</br>";
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 
+        $url = "https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/";
         $handle = fopen($url, "r");
         if ($handle)
         {
@@ -198,8 +199,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
             }//finished iterating across all torrents
 
             //printing page summary of what's useful to me
-//            print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
-//            print_r($sizeMBarray_pertorrent);echo "</br>";echo "</br>";
+            print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
+            print_r($sizeMBarray_pertorrent);echo "</br>";echo "</br>";
 
             /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
             $largestsizeindex = 0;
