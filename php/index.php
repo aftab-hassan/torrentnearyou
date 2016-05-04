@@ -66,8 +66,7 @@
     var clearTimeoutID = 0;
     var ajaxFunction = function() {
         $.get(
-//            "fileonserver.txt",
-            "index.php",
+            "fileonserver.txt",
             function(data) {
                 console.log("inside the get with data == ..."+data);
                 $('#mylabel').html(data);
@@ -175,7 +174,11 @@ if(isset($_GET['language']) && isset($_GET['year']))
 
     for($i = 0;$i < count($movienamearray);$i++)
     {
-        echo "now at movie no.".$i;
+        $myfile = fopen("fileonserver.txt", "w") or die("Unable to open file!");
+        $txt = "now at movie no.".$i;
+        fwrite($myfile, $txt);
+        fclose($myfile);
+
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
 
         $handle = fopen($url, "r");
