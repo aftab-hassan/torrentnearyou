@@ -11,6 +11,7 @@
 
 <?php
     $url = "compress.zlib://https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/";
+    $url = "https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/";
     $handle = fopen($url, "r");
     if($handle)
     {
