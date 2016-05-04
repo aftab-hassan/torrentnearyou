@@ -13,7 +13,7 @@
 </div>
 
 <body>
-<form method="get" action="indexdynamicdropdown3.php">
+<form method="get" action="index.php">
     <select name="languagedropdown" id="languagedropdown">
 <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
@@ -28,6 +28,8 @@
     </select>
 
     <input type="submit" value="submit">
+
+    <label id="remainingMovieCountLbl"></label>
 </form>
 </body>
 <script>
@@ -37,6 +39,22 @@
         var dropdownListID = document.getElementById("yeardropdown");
         var year = new Option(i,i);
         dropdownListID.options[i-2010] = year;
+    }
+
+    function updateLabelText(remainingMovieCount)
+    {
+        console.log("came inside updateLabelText with the value : "+remainingMovieCount);
+        alert("hello");
+
+        if(remainingMovieCount > 0)
+        {
+            if(remainingMovieCount  == 1)
+                document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movie. Check back shortly !";
+            else
+                document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movies. Check back in a couple of minutes !";
+        }
+        else
+            document.getElementById("remainingMovieCountLbl").innerHTML = "";
     }
 </script>
 
@@ -140,8 +158,14 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     $torrentlinkarray = array();
     $sizeMBarray = array();
 
+    echo "<br/>";
     for($i = 0;$i < count($movienamearray);$i++)
     {
+        /* updating the label */
+        //updateLabelText
+        //<script>updateLabelText(45)</script>
+        echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
+
 //        echo "---------------------------------</br>";
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
@@ -229,6 +253,9 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         }
         fclose($handle);
     }//end of for loop across all movies
+
+    //to get rid of the label
+    echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
 //    print_r($torrentlinkarray);
 //    print_r($sizeMBarray);
 
