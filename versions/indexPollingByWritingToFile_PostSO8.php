@@ -1,11 +1,7 @@
 <html>
 
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<h1 align="center">Articles You</></h1>
-<p align="center">See which articles are near you ...</p>
-
 <body>
-<form method="get" action="indexFileWritingProblems8.php">
+<form method="get" action="index.php">
     <select name="language">
         <option value = "english">English</option>
         <option value = "tagalog">Tagalog</option>
@@ -47,12 +43,11 @@
 </html>
 
 <?php
-if(!(isset($_GET['language']) && isset($_GET['year'])))
+if(isset($_GET['language']) && isset($_GET['year']))
 {
     echo "came inside the if condition!";
     for($i = 0;$i < 30;$i++)
     {
-        echo "i==".$i;
 
         $myfile = fopen("fileonserver.txt", "w") or die("Unable to open file!");
         $txt = "now at movie no.".$i;
