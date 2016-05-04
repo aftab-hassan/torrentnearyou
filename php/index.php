@@ -66,7 +66,7 @@
     var clearTimeoutID = 0;
     var ajaxFunction = function() {
         $.get(
-            "fileonserver.txt",
+            "fileonserver1.txt",
             function(data) {
                 console.log("inside the get with data == ..."+data);
                 $('#mylabel').html(data);
