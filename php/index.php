@@ -50,8 +50,8 @@
     var ajaxFunction = function()
     {
         $.get(
-            url:"index.php",
-            success:function(data)
+            "index.php",
+            function(data)
             {
 //                $("mylabel").innerHTML = data;
                 $("mylabel").html(data);
