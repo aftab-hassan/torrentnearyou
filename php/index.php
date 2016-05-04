@@ -168,6 +168,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
             /* iterating to find the sizes of the torrents */
             while (($line = fgets($handle)) !== false)
             {
+                echo $line;
+
                 /* The ones it shows under 'Showing results for' are not actual searches, so break off */
                 if (strpos($line, "Showing results for") !== false)
                     break;
