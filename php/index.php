@@ -55,6 +55,8 @@ if(isset($_GET['language']) && isset($_GET['year']))
         $txt = "now at movie no.".$i;
         fwrite($myfile, $txt);
         fclose($myfile);
+
+        for($j = 0;$j < 30000; $j++){}
     }
 }
 ?>
