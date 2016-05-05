@@ -71,7 +71,9 @@
             function(data) {
                 console.log("retrieved data from iretriever.php == "+data);
                 $('#mylabel').html(data);
-                $("#").remove("myTable");
+
+                var tbl = document.getElementById('myTable');
+                if(tbl) tbl.parentNode.removeChild(tbl);
 
                 if(data == "end of data")
                     clearTimeout(clearTimeoutID);
