@@ -1,5 +1,16 @@
 <html>
 
+<head>
+
+</head>
+<script>
+    function deleteTable()
+    {
+        var tbl = document.getElementById('myTable');
+        if(tbl) tbl.parentNode.removeChild(tbl);
+    }
+</script>
+
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <div class="container">
@@ -308,7 +319,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 //    print_r($sizeMBarray);
 
     /* putting it in a table */
-    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
+    echo "<table name=\"myTable\" id=\"myTable\" width=100% border=1 cellspacing=0 cellpadding=0>";
     echo "<tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr>";
     for($i = 0;$i < count($torrentlinkarray);$i++)
     {
