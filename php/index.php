@@ -31,7 +31,7 @@
 
     <input type="submit" name="submit" id="submit" value="submit">
 
-    <label id="mylabel" name="mylabel">-1</label>
+    <br><label id="mylabel" name="mylabel">-1</label>
 </form>
 </body>
 <script>

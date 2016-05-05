@@ -10,7 +10,8 @@ $fileName = "/var/www/data/fileonserver".$_GET['randomNumber']."txt";
 //$fileName = '/var/www/data/fileonserver2111308781txt';
 //$fileContents = file_get_contents($fileName, "w", true);
 
-$fileHandle = fopen($fileName, "r") or die("Unable to open file!");
+//$fileHandle = fopen($fileName, "r") or die("Unable to open file!");
+$fileHandle = fopen($fileName, "r") or die("");
 $fileContents = fread($fileHandle,filesize($fileName));
 fclose($fileHandle);
 
