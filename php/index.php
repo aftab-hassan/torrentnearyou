@@ -177,7 +177,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
     /* putting it in a table */
     echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
     echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
-    for($i = 0;$i < count($torrentlinkarray);$i++)
+    for($i = 0;$i < count($movienamearray);$i++)
     {
         echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>".""."</td>"."</tr>";
     }
