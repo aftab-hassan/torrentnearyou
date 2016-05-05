@@ -89,6 +89,9 @@
                     document.getElementById("languagedropdown").disabled=true;
                     document.getElementById("yeardropdown").disabled=true;
                     document.getElementById("submit").disabled=true;
+
+                    document.getElementById("languagedropdown").style="background-color:gray";
+                    document.getElementById("yeardropdown").style="background-color:gray";
                 }
 
                 $('#mylabel').html(data);
