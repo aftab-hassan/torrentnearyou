@@ -69,8 +69,8 @@
         );
     }
 
-//    $(document).ready(ajaxFunction());
-    $(document).ready($("submit").click(ajaxFunction));
+    $(document).ready(ajaxFunction());
+//    $(document).ready($("submit").click(ajaxFunction));
 //    $(document).ready($("submit").click(function(){
 //        $.get(
 //            "iretriever.php",
