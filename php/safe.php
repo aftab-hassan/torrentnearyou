@@ -24,7 +24,7 @@
 </div>
 
 <body>
-<form method="get" action="safe.php">
+<form method="get" action="index.php">
     <select name="languagedropdown" id="languagedropdown">
         <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
@@ -164,8 +164,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
             $url = $base.$_GET['yeardropdown'];
             break;
         case "english":
-            $base = "https://en.wikipedia.org/wiki/";
-            $url = $base.$_GET['yeardropdown']."_in_film";
+            $base = "https://en.wikipedia.org/wiki/List_of_American_films_of_";
+            $url = $base.$_GET['yeardropdown'];
             break;
         case "tamil":
             $base = "https://en.wikipedia.org/wiki/List_of_Tamil_films_of_";
