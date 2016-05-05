@@ -72,9 +72,6 @@
                 console.log("retrieved data from iretriever.php == "+data);
                 $('#mylabel').html(data);
 
-                var tbl = document.getElementById('myTable');
-                if(tbl) tbl.parentNode.removeChild(tbl);
-
                 if(data == "end of data")
                     clearTimeout(clearTimeoutID);
                 else
@@ -83,7 +80,7 @@
         );
     }
 
-    $(document).ready(ajaxFunction());
+    $(document).ready(ajaxFunction);
 //    $(document).ready($("submit").click(ajaxFunction));
 //    $(document).ready($("submit").click(function(){
 //        $.get(
