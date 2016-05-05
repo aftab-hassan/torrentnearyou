@@ -1,5 +1,16 @@
 <html>
 
+<head>
+</head>
+
+<script>
+    function deleteTable()
+    {
+        var tbl = document.getElementById('myTable');
+        if(tbl) tbl.parentNode.removeChild(tbl);
+    }
+</script>
+
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <div class="container">
@@ -29,7 +40,7 @@
 
     <input type="hidden" name="randomNumber" id="randomNumber" value="<?php echo mt_rand(); ?>" />
 
-    <input type="submit" name="submit" id="submit" value="submit">
+    <input type="submit" name="submit" id="submit" value="submit" onclick="deleteTable">
 
     <br><label id="mylabel" name="mylabel"></label>
 </form>
