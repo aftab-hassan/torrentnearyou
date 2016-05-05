@@ -24,9 +24,9 @@
     var clearTimeoutID = 0;
     var ajaxFunction = function() {
         $.get(
-            "fileonserver.txt",
+            "iretriever.php",
             function(data) {
-                console.log("inside the get with data == ..."+data);
+                console.log("retrieved data from iretriever.php == ..."+data);
                 $('#mylabel').html(data);
 
                 if(data == "end of data")
@@ -49,7 +49,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
     for($i = 0;$i < 30;$i++)
     {
 
-        $myfile = fopen("fileonserver.txt", "w") or die("Unable to open file!");
+        $myfile = fopen("/var/www/data/fileonserver.txt", "w") or die("Unable to open file!");
         $txt = "now at movie no.".$i;
         fwrite($myfile, $txt);
         fclose($myfile);
