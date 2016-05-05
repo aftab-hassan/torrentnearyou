@@ -58,7 +58,7 @@
             "iretriever.php",
             {randomNumber : randomNumber},
             function(data) {
-                console.log("retrieved data from iretriever.php == ..."+data);
+                console.log("retrieved data from iretriever.php == "+data);
                 $('#mylabel').html(data);
 
                 if(data == "end of data")
@@ -182,6 +182,10 @@ if(isset($_GET['language']) && isset($_GET['year']))
         }
         fclose($handle);
     }
+    $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
+    $txt = "end of data";
+    fwrite($myfile, $txt);
+    fclose($myfile);
     //print_r($torrentlinkarray);
 
     /* putting it in a table */
