@@ -119,26 +119,26 @@ function GetBetween($var1="",$var2="",$pool){
     return substr($result,0,$dd);
 }
 
-if(isset($_GET['language']) && isset($_GET['year']))
+if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 {
     /* wikipedia */
-    switch ($_GET['language'])
+    switch ($_GET['languagedropdown'])
     {
         case "malayalam":
             $base = "https://en.wikipedia.org/wiki/List_of_Malayalam_films_of_";
-            $url = $base.$_GET['year'];
+            $url = $base.$_GET['yeardropdown'];
             break;
         case "hindi":
             $base = "https://en.wikipedia.org/wiki/List_of_Bollywood_films_of_";
-            $url = $base.$_GET['year'];
+            $url = $base.$_GET['yeardropdown'];
             break;
         case "english":
             $base = "https://en.wikipedia.org/wiki/";
-            $url = $base.$_GET['year']."_in_film";
+            $url = $base.$_GET['yeardropdown']."_in_film";
             break;
         case "tamil":
             $base = "https://en.wikipedia.org/wiki/List_of_Tamil_films_of_";
-            $url = $base.$_GET['year'];
+            $url = $base.$_GET['yeardropdown'];
             break;
         case "tagalog":
             $base = "https://en.wikipedia.org/wiki/List_of_Philippine_films_of_";
@@ -196,7 +196,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         fwrite($myfile, $txt);
         fclose($myfile);
 
-        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
+        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 
         $handle = fopen($url, "r");
         if ($handle)
