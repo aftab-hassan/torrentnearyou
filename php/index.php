@@ -255,7 +255,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     }//end of for loop across all movies
 
     //to get rid of the label
-    echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
+//    echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
 //    print_r($torrentlinkarray);
 //    print_r($sizeMBarray);
 
