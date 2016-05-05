@@ -80,12 +80,27 @@
         $.get(
             "iretriever.php",
             {randomNumber : randomNumber},
-            function(data) {
+            function(data)
+            {
                 console.log("retrieved data from iretriever.php == "+data+", length=="+data.length);
+
+                if(data.length > 0)
+                {
+                    document.getElementById("languagedropdown").disabled=true;
+                    document.getElementById("yeardropdown").disabled=true;
+                    document.getElementById("submit").disabled=true;
+                }
+
                 $('#mylabel').html(data);
 
                 if(data == "end of data")
+                {
+                    document.getElementById("languagedropdown").disabled=false;
+                    document.getElementById("yeardropdown").disabled=false;
+                    document.getElementById("submit").disabled=false;
+
                     clearTimeout(clearTimeoutID);
+                }
                 else
                     clearTimeoutID = setTimeout(ajaxFunction,1000);
             }
