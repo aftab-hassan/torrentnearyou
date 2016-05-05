@@ -45,7 +45,7 @@
 <?php
 if(isset($_GET['language']) && isset($_GET['year']))
 {
-    echo "came inside the if condition!";
+//    echo "came inside the if condition!";
     for($i = 0;$i < 30;$i++)
     {
 
@@ -65,6 +65,6 @@ if(isset($_GET['language']) && isset($_GET['year']))
 }
 else
 {
-    echo "did not come inside the if condition!";
+//    echo "did not come inside the if condition!";
 }
 ?>
