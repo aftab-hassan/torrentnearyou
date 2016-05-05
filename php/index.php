@@ -56,7 +56,7 @@
     var ajaxFunction = function() {
         $.get(
             "iretriever.php",
-            {randomNumber : 21},
+            {randomNumber : randomNumber},
             function(data) {
                 console.log("retrieved data from iretriever.php == ..."+data);
                 $('#mylabel').html(data);
