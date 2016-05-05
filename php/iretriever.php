@@ -7,6 +7,7 @@
  */
 
 $fileName = "/var/www/data/fileonserver".$_GET['randomNumber']."txt";
+echo $fileName;
 //$fileName = '/var/www/data/fileonserver2111308781txt';
 //$fileContents = file_get_contents($fileName, "w", true);
 
@@ -15,5 +16,5 @@ $fileContents = fread($fileHandle,filesize($fileName));
 fclose($fileHandle);
 
 //echo $fileName."_".$fileContents;
-echo $fileContents;
+//echo $fileContents;
 ?>
