@@ -173,16 +173,6 @@ if(isset($_GET['language']) && isset($_GET['year']))
     fclose($handle);
     //print_r($movienamearray);
 
-    /* As soon as movies are found from Wikipedia, making the table */
-    /* putting it in a table */
-    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
-    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
-    for($i = 0;$i < count($torrentlinkarray);$i++)
-    {
-        echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>".""."</td>"."</tr>";
-    }
-    echo "</table>";
-
     /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
     $base = "https://kat.cr/usearch/";
     $pattern_torrent_notpresent = "Nothing found!";
@@ -215,6 +205,20 @@ if(isset($_GET['language']) && isset($_GET['year']))
     fclose($myfile);
     //print_r($torrentlinkarray);
 
-    /* Table is already created after wiki found movies. Only javascript edits are made to the table */
+    /* putting it in a table */
+    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
+    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
+    for($i = 0;$i < count($torrentlinkarray);$i++)
+    {
+        if($torrentlinkarray[$i] == "404")
+            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
+
+        else
+        {
+            $link=$torrentlinkarray[$i];
+            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
+        }
+    }
+    echo "</table>";
 }
 ?>
