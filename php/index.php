@@ -172,6 +172,9 @@ if(isset($_GET['language']) && isset($_GET['year']))
     }
     fclose($handle);
     print_r($movienamearray);
+    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
+    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
+    echo "</table>";
 
     /* As soon as movies are found from Wikipedia, making the table */
     /* putting it in a table */
@@ -181,37 +184,34 @@ if(isset($_GET['language']) && isset($_GET['year']))
     $pattern_torrent_notpresent = "Nothing found!";
     $torrentlinkarray = array();
 
-    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
-    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
-    for($i = 0;$i < count($movienamearray);$i++)
-    {
-        echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>".""."</td>"."</tr>";
-
-        $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
-        $txt = "now at movie no.".$i;
-        fwrite($myfile, $txt);
-        fclose($myfile);
-
-        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
-
-        $handle = fopen($url, "r");
-        if ($handle)
-        {
-            array_push($torrentlinkarray,$url);
-        }
-        else
-        {
-            // error opening the file.
-            array_push($torrentlinkarray,"404");
-        }
-        fclose($handle);
-    }
-    echo "</table>";
-    $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
-    $txt = "end of data";
-    fwrite($myfile, $txt);
-    fclose($myfile);
-    //print_r($torrentlinkarray);
+//    for($i = 0;$i < count($movienamearray);$i++)
+//    {
+//        echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>".""."</td>"."</tr>";
+//
+//        $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
+//        $txt = "now at movie no.".$i;
+//        fwrite($myfile, $txt);
+//        fclose($myfile);
+//
+//        $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['year']."%20".$_GET['language'];
+//
+//        $handle = fopen($url, "r");
+//        if ($handle)
+//        {
+//            array_push($torrentlinkarray,$url);
+//        }
+//        else
+//        {
+//            // error opening the file.
+//            array_push($torrentlinkarray,"404");
+//        }
+//        fclose($handle);
+//    }
+//    $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
+//    $txt = "end of data";
+//    fwrite($myfile, $txt);
+//    fclose($myfile);
+//    //print_r($torrentlinkarray);
 
     /* Table is already created after wiki found movies. Only javascript edits are made to the table */
 }
