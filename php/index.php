@@ -192,9 +192,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     for($i = 0;$i < count($movienamearray);$i++)
     {
         $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
-        $txt = "Finding torrent for movie ".$i." of ".count($movienamearray)."\n";
-        $txt = $txt."Please do not refresh the page\n";
-        $txt = $txt."Check back in a couple of minutes";
+        $txt = "Finding torrent for movie ".$i." of ".count($movienamearray).". \n";
+        $txt = $txt."Please do not refresh the page, check back in a couple of minutes!";
         fwrite($myfile, $txt);
         fclose($myfile);
 
