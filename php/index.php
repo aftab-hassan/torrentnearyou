@@ -61,7 +61,6 @@
 </script>
 <script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript">
-    $("#").remove("myTable");
     var clearTimeoutID = 0;
     var randomNumber = document.getElementById('randomNumber').value;
     console.log("randomNumber value == "+randomNumber);
@@ -72,6 +71,7 @@
             function(data) {
                 console.log("retrieved data from iretriever.php == "+data);
                 $('#mylabel').html(data);
+                $("#").remove("myTable");
 
                 if(data == "end of data")
                     clearTimeout(clearTimeoutID);
