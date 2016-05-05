@@ -15,21 +15,23 @@
 <body>
 <form method="get" action="index.php">
     <select name="languagedropdown" id="languagedropdown">
-<!--        <option value = "tagalog">Tagalog</option>-->
+        <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
         <option value = "tamil">Tamil</option>
         <option value = "hindi">Hindi</option>
         <option value = "english">English</option>
         <option value = "tagalog">Tagalog</option>
     </select>
-<!--    </br>-->
+    <!--    </br>-->
 
     <select name="yeardropdown" id="yeardropdown">
     </select>
 
-    <input type="submit" value="submit">
+    <input type="hidden" name="randomNumber" id="randomNumber" value="<?php echo mt_rand(); ?>" />
 
-    <label id="remainingMovieCountLbl"></label>
+    <input type="submit" name="submit" id="submit" value="submit" onclick="deleteTable()">
+
+    <br><label id="mylabel" name="mylabel"></label>
 </form>
 </body>
 <script>
@@ -56,6 +58,46 @@
         else
             document.getElementById("remainingMovieCountLbl").innerHTML = "";
     }
+</script>
+
+<script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+    var clearTimeoutID = 0;
+    var randomNumber = document.getElementById('randomNumber').value;
+    console.log("randomNumber value == "+randomNumber);
+    var ajaxFunction = function() {
+        $.get(
+            "iretriever.php",
+            {randomNumber : randomNumber},
+            function(data) {
+                console.log("retrieved data from iretriever.php == "+data);
+                $('#mylabel').html(data);
+
+                if(data == "end of data")
+                    clearTimeout(clearTimeoutID);
+                else
+                    clearTimeoutID = setTimeout(ajaxFunction,1000);
+            }
+        );
+    }
+
+    $(document).ready(ajaxFunction);
+    //    $(document).ready($("submit").click(ajaxFunction));
+    //    $(document).ready($("submit").click(function(){
+    //        $.get(
+    //            "iretriever.php",
+    //            {randomNumber : randomNumber},
+    //            function(data) {
+    //                console.log("retrieved data from iretriever.php == "+data);
+    //                $('#mylabel').html(data);
+    //
+    //                if(data == "end of data")
+    //                    clearTimeout(clearTimeoutID);
+    //                else
+    //                    clearTimeoutID = setTimeout(ajaxFunction,1000);
+    //            }
+    //        );
+    //    }))
 </script>
 
 </html>
@@ -165,6 +207,12 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         //updateLabelText
         //<script>updateLabelText(45)</script>
 //        echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
+
+        $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
+        $txt = "Finding torrent for movie ".$i." of ".count($movienamearray).". \n";
+        $txt = $txt."Please do not refresh the page, check back in a couple of minutes!";
+        fwrite($myfile, $txt);
+        fclose($myfile);
 
 //        echo "---------------------------------</br>";
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
