@@ -27,9 +27,11 @@
     <select name="yeardropdown" id="yeardropdown">
     </select>
 
-    <input type="submit" value="submit">
+    <label id="mylabel" name="mylabel">-1</label>
 
-    <label id="remainingMovieCountLbl"></label>
+    <input type="hidden" name="randomNumber" id="randomNumber" value="<?php echo mt_rand(); ?>" />
+
+    <input type="submit" name="submit" id="submit" value="submit">
 </form>
 </body>
 <script>
