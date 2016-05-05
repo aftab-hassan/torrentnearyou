@@ -32,6 +32,8 @@
         <option value = "hindi">Hindi</option>
         <option value = "english">English</option>
         <option value = "tagalog">Tagalog</option>
+        <option value = "telugu">Telugu</option>
+        <option value = "kannada">Kannada</option>
     </select>
     <!--    </br>-->
 
@@ -174,6 +176,14 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         case "tagalog":
             $base = "https://en.wikipedia.org/wiki/List_of_Philippine_films_of_";
             $url = $base.$_GET['year'];
+            break;
+        case "telugu":
+            $base = "https://en.wikipedia.org/wiki/List_of_Telugu_films_of_";
+            $url = $base.$_GET['yeardropdown'];
+            break;
+        case "kannada":
+            $base = "https://en.wikipedia.org/wiki/List_of_Kannada_films_of_";
+            $url = $base.$_GET['yeardropdown'];
             break;
     }
 
