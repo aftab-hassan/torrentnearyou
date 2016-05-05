@@ -53,24 +53,7 @@
     var clearTimeoutID = 0;
     var randomNumber = document.getElementById('randomNumber').value;
     console.log("randomNumber value == "+randomNumber);
-//    var ajaxFunction = function() {
-//        $.get(
-//            "iretriever.php",
-//            {randomNumber : randomNumber},
-//            function(data) {
-//                console.log("retrieved data from iretriever.php == "+data);
-//                $('#mylabel').html(data);
-//
-//                if(data == "end of data")
-//                    clearTimeout(clearTimeoutID);
-//                else
-//                    clearTimeoutID = setTimeout(ajaxFunction,1000);
-//            }
-//        );
-//    }
-//    $(document).ready(ajaxFunction());
-//    $(document).ready($("submit").click(ajaxFunction()));
-    $(document).ready($("submit").click(function(){
+    var ajaxFunction = function() {
         $.get(
             "iretriever.php",
             {randomNumber : randomNumber},
@@ -84,7 +67,24 @@
                     clearTimeoutID = setTimeout(ajaxFunction,1000);
             }
         );
-    }))
+//    }
+//    $(document).ready(ajaxFunction());
+    $(document).ready($("submit").click(ajaxFunction));
+//    $(document).ready($("submit").click(function(){
+//        $.get(
+//            "iretriever.php",
+//            {randomNumber : randomNumber},
+//            function(data) {
+//                console.log("retrieved data from iretriever.php == "+data);
+//                $('#mylabel').html(data);
+//
+//                if(data == "end of data")
+//                    clearTimeout(clearTimeoutID);
+//                else
+//                    clearTimeoutID = setTimeout(ajaxFunction,1000);
+//            }
+//        );
+//    }))
 </script>
 
 </html>
