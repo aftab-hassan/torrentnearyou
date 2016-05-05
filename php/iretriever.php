@@ -6,6 +6,9 @@
  * Time: 12:15 PM
  */
 
-$fileContents = file_get_contents('/var/www/data/fileonserver.txt', true);
-echo $fileContents;
+$fileName = "/var/www/data/fileonserver".$_GET['randomNumber']."txt";
+//$fileContents = file_get_contents("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w", true);
+$fileContents = file_get_contents($fileName, "w", true);
+echo $fileName;
+//echo $fileContents;
 ?>
