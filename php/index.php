@@ -31,7 +31,7 @@
 
     <input type="submit" name="submit" id="submit" value="submit">
 
-    <br><label id="mylabel" name="mylabel">-1</label>
+    <br><label id="mylabel" name="mylabel"></label>
 </form>
 </body>
 <script>
@@ -192,7 +192,9 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     for($i = 0;$i < count($movienamearray);$i++)
     {
         $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
-        $txt = "now at movie no.".$i;
+        $txt = "Finding torrent for movie ".$i." of ".count($movienamearray)."\n";
+        $txt = $txt."Please do not refresh the page\n";
+        $txt = $txt."Check back in a couple of minutes";
         fwrite($myfile, $txt);
         fclose($myfile);
 
@@ -222,12 +224,12 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     for($i = 0;$i < count($torrentlinkarray);$i++)
     {
         if($torrentlinkarray[$i] == "404")
-            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
+            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
 
         else
         {
             $link=$torrentlinkarray[$i];
-            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
+            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
         }
     }
     echo "</table>";
