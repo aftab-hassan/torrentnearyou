@@ -174,6 +174,9 @@ if(isset($_GET['language']) && isset($_GET['year']))
     print_r($movienamearray);
     echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
     echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
+    for($i = 0;$i < count($movienamearray);$i++) {
+        echo "<tr>" . "<td>" . $i . "</td>" . "<td>" . $movienamearray[$i] . "</td>" . "<td>" . "" . "</td>" . "</tr>";
+    }
     echo "</table>";
 
     /* As soon as movies are found from Wikipedia, making the table */
