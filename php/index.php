@@ -7,24 +7,37 @@
         <h1 align="center" style="font-family:Comic Sans MS">Torrent Near You</></h1>
         <p align="center" style="font-family:Comic Sans MS">See which movies have released at a torrent near you ...</p>
 
-        <!--        <h1 align="center" style="font-family:Comic Sans MS">Articles You</></h1>-->
-        <!--        <p align="center" style="font-family:Comic Sans MS">See which articles are near you ...</p>-->
+<!--        <h1 align="center" style="font-family:Comic Sans MS">Articles You</></h1>-->
+<!--        <p align="center" style="font-family:Comic Sans MS">See which articles are near you ...</p>-->
     </div>
 </div>
 
 <body>
 <form method="get" action="index.php">
-    <select name="languagedropdown" id="languagedropdown">
-        <!--        <option value = "tagalog">Tagalog</option>-->
+    <select name="language">
+<!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
         <option value = "tamil">Tamil</option>
         <option value = "hindi">Hindi</option>
         <option value = "english">English</option>
         <option value = "tagalog">Tagalog</option>
     </select>
-    <!--    </br>-->
+    </br>
 
-    <select name="yeardropdown" id="yeardropdown">
+    <select name="year">
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2020">2021</option>
+        <option value="2020">2022</option>
     </select>
 
     <label id="mylabel" name="mylabel">-1</label>
@@ -34,31 +47,6 @@
     <input type="submit" name="submit" id="submit" value="submit">
 </form>
 </body>
-<script>
-    for(var i = 2010; i <= new Date().getFullYear();i++)
-    {
-//        console.log("added "+i);
-        var dropdownListID = document.getElementById("yeardropdown");
-        var year = new Option(i,i);
-        dropdownListID.options[i-2010] = year;
-    }
-
-    function updateLabelText(remainingMovieCount)
-    {
-        console.log("came inside updateLabelText with the value : "+remainingMovieCount);
-        alert("hello");
-
-        if(remainingMovieCount > 0)
-        {
-            if(remainingMovieCount  == 1)
-                document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movie. Check back shortly !";
-            else
-                document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movies. Check back in a couple of minutes !";
-        }
-        else
-            document.getElementById("remainingMovieCountLbl").innerHTML = "";
-    }
-</script>
 
 <script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript">
@@ -81,7 +69,23 @@
         );
     }
 
-    $(document).ready(ajaxFunction);
+    $(document).ready(ajaxFunction());
+//    $(document).ready($("submit").click(ajaxFunction));
+//    $(document).ready($("submit").click(function(){
+//        $.get(
+//            "iretriever.php",
+//            {randomNumber : randomNumber},
+//            function(data) {
+//                console.log("retrieved data from iretriever.php == "+data);
+//                $('#mylabel').html(data);
+//
+//                if(data == "end of data")
+//                    clearTimeout(clearTimeoutID);
+//                else
+//                    clearTimeoutID = setTimeout(ajaxFunction,1000);
+//            }
+//        );
+//    }))
 </script>
 
 </html>
