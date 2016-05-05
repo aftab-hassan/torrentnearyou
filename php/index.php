@@ -81,7 +81,7 @@
             "iretriever.php",
             {randomNumber : randomNumber},
             function(data) {
-                console.log("retrieved data from iretriever.php == "+data);
+                console.log("retrieved data from iretriever.php == "+data+", length=="+data.length);
                 $('#mylabel').html(data);
 
                 if(data == "end of data")
