@@ -164,7 +164,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         /* updating the label */
         //updateLabelText
         //<script>updateLabelText(45)</script>
-        echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
+//        echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
 
 //        echo "---------------------------------</br>";
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
