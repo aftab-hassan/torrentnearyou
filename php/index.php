@@ -27,11 +27,11 @@
     <select name="yeardropdown" id="yeardropdown">
     </select>
 
-    <label id="mylabel" name="mylabel">-1</label>
-
     <input type="hidden" name="randomNumber" id="randomNumber" value="<?php echo mt_rand(); ?>" />
 
     <input type="submit" name="submit" id="submit" value="submit">
+
+    <label id="mylabel" name="mylabel">-1</label>
 </form>
 </body>
 <script>
@@ -222,12 +222,12 @@ if(isset($_GET['language']) && isset($_GET['year']))
     for($i = 0;$i < count($torrentlinkarray);$i++)
     {
         if($torrentlinkarray[$i] == "404")
-            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
+            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
 
         else
         {
             $link=$torrentlinkarray[$i];
-            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
+            echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
         }
     }
     echo "</table>";
