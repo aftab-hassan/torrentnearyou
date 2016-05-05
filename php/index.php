@@ -171,25 +171,22 @@ if(isset($_GET['language']) && isset($_GET['year']))
         echo "could not open the wikipedia URL!";
     }
     fclose($handle);
-    //print_r($movienamearray);
+    print_r($movienamearray);
 
     /* As soon as movies are found from Wikipedia, making the table */
     /* putting it in a table */
-    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
-    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
-    for($i = 0;$i < count($movienamearray);$i++)
-    {
-        echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>".""."</td>"."</tr>";
-    }
-    echo "</table>";
 
     /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
     $base = "https://kat.cr/usearch/";
     $pattern_torrent_notpresent = "Nothing found!";
     $torrentlinkarray = array();
 
+    echo "<table width=100% border=1 cellspacing=0 cellpadding=0>";
+    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
     for($i = 0;$i < count($movienamearray);$i++)
     {
+        echo "<tr>"."<td>".$i."</td>"."<td>".$movienamearray[$i]."</td>"."<td>".""."</td>"."</tr>";
+
         $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
         $txt = "now at movie no.".$i;
         fwrite($myfile, $txt);
@@ -209,6 +206,7 @@ if(isset($_GET['language']) && isset($_GET['year']))
         }
         fclose($handle);
     }
+    echo "</table>";
     $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
     $txt = "end of data";
     fwrite($myfile, $txt);
