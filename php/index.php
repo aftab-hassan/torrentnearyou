@@ -40,7 +40,7 @@
 
     <input type="hidden" name="randomNumber" id="randomNumber" value="<?php echo mt_rand(); ?>" />
 
-    <input type="submit" name="submit" id="submit" value="submit" onclick="deleteTable">
+    <input type="submit" name="submit" id="submit" value="submit" onclick="deleteTable()">
 
     <br><label id="mylabel" name="mylabel"></label>
 </form>
