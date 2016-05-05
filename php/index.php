@@ -44,7 +44,7 @@
 
     <input type="hidden" name="randomNumber" id="randomNumber" value="<?php echo mt_rand(); ?>" />
 
-    <input type="submit" value="submit">
+    <input type="submit" name="submit" id="submit" value="submit">
 </form>
 </body>
 
@@ -68,7 +68,8 @@
             }
         );
     }
-    $(document).ready(ajaxFunction());
+//    $(document).ready(ajaxFunction());
+    $(document).ready($("submit").click(ajaxFunction()));
 </script>
 
 </html>
