@@ -67,7 +67,8 @@
                     clearTimeoutID = setTimeout(ajaxFunction,1000);
             }
         );
-//    }
+    }
+
 //    $(document).ready(ajaxFunction());
     $(document).ready($("submit").click(ajaxFunction));
 //    $(document).ready($("submit").click(function(){
