@@ -207,7 +207,10 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
                 /* <td style="text-align:center;"><i><a href="/wiki/Marupuram_(2016_film)" title="Marupuram (2016 film)">Marupuram</a></i></td> */
                 $data = GetBetween("title","</a></i></td>",$line);
                 $moviename = substr($data, strpos($data, ">") + 1);
-                array_push($movienamearray, $moviename);
+
+                /* otherwise the table formatting gets affected */
+                if(strlen($moviename) < 50)
+                    array_push($movienamearray, $moviename);
 
                 $moviecount++;;
                 $i++;
