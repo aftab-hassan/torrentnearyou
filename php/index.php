@@ -214,10 +214,10 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
             }
 
             // process the line read.
-//            if ( ($moviecount > 0) && (strpos($line, $pattern_ending) !== false) )
-//            {
-//                break;
-//            }
+            if ( ($_GET['languagedropdown'] == "malayalam") && ($moviecount > 0) && (strpos($line, $pattern_ending) !== false) )
+            {
+                break;
+            }
         }
     }
     else
