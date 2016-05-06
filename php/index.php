@@ -261,6 +261,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
         $url = "compress.zlib://https://kat.cr/usearch/kali%202016%20malayalam/";
+        $url = "compress.zlib://http://oztorrent.com/search/kali%202016%20malayalam/";
+        http://oztorrent.com/search/malayalam%20kali%20movie/
 
         $handle = fopen($url, "r");
         if ($handle)
