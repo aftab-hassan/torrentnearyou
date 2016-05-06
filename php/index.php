@@ -276,7 +276,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         $handle = curl_exec($ch);
 
 //        $handle = fopen($url, "r");
-        if ($handle)
+        if (strlen($handle) > 0)
         {
 //            /* arrays for storing links and sizes */
 //            $torcachelinksarray_pertorrent = array();
@@ -361,7 +361,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
             array_push($torrentlinkarray,"404");
             array_push($sizeMBarray,-1);
         }
-        fclose($handle);
+//        fclose($handle);
     }//end of for loop across all movies
 
     //to get rid of the label
