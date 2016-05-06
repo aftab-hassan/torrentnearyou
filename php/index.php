@@ -230,7 +230,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         exit;
     }
     fclose($handle);
-    print_r($movienamearray);echo "</br>";echo "</br>";
+//    print_r($movienamearray);echo "</br>";echo "</br>";
 //    echo "</br>";
 
     /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
