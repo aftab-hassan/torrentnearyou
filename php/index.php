@@ -73,63 +73,63 @@
     }
 </script>
 
-<script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript">
-    var clearTimeoutID = 0;
-    var randomNumber = document.getElementById('randomNumber').value;
-    console.log("randomNumber value == "+randomNumber);
-    var ajaxFunction = function() {
-        $.get(
-            "iretriever.php",
-            {randomNumber : randomNumber},
-            function(data)
-            {
-                console.log("retrieved data from iretriever.php == "+data+", length=="+data.length);
-
-                if(data.length > 0)
-                {
-                    document.getElementById("languagedropdown").disabled=true;
-                    document.getElementById("yeardropdown").disabled=true;
-                    document.getElementById("submit").disabled=true;
-
-                    document.getElementById("languagedropdown").style="background-color:#d3d3d3";
-                    document.getElementById("yeardropdown").style="background-color:#d3d3d3";
-                }
-
-                $('#mylabel').html(data);
-
-                if(data == "end of data")
-                {
-                    document.getElementById("languagedropdown").disabled=false;
-                    document.getElementById("yeardropdown").disabled=false;
-                    document.getElementById("submit").disabled=false;
-
-                    clearTimeout(clearTimeoutID);
-                }
-                else
-                    clearTimeoutID = setTimeout(ajaxFunction,1000);
-            }
-        );
-    }
-
-    $(document).ready(ajaxFunction);
-    //    $(document).ready($("submit").click(ajaxFunction));
-    //    $(document).ready($("submit").click(function(){
-    //        $.get(
-    //            "iretriever.php",
-    //            {randomNumber : randomNumber},
-    //            function(data) {
-    //                console.log("retrieved data from iretriever.php == "+data);
-    //                $('#mylabel').html(data);
-    //
-    //                if(data == "end of data")
-    //                    clearTimeout(clearTimeoutID);
-    //                else
-    //                    clearTimeoutID = setTimeout(ajaxFunction,1000);
-    //            }
-    //        );
-    //    }))
-</script>
+<!--<script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--    var clearTimeoutID = 0;-->
+<!--    var randomNumber = document.getElementById('randomNumber').value;-->
+<!--    console.log("randomNumber value == "+randomNumber);-->
+<!--    var ajaxFunction = function() {-->
+<!--        $.get(-->
+<!--            "iretriever.php",-->
+<!--            {randomNumber : randomNumber},-->
+<!--            function(data)-->
+<!--            {-->
+<!--                console.log("retrieved data from iretriever.php == "+data+", length=="+data.length);-->
+<!---->
+<!--                if(data.length > 0)-->
+<!--                {-->
+<!--                    document.getElementById("languagedropdown").disabled=true;-->
+<!--                    document.getElementById("yeardropdown").disabled=true;-->
+<!--                    document.getElementById("submit").disabled=true;-->
+<!---->
+<!--                    document.getElementById("languagedropdown").style="background-color:#d3d3d3";-->
+<!--                    document.getElementById("yeardropdown").style="background-color:#d3d3d3";-->
+<!--                }-->
+<!---->
+<!--                $('#mylabel').html(data);-->
+<!---->
+<!--                if(data == "end of data")-->
+<!--                {-->
+<!--                    document.getElementById("languagedropdown").disabled=false;-->
+<!--                    document.getElementById("yeardropdown").disabled=false;-->
+<!--                    document.getElementById("submit").disabled=false;-->
+<!---->
+<!--                    clearTimeout(clearTimeoutID);-->
+<!--                }-->
+<!--                else-->
+<!--                    clearTimeoutID = setTimeout(ajaxFunction,1000);-->
+<!--            }-->
+<!--        );-->
+<!--    }-->
+<!---->
+<!--    $(document).ready(ajaxFunction);-->
+<!--    //    $(document).ready($("submit").click(ajaxFunction));-->
+<!--    //    $(document).ready($("submit").click(function(){-->
+<!--    //        $.get(-->
+<!--    //            "iretriever.php",-->
+<!--    //            {randomNumber : randomNumber},-->
+<!--    //            function(data) {-->
+<!--    //                console.log("retrieved data from iretriever.php == "+data);-->
+<!--    //                $('#mylabel').html(data);-->
+<!--    //-->
+<!--    //                if(data == "end of data")-->
+<!--    //                    clearTimeout(clearTimeoutID);-->
+<!--    //                else-->
+<!--    //                    clearTimeoutID = setTimeout(ajaxFunction,1000);-->
+<!--    //            }-->
+<!--    //        );-->
+<!--    //    }))-->
+<!--</script>-->
 
 </html>
 
