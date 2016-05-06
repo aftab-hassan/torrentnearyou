@@ -243,8 +243,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     $sizeMBarray = array();
 
     echo "<br/>";
-    for($i = 0;$i < count($movienamearray);$i++)
-//    for($i = 0;$i < 3;$i++)
+//    for($i = 0;$i < count($movienamearray);$i++)
+    for($i = 0;$i < 3;$i++)
     {
         /* updating the label */
         //updateLabelText
@@ -261,7 +261,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
         $url = "compress.zlib://https://kat.cr/usearch/kali%202016%20malayalam/";
-        $url = "https://kat.cr/usearch/kali%202016%20malayalam/";
+//        $url = "https://kat.cr/usearch/kali%202016%20malayalam/";
 //        $url = "compress.zlib://http://oztorrent.com/search/kali%202016%20malayalam/";
 //        http://oztorrent.com/search/malayalam%20kali%20movie/
 
@@ -351,32 +351,32 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 
     //to get rid of the label
 //    echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
-//    print_r($torrentlinkarray);
-//    print_r($sizeMBarray);
+    print_r($torrentlinkarray);
+    print_r($sizeMBarray);
 
-    /* putting it in a table */
-    echo "<table name=\"myTable\" id=\"myTable\" width=100% border=1 cellspacing=0 cellpadding=0>";
-    echo "<tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr>";
-    for($i = 0;$i < count($torrentlinkarray);$i++)
-    {
-        $serial = $i + 1;
-
-        if($torrentlinkarray[$i] == "404")
-            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."<td>"."torrent not present"."</td>"."</tr>";
-
-        else
-        {
-            $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
-
-//            //using checkbox : <input id="cb1" type="checkbox" onchange="window.location.href='https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv'" download>
-//            $cbcode = "<label><input id=\"cb".$i."\" type=\"checkbox\" onchange=\"window.location.href='".$torrentlinkarray[$i]."'\" download>Click here for direct download</label>";
-//            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$cbcode."</td>"."</tr>";
-
-            //using ahref : <a href="https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv" download>Click here</a>
-            $ahrefcode = "<a href="."\""."https:".$torrentlinkarray[$i]."\""." download>Click here for direct download link</a>";
-            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$ahrefcode."</td>"."</tr>";
-        }
-    }
-    echo "</table>";
+//    /* putting it in a table */
+//    echo "<table name=\"myTable\" id=\"myTable\" width=100% border=1 cellspacing=0 cellpadding=0>";
+//    echo "<tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr>";
+//    for($i = 0;$i < count($torrentlinkarray);$i++)
+//    {
+//        $serial = $i + 1;
+//
+//        if($torrentlinkarray[$i] == "404")
+//            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."<td>"."torrent not present"."</td>"."</tr>";
+//
+//        else
+//        {
+//            $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
+//
+////            //using checkbox : <input id="cb1" type="checkbox" onchange="window.location.href='https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv'" download>
+////            $cbcode = "<label><input id=\"cb".$i."\" type=\"checkbox\" onchange=\"window.location.href='".$torrentlinkarray[$i]."'\" download>Click here for direct download</label>";
+////            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$cbcode."</td>"."</tr>";
+//
+//            //using ahref : <a href="https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv" download>Click here</a>
+//            $ahrefcode = "<a href="."\""."https:".$torrentlinkarray[$i]."\""." download>Click here for direct download link</a>";
+//            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$ahrefcode."</td>"."</tr>";
+//        }
+//    }
+//    echo "</table>";
 }
 ?>
