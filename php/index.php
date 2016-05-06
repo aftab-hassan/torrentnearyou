@@ -82,22 +82,31 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 //        http://oztorrent.com/search/malayalam%20kali%20movie/
         $url = "https://en.wikipedia.org/wiki/2015_in_film";
 
-    $handle = fopen($url, "r");
-    if ($handle)
-    {
-        // error opening the file.
-        array_push($torrentlinkarray,"405");
-        array_push($sizeMBarray,-2);
-    }
-    else
-    {
-        // error opening the file.
-        array_push($torrentlinkarray,"404");
-        array_push($sizeMBarray,-1);
-    }
-    fclose($handle);
+//    $handle = fopen($url, "r");
+//    if ($handle)
+//    {
+//        // error opening the file.
+//        array_push($torrentlinkarray,"405");
+//        array_push($sizeMBarray,-2);
+//    }
+//    else
+//    {
+//        // error opening the file.
+//        array_push($torrentlinkarray,"404");
+//        array_push($sizeMBarray,-1);
+//    }
+//    fclose($handle);
+//
+//    print_r($torrentlinkarray);
+//    print_r($sizeMBarray);
 
-    print_r($torrentlinkarray);
-    print_r($sizeMBarray);
+    $ch = curl_init();
+    curl_setopt_array($ch, array(
+        CURLOPT_URL => $url
+    , CURLOPT_HEADER => 0
+    , CURLOPT_RETURNTRANSFER => 1
+    , CURLOPT_ENCODING => 'gzip'
+    ));
+    echo curl_exec($ch);
 }
 ?>
