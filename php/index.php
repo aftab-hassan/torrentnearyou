@@ -269,81 +269,81 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         $handle = fopen($url, "r");
         if ($handle)
         {
-//            /* arrays for storing links and sizes */
-//            $torcachelinksarray_pertorrent = array();
-//            $sizeMBarray_pertorrent = array();
-//
-//            /* Nice way to do it using file_get_html */
-////            // Find all links
-////            $html = file_get_html($url);
-////            foreach($html->find('a') as $element)
-////            {
-////                if (strpos($element->href, "torcache.net/torrent") !== false)
-////                {
-////                    array_push($torcachelinksarray_pertorrent,$element->href);
-////                }
-////            }
-//
-//            /* iterating to find the sizes of the torrents */
-//            while (($line = fgets($handle)) !== false)
+            /* arrays for storing links and sizes */
+            $torcachelinksarray_pertorrent = array();
+            $sizeMBarray_pertorrent = array();
+
+            /* Nice way to do it using file_get_html */
+//            // Find all links
+//            $html = file_get_html($url);
+//            foreach($html->find('a') as $element)
 //            {
-//                /* The ones it shows under 'Showing results for' are not actual searches, so break off */
-//                if (strpos($line, "Showing results for") !== false)
-//                    break;
-//
-//                /* <a data-download title="Download torrent file" href="//torcache.net/torrent/81D283993C9BEB993D567E2D8CF618A350C44FD7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.1cd.x264.aac.esubs.chaps.drc.release" class="icon16"><i class="ka ka16 ka-arrow-down"></i></a> */
-//                if (strpos($line, "torcache.net/torrent") !== false)
+//                if (strpos($element->href, "torcache.net/torrent") !== false)
 //                {
-//                    $data = GetBetween("href=\"","\" class=\"",$line);
-////                    echo $data."</br>";
-//                    array_push($torcachelinksarray_pertorrent,$data);
+//                    array_push($torcachelinksarray_pertorrent,$element->href);
 //                }
-//
-//                // process the line read.
-//                /* <td class="nobr center">800.89 <span>MB</span></td> */
-//                if (strpos($line, "<span>MB</span>") !== false)
-//                {
-//                    $data = GetBetween("<td class=\"nobr center\">"," <span>MB</span></td>",$line);
-////                    echo $data."</br>";
-//                    array_push($sizeMBarray_pertorrent,$data);
-//                }
-//
-//                /* <td class="nobr center">1.6 <span>GB</span></td> */
-//                if (strpos($line, "<span>GB</span>") !== false)
-//                {
-//                    $data = GetBetween("<td class=\"nobr center\">"," <span>GB</span></td>",$line);
-////                    echo $data."</br>";
-//                    array_push($sizeMBarray_pertorrent,$data*1000);
-//                }
-//            }//finished iterating across all torrents
-//
-//            //printing page summary of what's useful to me
-////            print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
-////            print_r($sizeMBarray_pertorrent);echo "</br>";echo "</br>";
-//
-//            /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
-//            $largestsizeindex = 0;
-//            for($j = 0;$j < count($torcachelinksarray_pertorrent);$j++)
-//            {
-//                if($sizeMBarray_pertorrent[$j] > $sizeMBarray_pertorrent[$largestsizeindex])
-//                {
-//                    $largestsizeindex = $j;
-//                }
-//            }
-//            if($sizeMBarray_pertorrent[$largestsizeindex] > 500)
-//            {
-//                array_push($torrentlinkarray,$torcachelinksarray_pertorrent[$largestsizeindex]);
-//                array_push($sizeMBarray,$sizeMBarray_pertorrent[$largestsizeindex]);
-//            }
-//            else
-//            {
-//                array_push($torrentlinkarray,"404");
-//                array_push($sizeMBarray,-1);
 //            }
 
-            // error opening the file.
-            array_push($torrentlinkarray,"405");
-            array_push($sizeMBarray,-2);
+            /* iterating to find the sizes of the torrents */
+            while (($line = fgets($handle)) !== false)
+            {
+                /* The ones it shows under 'Showing results for' are not actual searches, so break off */
+                if (strpos($line, "Showing results for") !== false)
+                    break;
+
+                /* <a data-download title="Download torrent file" href="//torcache.net/torrent/81D283993C9BEB993D567E2D8CF618A350C44FD7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.1cd.x264.aac.esubs.chaps.drc.release" class="icon16"><i class="ka ka16 ka-arrow-down"></i></a> */
+                if (strpos($line, "torcache.net/torrent") !== false)
+                {
+                    $data = GetBetween("href=\"","\" class=\"",$line);
+//                    echo $data."</br>";
+                    array_push($torcachelinksarray_pertorrent,$data);
+                }
+
+                // process the line read.
+                /* <td class="nobr center">800.89 <span>MB</span></td> */
+                if (strpos($line, "<span>MB</span>") !== false)
+                {
+                    $data = GetBetween("<td class=\"nobr center\">"," <span>MB</span></td>",$line);
+//                    echo $data."</br>";
+                    array_push($sizeMBarray_pertorrent,$data);
+                }
+
+                /* <td class="nobr center">1.6 <span>GB</span></td> */
+                if (strpos($line, "<span>GB</span>") !== false)
+                {
+                    $data = GetBetween("<td class=\"nobr center\">"," <span>GB</span></td>",$line);
+//                    echo $data."</br>";
+                    array_push($sizeMBarray_pertorrent,$data*1000);
+                }
+            }//finished iterating across all torrents
+
+            //printing page summary of what's useful to me
+//            print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
+//            print_r($sizeMBarray_pertorrent);echo "</br>";echo "</br>";
+
+            /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
+            $largestsizeindex = 0;
+            for($j = 0;$j < count($torcachelinksarray_pertorrent);$j++)
+            {
+                if($sizeMBarray_pertorrent[$j] > $sizeMBarray_pertorrent[$largestsizeindex])
+                {
+                    $largestsizeindex = $j;
+                }
+            }
+            if($sizeMBarray_pertorrent[$largestsizeindex] > 500)
+            {
+                array_push($torrentlinkarray,$torcachelinksarray_pertorrent[$largestsizeindex]);
+                array_push($sizeMBarray,$sizeMBarray_pertorrent[$largestsizeindex]);
+            }
+            else
+            {
+                array_push($torrentlinkarray,"404");
+                array_push($sizeMBarray,-1);
+            }
+
+//            // error opening the file.
+//            array_push($torrentlinkarray,"405");
+//            array_push($sizeMBarray,-2);
         }
         else
         {
