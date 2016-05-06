@@ -74,12 +74,22 @@ function get_data($url) {
     $ch = curl_init();
     $timeout = 5;
     curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_ENCODING, 'gzip');
     curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
     $data = curl_exec($ch);
     curl_close($ch);
     return $data;
+
+//    $ch = curl_init();
+//    curl_setopt_array($ch, array(
+//        CURLOPT_URL => $url
+//    , CURLOPT_HEADER => 0
+//    , CURLOPT_RETURNTRANSFER => 1
+//    , CURLOPT_ENCODING => 'gzip'
+//    ));
 }
 
 /* Remmeber, the whole point of this is to generate the table code */
@@ -90,8 +100,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 
 //    $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
-        $url = "compress.zlib://https://kat.cr/usearch/kali%202016%20malayalam/";
-//        $url = "https://kat.cr/usearch/kali%202016%20malayalam/";
+//        $url = "compress.zlib://https://kat.cr/usearch/kali%202016%20malayalam/";
+        $url = "https://kat.cr/usearch/kali%202016%20malayalam/";
 //        $url = "compress.zlib://http://oztorrent.com/search/kali%202016%20malayalam/";
 //        http://oztorrent.com/search/malayalam%20kali%20movie/
 //        $url = "https://en.wikipedia.org/wiki/2015_in_film";
