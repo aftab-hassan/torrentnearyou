@@ -124,18 +124,18 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 //    print_r($torrentlinkarray);
 //    print_r($sizeMBarray);
 
-    $userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)';
-    $ch = curl_init();
-    curl_setopt_array($ch, array(
-        CURLOPT_URL => $url
-    , CURLOPT_HEADER => 0
-    , CURLOPT_RETURNTRANSFER => 1
-    , CURLOPT_ENCODING => 'gzip'
-    , CURLOPT_CURLOPT_USERAGENT => $userAgent
-    ));
-    echo curl_exec($ch);
+//    $userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)';
+//    $ch = curl_init();
+//    curl_setopt_array($ch, array(
+//        CURLOPT_URL => $url
+//    , CURLOPT_HEADER => 0
+//    , CURLOPT_RETURNTRANSFER => 1
+//    , CURLOPT_ENCODING => 'gzip'
+//    , CURLOPT_CURLOPT_USERAGENT => $userAgent
+//    ));
+//    echo curl_exec($ch);
 
-//    $returned_content = get_data($url);
-//    echo $returned_content;
+    $returned_content = get_data($url);
+    echo $returned_content;
 }
 ?>
