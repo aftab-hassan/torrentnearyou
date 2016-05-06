@@ -121,7 +121,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 //    ));
 //    echo curl_exec($ch);
 
-    $returned_content = get_data('https://davidwalsh.name');
+    $returned_content = get_data($url);
     echo $returned_content;
 }
 ?>
