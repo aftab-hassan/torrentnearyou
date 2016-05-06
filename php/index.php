@@ -68,6 +68,18 @@
  */
 include('simple_html_dom.php');
 
+/* gets the data from a URL */
+function get_data($url) {
+    $ch = curl_init();
+    $timeout = 5;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    return $data;
+}
+
 /* Remmeber, the whole point of this is to generate the table code */
 if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 {
@@ -100,13 +112,16 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 //    print_r($torrentlinkarray);
 //    print_r($sizeMBarray);
 
-    $ch = curl_init();
-    curl_setopt_array($ch, array(
-        CURLOPT_URL => $url
-    , CURLOPT_HEADER => 0
-    , CURLOPT_RETURNTRANSFER => 1
-    , CURLOPT_ENCODING => 'gzip'
-    ));
-    echo curl_exec($ch);
+//    $ch = curl_init();
+//    curl_setopt_array($ch, array(
+//        CURLOPT_URL => $url
+//    , CURLOPT_HEADER => 0
+//    , CURLOPT_RETURNTRANSFER => 1
+//    , CURLOPT_ENCODING => 'gzip'
+//    ));
+//    echo curl_exec($ch);
+
+    $returned_content = get_data('https://davidwalsh.name');
+    echo $returned_content;
 }
 ?>
