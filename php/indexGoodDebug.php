@@ -261,21 +261,12 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 //        $url = "compress.zlib://https://kat.cr/usearch/kali%202016%20malayalam/";
-        $url = "https://kat.cr/usearch/kali%202016%20malayalam/";
+//        $url = "https://kat.cr/usearch/kali%202016%20malayalam/";
 //        $url = "compress.zlib://http://oztorrent.com/search/kali%202016%20malayalam/";
 //        http://oztorrent.com/search/malayalam%20kali%20movie/
 //        $url = "https://en.wikipedia.org/wiki/2015_in_film";
 
-        $ch = curl_init();
-        curl_setopt_array($ch, array(
-            CURLOPT_URL => $url
-        , CURLOPT_HEADER => 0
-        , CURLOPT_RETURNTRANSFER => 1
-        , CURLOPT_ENCODING => 'gzip'
-        ));
-        $handle = curl_exec($ch);
-
-//        $handle = fopen($url, "r");
+        $handle = fopen($url, "r");
         if ($handle)
         {
 //            /* arrays for storing links and sizes */
@@ -351,7 +342,6 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 //            }
 
             // error opening the file.
-            echo "handle == ".$handle;
             array_push($torrentlinkarray,"405");
             array_push($sizeMBarray,-2);
         }
