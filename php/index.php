@@ -243,7 +243,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     $sizeMBarray = array();
 
     echo "<br/>";
-    for($i = 0;$i < count($movienamearray);$i++)
+//    for($i = 0;$i < count($movienamearray);$i++)
+    for($i = 0;$i < 3;$i++)
     {
         /* updating the label */
         //updateLabelText
