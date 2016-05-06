@@ -24,7 +24,7 @@
 </div>
 
 <body>
-<form method="get" action="index.php">
+<form method="get" action="index2.php">
     <select name="languagedropdown" id="languagedropdown">
         <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
