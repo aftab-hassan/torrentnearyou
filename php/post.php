@@ -7,7 +7,8 @@
  */
 
 $statusArray = array();
-$allURLs = array("https://kat.cr/usearch/life%20of%20pi/","https://en.wikipedia.org/wiki/Basketball","https://kat.cr/usearch/life%20of%20pi/","https://en.wikipedia.org/wiki/Basketball","https://kat.cr/usearch/life%20of%20pi/");
+$allURLs = array("https://kat.cr/usearch/life%20of%20pi/","https://en.wikipedia.org/wiki/Basketball","https://kat.cr/usearch/life%20of%20pi/","https://en.wikipedia.org/wiki/Basketball");
+//$allURLs = array("https://en.wikipedia.org/wiki/Basketball");
 
 for($i = 0;$i < count($allURLs) ; $i++)
 {
@@ -25,5 +26,5 @@ for($i = 0;$i < count($allURLs) ; $i++)
     fclose($handle);
 }
 
-print($statusArray);
+print_r($statusArray);
 ?>
