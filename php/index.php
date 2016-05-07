@@ -286,6 +286,16 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         echo $returned_content;
         echo "\n";
 
+        $handle = fopen($url, "r");
+        if ($handle)
+        {
+            while (($line = fgets($handle)) !== false)
+            {
+
+            }
+        }
+        fclose($handle);
+
     }//end of for loop across all movies
 }
 ?>
