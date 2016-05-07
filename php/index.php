@@ -282,7 +282,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 //        echo $url;
 //        echo "\n";
 //        echo strlen($returned_content);
-        echo "contents : ".substr($returned_content, 0, 100);
+//        echo "contents : ".substr($returned_content, 0, 100);
+        echo $returned_content;
         echo "\n";
 
     }//end of for loop across all movies
