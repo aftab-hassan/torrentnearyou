@@ -25,11 +25,9 @@ for($i = 0;$i < count($allURLs) ; $i++)
         array_push($statusArray,"404");
     }
 
-//    /* printing page now */
-//    while (($line = fgets($handle)) !== false)
-//    {
-//        echo $line;
-//    }
+    /* printing page now */
+    $line = fgets($handle);
+    echo $line;
 
     fclose($handle);
 }
