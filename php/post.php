@@ -27,7 +27,7 @@ for($i = 0;$i < count($allURLs) ; $i++)
 
     /* printing page now */
     $line = fgets($handle);
-    echo $line;
+    echo $line."\n";
 
     fclose($handle);
 }
