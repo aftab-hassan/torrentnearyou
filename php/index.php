@@ -22,5 +22,5 @@ function get_data($url) {
 $url = "https://kat.cr/usearch/life%20of%20pi/";
 //$url = "https://en.wikipedia.org/wiki/Basketball";
 $returned_content = get_data($url);
-echo $returned_content;
+echo strlen($returned_content);
 ?>
