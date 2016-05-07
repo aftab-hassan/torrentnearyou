@@ -17,7 +17,7 @@ for($i = 0;$i < count($allURLs) ; $i++)
     if ($handle)
     {
         // error opening the file.
-        array_push($statusArray,"able to open the page");
+        array_push($statusArray,"able to open the page!");
     }
     else
     {
