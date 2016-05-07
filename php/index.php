@@ -279,8 +279,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 
         $returned_content = get_data($url);
-        echo $url;
-        echo "\n";
+//        echo $url;
+//        echo "\n";
 //        echo strlen($returned_content);
         echo "contents : ".substr($returned_content, 0, 100);
         echo "\n";
