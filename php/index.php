@@ -1,5 +1,6 @@
 <?php
-$url = "https://kat.cr/usearch/kali%202016%20malayalam/";
+//$url = "https://kat.cr/usearch/kali%202016%20malayalam/";
+$url = "http://www.cricinfo.com";
 
 //step1 
 $cSession = curl_init();
