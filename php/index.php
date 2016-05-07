@@ -255,7 +255,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 //    echo "</br>";
 
     /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
-    $base = "https://kat.cr/usearch/";
+    $base = "compress.zlib://https://kat.cr/usearch/";
     $pattern_torrent_notpresent = "Nothing found!";
     $torrentlinkarray = array();
     $sizeMBarray = array();
