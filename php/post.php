@@ -7,9 +7,9 @@
  */
 
 $statusArray = array();
-//$allURLs = array("https://kat.cr/usearch/life%20of%20pi/","https://en.wikipedia.org/wiki/Basketball","https://kat.cr/usearch/life%20of%20pi/","https://en.wikipedia.org/wiki/Basketball");
+$allURLs = array("https://kat.cr/usearch/life%20of%20pi/","https://en.wikipedia.org/wiki/Basketball","https://kat.cr/usearch/life%20of%20pi/","https://en.wikipedia.org/wiki/Basketball");
 //$allURLs = array("https://en.wikipedia.org/wiki/Basketball");
-$allURLs = array("compress.zlip://https://kat.cr/usearch/life%20of%20pi/");
+//$allURLs = array("compress.zlip://https://kat.cr/usearch/life%20of%20pi/");
 
 for($i = 0;$i < count($allURLs) ; $i++)
 {
@@ -25,11 +25,11 @@ for($i = 0;$i < count($allURLs) ; $i++)
         array_push($statusArray,"404");
     }
 
-    /* printing page now */
-    while (($line = fgets($handle)) !== false)
-    {
-        echo $line;
-    }
+//    /* printing page now */
+//    while (($line = fgets($handle)) !== false)
+//    {
+//        echo $line;
+//    }
 
     fclose($handle);
 }
