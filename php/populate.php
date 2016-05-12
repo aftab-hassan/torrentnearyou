@@ -161,7 +161,7 @@ function populateDB($year, $movienamearray, $directLinkArray)
 //            echo ord($movienamearray[$i][$j]).",";
 //        }
 
-        str_replace("</a></i><br />","",$movienamearray[$i]);
+        $movienamearray[$i] = str_replace("</a></i><br />","",$movienamearray[$i]);
 
         echo "[".$movienamearray[$i]."]"."</br>";
     }
