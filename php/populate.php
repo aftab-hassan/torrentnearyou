@@ -155,8 +155,10 @@ function populateDB($year, $movienamearray, $directLinkArray)
 //        $movienamearray[$i] = str_replace('\n', '', $movienamearray[$i]);
         for($j = 0;$j<strlen($movienamearray[$i]);$j++)
         {
-            if(ord($movienamearray[$i][$j]) == 10)
-                $movienamearray[$i][$j]='a';
+//            if(ord($movienamearray[$i][$j]) == 10)
+//                $movienamearray[$i][$j]='a';
+
+            echo ord($movienamearray[$i][$j]).",";
         }
 
         echo "[".$movienamearray[$i]."]"."</br>";
@@ -301,7 +303,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 
     echo "<br/>";
 //    for($i = 0;$i < count($movienamearray);$i++)
-    for($i = 0;$i < 5;$i++)
+    for($i = 0;$i < 0;$i++)
     {
         /* updating the label */
         //updateLabelText
