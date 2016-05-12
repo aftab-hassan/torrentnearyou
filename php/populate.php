@@ -194,7 +194,7 @@ function GetBetween($var1="",$var2="",$pool){
 }
 
 /* Remmeber, the whole point of this is to generate the table code */
-$languagearray = array('malayalam','hindi','english','tamil','tagalog','telugu','kannada');
+$languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
 //$yeararray = array();
 for($lang = 0;$lang < count($languagearray);$lang++)
 {
@@ -277,7 +277,7 @@ for($lang = 0;$lang < count($languagearray);$lang++)
             a. the wikipedia guys have not updated the link
             b. someone's so jobless to be looking for movies on Jan 1 midnight when everyone's parting! */
             echo "could not find any ". $language." movies for the year ".$year." !";
-            exit;
+//            exit;
         }
         fclose($handle);
         for($i = 0;$i < count($movienamearray);$i++)
