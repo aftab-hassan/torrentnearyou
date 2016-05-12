@@ -141,6 +141,41 @@
  */
 include('simple_html_dom.php');
 
+function searchDB($movieName, $movieLanguage, $movieYear)
+{
+    $servername = "localhost";
+    $username = "root";
+    $password = "aftab";
+    $dbname = "torrentnearyoudb";
+
+// Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+//    select * from movieTbl where movieName = $movieName and $movieLanguage = $movieLanguage and $movieYear = $movieYear;
+    $sql = "select * from movieTbl where movieName = " ."'" .$movieName. "'" . " and " . "movieLanguage = " . "'" .$movieLanguage . "'" . " and " . "movieYear=" . "'." . $movieYear . "'";
+    $result = $conn->query($sql);
+//    return $result->num_rows;
+
+    if ($result->num_rows > 0)
+    {
+        // output data of each row
+        $row = $result->fetch_assoc();
+        if($row["directLink"] == "404")
+            return 0;
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+
+    $conn->close();
+}
+
 //populateDB($_GET['yeardropdown'],$movienamearray,$torrentlinkarray);
 function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
@@ -195,12 +230,14 @@ function GetBetween($var1="",$var2="",$pool){
 }
 
 /* Remmeber, the whole point of this is to generate the table code */
-$languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
+//$languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
+$languagearray = array('malayalam');
 //$yeararray = array();
 for($lang = 0;$lang < count($languagearray);$lang++)
 {
     $language = $languagearray[$lang];
-    for($year = 2010;$year <= date("Y");$year++)
+//    for($year = 2010;$year <= date("Y");$year++)
+    for($year = 2016;$year <= date("Y");$year++)
     {
         echo "Processing...".$language."_".$year."</br>";
 
@@ -298,34 +335,35 @@ for($lang = 0;$lang < count($languagearray);$lang++)
         $sizeMBarray = array();
 
         echo "<br/>";
-//    for($i = 0;$i < count($movienamearray);$i++)
-        for($i = 0;$i < 1;$i++)
+        for($i = 0;$i < count($movienamearray);$i++)
         {
-            /* updating the label */
-            //updateLabelText
-            //<script>updateLabelText(45)</script>
+            if(searchDB($movienamearray[$i],$language,$year) == 1)
+            {
+                /* updating the label */
+                //updateLabelText
+                //<script>updateLabelText(45)</script>
 //        echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
 
 //            $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
-            $myfile = fopen("/var/www/data/fileonserverLangYear.txt", "w") or die("Unable to open file!");
+                $myfile = fopen("/var/www/data/fileonserverLangYear.txt", "w") or die("Unable to open file!");
 //            $txt = "Finding torrent for movie ".$i." of ".count($movienamearray).". \n";
 //            $txt = $txt."Please do not refresh the page, check back in a couple of minutes!";
-            $txt = "Language : ".$language.", Year : ".$year."\n";
-            fwrite($myfile, $txt);
-            fclose($myfile);
+                $txt = "Language : ".$language.", Year : ".$year."\n";
+                fwrite($myfile, $txt);
+                fclose($myfile);
 
 //        echo "---------------------------------</br>";
-            $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
+                $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
 //        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 
-            $handle = fopen($url, "r");
-            if ($handle)
-            {
-                /* arrays for storing links and sizes */
-                $torcachelinksarray_pertorrent = array();
-                $sizeMBarray_pertorrent = array();
+                $handle = fopen($url, "r");
+                if ($handle)
+                {
+                    /* arrays for storing links and sizes */
+                    $torcachelinksarray_pertorrent = array();
+                    $sizeMBarray_pertorrent = array();
 
-                /* Nice way to do it using file_get_html */
+                    /* Nice way to do it using file_get_html */
 //            // Find all links
 //            $html = file_get_html($url);
 //            foreach($html->find('a') as $element)
@@ -336,70 +374,71 @@ for($lang = 0;$lang < count($languagearray);$lang++)
 //                }
 //            }
 
-                /* iterating to find the sizes of the torrents */
-                while (($line = fgets($handle)) !== false)
-                {
-                    /* The ones it shows under 'Showing results for' are not actual searches, so break off */
-                    if (strpos($line, "Showing results for") !== false)
-                        break;
-
-                    /* <a data-download title="Download torrent file" href="//torcache.net/torrent/81D283993C9BEB993D567E2D8CF618A350C44FD7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.1cd.x264.aac.esubs.chaps.drc.release" class="icon16"><i class="ka ka16 ka-arrow-down"></i></a> */
-                    if (strpos($line, "torcache.net/torrent") !== false)
+                    /* iterating to find the sizes of the torrents */
+                    while (($line = fgets($handle)) !== false)
                     {
-                        $data = GetBetween("href=\"","\" class=\"",$line);
-//                    echo $data."</br>";
-                        array_push($torcachelinksarray_pertorrent,$data);
-                    }
+                        /* The ones it shows under 'Showing results for' are not actual searches, so break off */
+                        if (strpos($line, "Showing results for") !== false)
+                            break;
 
-                    // process the line read.
-                    /* <td class="nobr center">800.89 <span>MB</span></td> */
-                    if (strpos($line, "<span>MB</span>") !== false)
-                    {
-                        $data = GetBetween("<td class=\"nobr center\">"," <span>MB</span></td>",$line);
+                        /* <a data-download title="Download torrent file" href="//torcache.net/torrent/81D283993C9BEB993D567E2D8CF618A350C44FD7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.1cd.x264.aac.esubs.chaps.drc.release" class="icon16"><i class="ka ka16 ka-arrow-down"></i></a> */
+                        if (strpos($line, "torcache.net/torrent") !== false)
+                        {
+                            $data = GetBetween("href=\"","\" class=\"",$line);
 //                    echo $data."</br>";
-                        array_push($sizeMBarray_pertorrent,$data);
-                    }
+                            array_push($torcachelinksarray_pertorrent,$data);
+                        }
 
-                    /* <td class="nobr center">1.6 <span>GB</span></td> */
-                    if (strpos($line, "<span>GB</span>") !== false)
-                    {
-                        $data = GetBetween("<td class=\"nobr center\">"," <span>GB</span></td>",$line);
+                        // process the line read.
+                        /* <td class="nobr center">800.89 <span>MB</span></td> */
+                        if (strpos($line, "<span>MB</span>") !== false)
+                        {
+                            $data = GetBetween("<td class=\"nobr center\">"," <span>MB</span></td>",$line);
 //                    echo $data."</br>";
-                        array_push($sizeMBarray_pertorrent,$data*1000);
-                    }
-                }//finished iterating across all torrents
+                            array_push($sizeMBarray_pertorrent,$data);
+                        }
 
-                //printing page summary of what's useful to me
+                        /* <td class="nobr center">1.6 <span>GB</span></td> */
+                        if (strpos($line, "<span>GB</span>") !== false)
+                        {
+                            $data = GetBetween("<td class=\"nobr center\">"," <span>GB</span></td>",$line);
+//                    echo $data."</br>";
+                            array_push($sizeMBarray_pertorrent,$data*1000);
+                        }
+                    }//finished iterating across all torrents
+
+                    //printing page summary of what's useful to me
 //            print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
 //            print_r($sizeMBarray_pertorrent);echo "</br>";echo "</br>";
 
-                /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
-                $largestsizeindex = 0;
-                for($j = 0;$j < count($torcachelinksarray_pertorrent);$j++)
-                {
-                    if($sizeMBarray_pertorrent[$j] > $sizeMBarray_pertorrent[$largestsizeindex])
+                    /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
+                    $largestsizeindex = 0;
+                    for($j = 0;$j < count($torcachelinksarray_pertorrent);$j++)
                     {
-                        $largestsizeindex = $j;
+                        if($sizeMBarray_pertorrent[$j] > $sizeMBarray_pertorrent[$largestsizeindex])
+                        {
+                            $largestsizeindex = $j;
+                        }
                     }
-                }
-                if($sizeMBarray_pertorrent[$largestsizeindex] > 500)
-                {
-                    array_push($torrentlinkarray,"https:".$torcachelinksarray_pertorrent[$largestsizeindex]);
-                    array_push($sizeMBarray,$sizeMBarray_pertorrent[$largestsizeindex]);
+                    if($sizeMBarray_pertorrent[$largestsizeindex] > 500)
+                    {
+                        array_push($torrentlinkarray,"https:".$torcachelinksarray_pertorrent[$largestsizeindex]);
+                        array_push($sizeMBarray,$sizeMBarray_pertorrent[$largestsizeindex]);
+                    }
+                    else
+                    {
+                        array_push($torrentlinkarray,"404");
+                        array_push($sizeMBarray,-1);
+                    }
                 }
                 else
                 {
+                    // error opening the file.
                     array_push($torrentlinkarray,"404");
                     array_push($sizeMBarray,-1);
                 }
+                fclose($handle);
             }
-            else
-            {
-                // error opening the file.
-                array_push($torrentlinkarray,"404");
-                array_push($sizeMBarray,-1);
-            }
-            fclose($handle);
         }//end of for loop across all movies
 //        for($i = 0;$i < count($torrentlinkarray);$i++)
 //        {
