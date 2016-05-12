@@ -155,13 +155,14 @@ function populateDB($year, $movienamearray, $directLinkArray)
 //        $movienamearray[$i] = str_replace('\n', '', $movienamearray[$i]);
 
         $movienamearray[$i] = str_replace("</a></i><br />","",$movienamearray[$i]);
-        for($j = 0;$j<strlen($movienamearray[$i]);$j++)
-        {
-//            if(ord($movienamearray[$i][$j]) == 10)
-//                $movienamearray[$i][$j]='a';
-
-            echo ord($movienamearray[$i][$j]).",";
-        }
+        $movienamearray[$i] = rtrim($movienamearray[$i]);
+//        for($j = 0;$j<strlen($movienamearray[$i]);$j++)
+//        {
+////            if(ord($movienamearray[$i][$j]) == 10)
+////                $movienamearray[$i][$j]='a';
+//
+//            echo ord($movienamearray[$i][$j]).",";
+//        }
         echo "</br>";
 
 //        echo "[".$movienamearray[$i]."]"."</br>";
