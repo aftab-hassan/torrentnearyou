@@ -195,11 +195,11 @@ function GetBetween($var1="",$var2="",$pool){
 
 /* Remmeber, the whole point of this is to generate the table code */
 $languagearray = array('malayalam','hindi','english','tamil','tagalog','telugu','kannada');
-$yeararray = array();
+//$yeararray = array();
 for($lang = 0;$lang < count($languagearray);$lang++)
 {
     $language = $languagearray[$lang];
-    for($year = 2010;$year < date("Y");$year++)
+    for($year = 2010;$year <= date("Y");$year++)
     {
         echo "Processing...".$language."_".$year."</br>";
 
