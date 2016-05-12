@@ -159,7 +159,7 @@ function populateDB($year, $movienamearray, $directLinkArray)
                 $movienamearray[$i][$j]="";
         }
 
-        echo $movienamearray[$i]."</br>";
+        echo "[".$movienamearray[$i]."]"."</br>";
     }
 //    print_r($movienamearray);
 
