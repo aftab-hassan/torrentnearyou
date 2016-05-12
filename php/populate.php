@@ -237,7 +237,7 @@ for($lang = 0;$lang < count($languagearray);$lang++)
 {
     $language = $languagearray[$lang];
 //    for($year = 2010;$year <= date("Y");$year++)
-    for($year = 2010;$year <= 2010;$year++)
+    for($year = 2016;$year <= 2016;$year++)
     {
         echo "Processing...".$language."_".$year."</br>";
 
@@ -337,7 +337,7 @@ for($lang = 0;$lang < count($languagearray);$lang++)
         echo "<br/>";
         for($i = 0;$i < count($movienamearray);$i++)
         {
-            if(searchDB($movienamearray[$i],$language,$year) == 1)
+            if(searchDB($movienamearray[$i],$language,$year) == 0)
             {
                 /* updating the label */
                 //updateLabelText
