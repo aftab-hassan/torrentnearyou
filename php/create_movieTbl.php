@@ -15,8 +15,8 @@ if ($conn->connect_error) {
 $sql = "CREATE TABLE movieTbl (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 year int NOT NULL,
-pageLink VARCHAR(30) NOT NULL,
-directLink VARCHAR(30) NOT NULL
+pageLink VARCHAR(500) NOT NULL,
+directLink VARCHAR(500) NOT NULL
 )";
 
 if ($conn->query($sql) === TRUE) {
