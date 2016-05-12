@@ -144,6 +144,8 @@ include('simple_html_dom.php');
 //populateDB($_GET['yeardropdown'],$movienamearray,$torrentlinkarray);
 function populateDB($year, $movienamearray, $directLinkArray)
 {
+    echo "came inside populateDB with year==".$year;
+
     $servername = "localhost";
     $username = "root";
     $password = "aftab";
