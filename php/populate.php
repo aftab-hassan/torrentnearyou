@@ -156,7 +156,7 @@ function populateDB($year, $movienamearray, $directLinkArray)
         for($j = 0;$j<strlen($movienamearray[$i]);$j++)
         {
             if(ord($movienamearray[$i][$j]) == 10)
-                $movienamearray[$i][$j]='';
+                $movienamearray[$i][$j]='a';
         }
 
         echo "[".$movienamearray[$i]."]"."</br>";
