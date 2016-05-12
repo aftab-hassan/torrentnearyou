@@ -154,7 +154,7 @@ function populateDB($year, $movienamearray, $directLinkArray)
 
         for($j = 0;$j<strlen($movienamearray[$i]);$j++)
         {
-            echo ord($movienamearray[$i]).",";
+            echo ord($movienamearray[$i][$j]).",";
         }
 
         echo "</br>";
