@@ -23,7 +23,7 @@
 </div>
 
 <body>
-<form method="get" action="index.php">
+<form method="get" action="populate.php">
     <select name="languagedropdown" id="languagedropdown">
         <!--        <option value = "tagalog">Tagalog</option>-->
         <option value = "malayalam">Malayalam</option>
