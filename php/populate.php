@@ -145,6 +145,7 @@ include('simple_html_dom.php');
 function populateDB($year, $movienamearray, $directLinkArray)
 {
     echo "came inside populateDB with year==".$year;
+    print_r($movienamearray);
 
     $servername = "localhost";
     $username = "root";
@@ -166,6 +167,7 @@ function populateDB($year, $movienamearray, $directLinkArray)
         $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
         $sql = "INSERT INTO movieTbl (year, pageLink, directLink) VALUES ('".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "')";
         echo $sql;
+        echo "</br>";
 
         if ($conn->query($sql) === TRUE)
         {
