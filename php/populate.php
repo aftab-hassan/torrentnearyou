@@ -147,7 +147,7 @@ function populateDB($year, $movienamearray, $directLinkArray)
     echo "came inside populateDB with year==".$year;
     for($i = 0;$i < count($movienamearray);$i++)
     {
-        echo $movienamearray[$i]."</br>";
+        echo "[".$movienamearray[$i]."]"."</br>";
     }
 //    print_r($movienamearray);
 
