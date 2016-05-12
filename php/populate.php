@@ -145,7 +145,11 @@ include('simple_html_dom.php');
 function populateDB($year, $movienamearray, $directLinkArray)
 {
     echo "came inside populateDB with year==".$year;
-    print_r($movienamearray);
+    for($i = 0;$i < count($movienamearray);$i++)
+    {
+        echo $movienamearray[$i]."</br>";
+    }
+//    print_r($movienamearray);
 
     $servername = "localhost";
     $username = "root";
