@@ -237,7 +237,7 @@ for($lang = 0;$lang < count($languagearray);$lang++)
 {
     $language = $languagearray[$lang];
 //    for($year = 2010;$year <= date("Y");$year++)
-    for($year = 2016;$year <= date("Y");$year++)
+    for($year = 2010;$year <= 2010;$year++)
     {
         echo "Processing...".$language."_".$year."</br>";
 
