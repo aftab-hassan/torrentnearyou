@@ -145,28 +145,6 @@ include('simple_html_dom.php');
 function populateDB($year, $movienamearray, $directLinkArray)
 {
     echo "came inside populateDB with year==".$year;
-    for($i = 0;$i < count($movienamearray);$i++)
-    {
-////        $movienamearray[$i] = rtrim($movienamearray[$i]);
-////        $movienamearray[$i] = preg_replace('/\n$/','',$movienamearray[$i]);
-////        $movienamearray[$i] = substr($movienamearray[$i], 0, -1);
-////        echo "[".$movienamearray[$i]."]"."</br>";
-//
-////        $movienamearray[$i] = str_replace('\n', '', $movienamearray[$i]);
-//
-        $movienamearray[$i] = str_replace("</a></i><br />","",$movienamearray[$i]);
-        $movienamearray[$i] = preg_replace('/\n$/','',$movienamearray[$i]);
-////        for($j = 0;$j<strlen($movienamearray[$i]);$j++)
-////        {
-//////            if(ord($movienamearray[$i][$j]) == 10)
-//////                $movienamearray[$i][$j]='a';
-////
-////            echo ord($movienamearray[$i][$j]).",";
-////        }
-//
-        echo "[".$movienamearray[$i]."]"."</br>";
-    }
-    print_r($movienamearray);
 
     $servername = "localhost";
     $username = "root";
@@ -186,7 +164,7 @@ function populateDB($year, $movienamearray, $directLinkArray)
     {
 //        $sql = "INSERT INTO movieTbl (year, pageLink, directLink) VALUES ('2010', 'my_pageLink', 'my_directLink')";
         $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
-        $sql = "INSERT INTO movieTbl (year, pageLink, directLink) VALUES ('".  $year . "','".  $pageLink . "','" . "directLinkArray[i]" . "')";
+        $sql = "INSERT INTO movieTbl (year, pageLink, directLink) VALUES ('".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "')";
         echo $sql;
         echo "</br>";
 
@@ -295,6 +273,13 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         exit;
     }
     fclose($handle);
+    for($i = 0;$i < count($movienamearray);$i++)
+    {
+        $movienamearray[$i] = str_replace("</a></i><br />","",$movienamearray[$i]);
+        $movienamearray[$i] = preg_replace('/\n$/','',$movienamearray[$i]);
+//        echo "[".$movienamearray[$i]."]"."</br>";
+    }
+//    print_r($movienamearray);
 //    print_r($movienamearray);echo "</br>";echo "</br>";
 //    echo "</br>";
 
@@ -306,7 +291,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 
     echo "<br/>";
 //    for($i = 0;$i < count($movienamearray);$i++)
-    for($i = 0;$i < 0;$i++)
+    for($i = 0;$i < 10;$i++)
     {
         /* updating the label */
         //updateLabelText
