@@ -157,6 +157,7 @@ function populateDB($year, $movienamearray, $directLinkArray)
             echo ord($movienamearray[$i][$j]).",";
         }
 
+        $movienamearray[$i] = str_replace('\n', '', $movienamearray[$i]);
         echo "</br>";
     }
 //    print_r($movienamearray);
