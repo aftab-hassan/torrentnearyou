@@ -27,6 +27,7 @@ function searchDB($movieName, $movieLanguage, $movieYear)
 
     // select * from movieTbl where movieName = $movieName and $movieLanguage = $movieLanguage and $movieYear = $movieYear;
     $sql = "select * from movieTbl where movieName = " ."'" .$movieName. "'" . " and " . "movieLanguage = " . "'" .$movieLanguage . "'" . " and " . "movieYear=" . "'." . $movieYear . "'";
+    echo "query to be executed == ".$sql."</br>";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0)
