@@ -132,18 +132,8 @@ function searchDB($movieName, $movieLanguage, $movieYear)
 //
 //}
 
-/* inserting a new movie into the database
-   - delete previous records for that movie and insert into database */
-function populateDB($language, $year, $movienamearray, $directLinkArray)
+function dropAndCreateTable()
 {
-//    backup_drop_create_movieTbl();
-
-//    // debug print
-//    for($i =0;$i < count($movienamearray);$i++)
-//    {
-//        echo ($i+1).".".$movienamearray[$i]."</br>";
-//    }
-
     $servername = "localhost";
     $username = "root";
     $password = "aftab";
@@ -163,16 +153,16 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
 //        echo $sql;
     if ($conn->query($sql) === TRUE)
     {
-            echo "movieTbl dropped successfully";
+        echo "movieTbl dropped successfully";
     }
     else
     {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     //create movieTbl;
     // sql to create table
-        $sql = "CREATE TABLE movieTbl (
+    $sql = "CREATE TABLE movieTbl (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     movieName VARCHAR(100) NOT NULL,
     movieLanguage VARCHAR(100) NOT NULL,
@@ -187,35 +177,40 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
     } else {
         echo "Error creating table: " . $conn->error;
     }
+}
+
+/* inserting a new movie into the database
+   - delete previous records for that movie and insert into database */
+function populateDB($language, $year, $movienamearray, $directLinkArray)
+{
+    $servername = "localhost";
+    $username = "root";
+    $password = "aftab";
+    $dbname = "torrentnearyoudb";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error)
+    {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
     // insert operation
     $updateDate = date("l").",".date("Y-m-d");
     for($i = 0;$i < count($movienamearray);$i++)
     {
-//        // delete previous records for that movie from database
-//        // sql to delete a record
-//        $sql = "DELETE FROM movieTbl WHERE movieName='".$movienamearray[$i]."'"." and movieYear = '".$year."'"." and movieLanguage='".$language."'";
-////        echo $sql;
-//        if ($conn->query($sql) === TRUE)
-//        {
-////            echo "Record deleted successfully";
-//        }
-//        else
-//        {
-////            echo "Error deleting record: " . $conn->error;
-//        }
-
         // insert new record/movie details into database
         $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
         $sql = "INSERT INTO movieTbl (movieName, movieLanguage, movieYear, pageLink, directLink, updateDate) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "','" . $updateDate . "')";
-//        echo $sql;
         if ($conn->query($sql) === TRUE)
         {
-//            echo "New record created successfully";
+
         }
         else
         {
-//            echo "Error: " . $sql . "<br>" . $conn->error;
+
         }
     }
 
@@ -233,6 +228,9 @@ function GetBetween($var1="",$var2="",$pool){
 
     return substr($result,0,$dd);
 }
+
+//drop and create movieTbl
+dropAndCreateTable();
 
 /* Remmeber, the whole point of this is to generate the table code */
 $languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
