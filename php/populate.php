@@ -7,6 +7,7 @@
  */
 include('simple_html_dom.php');
 
+/* search if torrent is already present for a given movie */
 function searchDB($movieName, $movieLanguage, $movieYear)
 {
     $servername = "localhost";
@@ -43,6 +44,8 @@ function searchDB($movieName, $movieLanguage, $movieYear)
     $conn->close();
 }
 
+/* inserting a new movie into the database
+   - delete previous records for that movie and insert into database */
 function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
     $servername = "localhost";
@@ -62,11 +65,23 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
     $updateDate = date("l").",".date("Y-m-d");
     for($i = 0;$i < count($movienamearray);$i++)
     {
-        $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
+        // delete previous records for that movie from database
+        // sql to delete a record
+        $sql = "DELETE FROM movieTbl WHERE movieName='".$movienamearray[$i]."'"." and movieYear = '".$year."'"." and movieLanguage='".$language."'";
+        echo $sql;
+        if ($conn->query($sql) === TRUE)
+        {
+            echo "Record deleted successfully";
+        }
+        else
+        {
+            echo "Error deleting record: " . $conn->error;
+        }
 
+        // insert new record/movie details into database
+        $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
         $sql = "INSERT INTO movieTbl (movieName, movieLanguage, movieYear, pageLink, directLink, updateDate) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "','" . $updateDate . "')";
         echo $sql;
-
         if ($conn->query($sql) === TRUE)
         {
             echo "New record created successfully";
