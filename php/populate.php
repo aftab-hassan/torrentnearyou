@@ -10,42 +10,44 @@ include('simple_html_dom.php');
 /* search if torrent is already present for a given movie */
 function searchDB($movieName, $movieLanguage, $movieYear)
 {
-    echo "came inside searchDB()"."</br>";
+//    echo "came inside searchDB()"."</br>";
+//
+//    $servername = "localhost";
+//    $username = "root";
+//    $password = "aftab";
+//    $dbname = "torrentnearyoudb";
+//
+//    // Create connection
+//    $conn = new mysqli($servername, $username, $password, $dbname);
+//
+//    // Check connection
+//    if ($conn->connect_error) {
+//        die("Connection failed: " . $conn->connect_error);
+//    }
+//
+//    // select * from movieTbl where movieName = $movieName and $movieLanguage = $movieLanguage and $movieYear = $movieYear;
+//    $sql = "select * from movieTbl where movieName = " ."'" .$movieName. "'" . " and " . "movieLanguage = " . "'" .$movieLanguage . "'" . " and " . "movieYear=" . "'" . $movieYear . "'";
+//    echo "query to be executed == ".$sql."</br>";
+//    $result = $conn->query($sql);
+//
+//    if ($result->num_rows > 0)
+//    {
+//        // output data of each row
+//        $row = $result->fetch_assoc();
+//        echo "link for ".$movieName." == [".$row["directLink"]."]" ."</br>";
+//        if($row["directLink"] == "404")
+//            return 0;
+//
+//        return 1;
+//    }
+//    else
+//    {
+//        return 0;
+//    }
+//
+//    $conn->close();
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "aftab";
-    $dbname = "torrentnearyoudb";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // select * from movieTbl where movieName = $movieName and $movieLanguage = $movieLanguage and $movieYear = $movieYear;
-    $sql = "select * from movieTbl where movieName = " ."'" .$movieName. "'" . " and " . "movieLanguage = " . "'" .$movieLanguage . "'" . " and " . "movieYear=" . "'" . $movieYear . "'";
-    echo "query to be executed == ".$sql."</br>";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0)
-    {
-        // output data of each row
-        $row = $result->fetch_assoc();
-        echo "link for ".$movieName." == [".$row["directLink"]."]" ."</br>";
-        if($row["directLink"] == "404")
-            return 0;
-
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-
-    $conn->close();
+    return 0;
 }
 
 /* inserting a new movie into the database
