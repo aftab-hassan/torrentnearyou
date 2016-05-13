@@ -334,8 +334,8 @@ for($lang = 0;$lang < count($languagearray);$lang++)
         }
 
         /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
-//        $base = "compress.zlib://https://kat.cr/usearch/";
-        $base = "https://kat.cr/usearch/";
+        $base = "compress.zlib://https://kat.cr/usearch/";
+//        $base = "https://kat.cr/usearch/";
         $pattern_torrent_notpresent = "Nothing found!";
         $torrentlinkarray = array();
         $sizeMBarray = array();
