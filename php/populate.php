@@ -1,137 +1,3 @@
-<html>
-
-<head>
-</head>
-<!--<script>-->
-<!--    function deleteTable()-->
-<!--    {-->
-<!--        var tbl = document.getElementById('myTable');-->
-<!--        if(tbl) tbl.parentNode.removeChild(tbl);-->
-<!--    }-->
-<!--</script>-->
-<!---->
-<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
-<!--<link rel="stylesheet" type="text/css" href="../css/style.css">-->
-<!--<div class="container">-->
-<!--    <div class="jumbotron">-->
-<!--        <h1 align="center" style="font-family:Comic Sans MS">Torrent Near You</></h1>-->
-<!--        <p align="center" style="font-family:Comic Sans MS">See which movies have released at a torrent near you ...</p>-->
-<!---->
-<!--<!--        <h1 align="center" style="font-family:Comic Sans MS">Articles You</></h1>-->-->
-<!--<!--        <p align="center" style="font-family:Comic Sans MS">See which articles are near you ...</p>-->-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<body>-->
-<!--<form method="get" action="populate.php">-->
-<!--    <select name="languagedropdown" id="languagedropdown">-->
-<!--        <!--        <option value = "tagalog">Tagalog</option>-->-->
-<!--        <option value = "malayalam">Malayalam</option>-->
-<!--        <option value = "tamil">Tamil</option>-->
-<!--        <option value = "hindi">Hindi</option>-->
-<!--        <option value = "english">English</option>-->
-<!--        <option value = "tagalog">Tagalog</option>-->
-<!--        <option value = "telugu">Telugu</option>-->
-<!--        <option value = "kannada">Kannada</option>-->
-<!--    </select>-->
-<!--    <!--    </br>-->-->
-<!---->
-<!--    <select name="yeardropdown" id="yeardropdown">-->
-<!--    </select>-->
-<!---->
-<!--    <input type="hidden" name="randomNumber" id="randomNumber" value="--><?php //echo mt_rand(); ?><!--" />-->
-<!---->
-<!--    <input type="submit" name="submit" id="submit" value="submit" onclick="deleteTable()">-->
-<!---->
-<!--    <br><label id="mylabel" name="mylabel"></label>-->
-<!--</form>-->
-<!--</body>-->
-<!--<script>-->
-<!--    for(var i = 2010; i <= new Date().getFullYear();i++)-->
-<!--    {-->
-<!--//        console.log("added "+i);-->
-<!--        var dropdownListID = document.getElementById("yeardropdown");-->
-<!--        var year = new Option(i,i);-->
-<!--        dropdownListID.options[i-2010] = year;-->
-<!--    }-->
-<!---->
-<!--    function updateLabelText(remainingMovieCount)-->
-<!--    {-->
-<!--        console.log("came inside updateLabelText with the value : "+remainingMovieCount);-->
-<!--        alert("hello");-->
-<!---->
-<!--        if(remainingMovieCount > 0)-->
-<!--        {-->
-<!--            if(remainingMovieCount  == 1)-->
-<!--                document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movie. Check back shortly !";-->
-<!--            else-->
-<!--                document.getElementById("remainingMovieCountLbl").innerHTML = "Please do not refresh the page ! Finding torrents for " + remainingMovieCount + " more movies. Check back in a couple of minutes !";-->
-<!--        }-->
-<!--        else-->
-<!--            document.getElementById("remainingMovieCountLbl").innerHTML = "";-->
-<!--    }-->
-<!--</script>-->
-
-<script type="text/javascript" src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript">
-    var clearTimeoutID = 0;
-//    var randomNumber = document.getElementById('randomNumber').value;
-//    console.log("randomNumber value == "+randomNumber);
-    var ajaxFunction = function() {
-        $.get(
-            "ilangyear.php",
-//            {randomNumber : randomNumber},
-            function(data)
-            {
-                console.log("retrieved data from iretriever.php == "+data+", length=="+data.length);
-
-//                if(data.length > 0)
-//                {
-//                    document.getElementById("languagedropdown").disabled=true;
-//                    document.getElementById("yeardropdown").disabled=true;
-//                    document.getElementById("submit").disabled=true;
-//
-//                    document.getElementById("languagedropdown").style="background-color:#d3d3d3";
-//                    document.getElementById("yeardropdown").style="background-color:#d3d3d3";
-//                }
-
-                $('#mylabel').html(data);
-
-                if(data == "end of data")
-                {
-//                    document.getElementById("languagedropdown").disabled=false;
-//                    document.getElementById("yeardropdown").disabled=false;
-//                    document.getElementById("submit").disabled=false;
-
-                    clearTimeout(clearTimeoutID);
-                }
-                else
-                    clearTimeoutID = setTimeout(ajaxFunction,10000);
-            }
-        );
-    }
-
-    $(document).ready(ajaxFunction);
-    //    $(document).ready($("submit").click(ajaxFunction));
-    //    $(document).ready($("submit").click(function(){
-    //        $.get(
-    //            "iretriever.php",
-    //            {randomNumber : randomNumber},
-    //            function(data) {
-    //                console.log("retrieved data from iretriever.php == "+data);
-    //                $('#mylabel').html(data);
-    //
-    //                if(data == "end of data")
-    //                    clearTimeout(clearTimeoutID);
-    //                else
-    //                    clearTimeoutID = setTimeout(ajaxFunction,1000);
-    //            }
-    //        );
-    //    }))
-</script>
-
-</html>
-
 <?php
 /**
  * Created by PhpStorm.
@@ -148,17 +14,17 @@ function searchDB($movieName, $movieLanguage, $movieYear)
     $password = "aftab";
     $dbname = "torrentnearyoudb";
 
-// Create connection
+    // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
+
+    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-//    select * from movieTbl where movieName = $movieName and $movieLanguage = $movieLanguage and $movieYear = $movieYear;
+    // select * from movieTbl where movieName = $movieName and $movieLanguage = $movieLanguage and $movieYear = $movieYear;
     $sql = "select * from movieTbl where movieName = " ."'" .$movieName. "'" . " and " . "movieLanguage = " . "'" .$movieLanguage . "'" . " and " . "movieYear=" . "'." . $movieYear . "'";
     $result = $conn->query($sql);
-//    return $result->num_rows;
 
     if ($result->num_rows > 0)
     {
@@ -166,6 +32,7 @@ function searchDB($movieName, $movieLanguage, $movieYear)
         $row = $result->fetch_assoc();
         if($row["directLink"] == "404")
             return 0;
+
         return 1;
     }
     else
@@ -176,11 +43,8 @@ function searchDB($movieName, $movieLanguage, $movieYear)
     $conn->close();
 }
 
-//populateDB($_GET['yeardropdown'],$movienamearray,$torrentlinkarray);
 function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
-    echo "came inside populateDB with year==".$year;
-
     $servername = "localhost";
     $username = "root";
     $password = "aftab";
@@ -195,15 +59,13 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $updateDate = date("l").date("Y-m-d");
+    $updateDate = date("l").",".date("Y-m-d");
     for($i = 0;$i < count($movienamearray);$i++)
     {
-//        $sql = "INSERT INTO movieTbl (year, pageLink, directLink) VALUES ('2010', 'my_pageLink', 'my_directLink')";
         $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
-//        $sql = "INSERT INTO movieTbl (year, pageLink, directLink) VALUES ('".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "')";
+
         $sql = "INSERT INTO movieTbl (movieName, movieLanguage, movieYear, pageLink, directLink, updateDate) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "','" . $updateDate . "')";
         echo $sql;
-        echo "</br>";
 
         if ($conn->query($sql) === TRUE)
         {
@@ -233,7 +95,6 @@ function GetBetween($var1="",$var2="",$pool){
 /* Remmeber, the whole point of this is to generate the table code */
 $languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
 //$languagearray = array('malayalam');
-//$yeararray = array();
 for($lang = 0;$lang < count($languagearray);$lang++)
 {
     $language = $languagearray[$lang];
@@ -323,11 +184,7 @@ for($lang = 0;$lang < count($languagearray);$lang++)
         {
             $movienamearray[$i] = str_replace("</a></i><br />","",$movienamearray[$i]);
             $movienamearray[$i] = preg_replace('/\n$/','',$movienamearray[$i]);
-//        echo "[".$movienamearray[$i]."]"."</br>";
         }
-//    print_r($movienamearray);
-//    print_r($movienamearray);echo "</br>";echo "</br>";
-//    echo "</br>";
 
         /* kat.cr : https://kat.cr/usearch/Monsoon%20Mangoes%20malayalam/ */
         $base = "compress.zlib://https://kat.cr/usearch/";
@@ -338,24 +195,13 @@ for($lang = 0;$lang < count($languagearray);$lang++)
         echo "<br/>";
         for($i = 0;$i < count($movienamearray);$i++)
         {
-            if(searchDB($movienamearray[$i],$language,$year) == 0)
+            $searchStatus = searchDB($movienamearray[$i],$language,$year);
+            array_push($searchStatusarray,$searchStatus);
+
+            /* if movie was never searched(notfound) or was searched but torrent was not found(404), then hit kat.cr again */
+            if($searchStatus == 0)
             {
-                /* updating the label */
-                //updateLabelText
-                //<script>updateLabelText(45)</script>
-//        echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
-
-//            $myfile = fopen("/var/www/data/fileonserver".$_GET['randomNumber']."txt", "w") or die("Unable to open file!");
-                $myfile = fopen("/var/www/data/fileonserverLangYear.txt", "w") or die("Unable to open file!");
-//            $txt = "Finding torrent for movie ".$i." of ".count($movienamearray).". \n";
-//            $txt = $txt."Please do not refresh the page, check back in a couple of minutes!";
-                $txt = "Language : ".$language.", Year : ".$year."\n";
-                fwrite($myfile, $txt);
-                fclose($myfile);
-
-//        echo "---------------------------------</br>";
                 $url = $base.str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
-//        $url = $base.str_replace(" ","%20","monsoon mangoes")."%20".$_GET['year']."%20".$_GET['language'];
 
                 $handle = fopen($url, "r");
                 if ($handle)
@@ -386,7 +232,6 @@ for($lang = 0;$lang < count($languagearray);$lang++)
                         if (strpos($line, "torcache.net/torrent") !== false)
                         {
                             $data = GetBetween("href=\"","\" class=\"",$line);
-//                    echo $data."</br>";
                             array_push($torcachelinksarray_pertorrent,$data);
                         }
 
@@ -395,7 +240,6 @@ for($lang = 0;$lang < count($languagearray);$lang++)
                         if (strpos($line, "<span>MB</span>") !== false)
                         {
                             $data = GetBetween("<td class=\"nobr center\">"," <span>MB</span></td>",$line);
-//                    echo $data."</br>";
                             array_push($sizeMBarray_pertorrent,$data);
                         }
 
@@ -403,14 +247,9 @@ for($lang = 0;$lang < count($languagearray);$lang++)
                         if (strpos($line, "<span>GB</span>") !== false)
                         {
                             $data = GetBetween("<td class=\"nobr center\">"," <span>GB</span></td>",$line);
-//                    echo $data."</br>";
                             array_push($sizeMBarray_pertorrent,$data*1000);
                         }
                     }//finished iterating across all torrents
-
-                    //printing page summary of what's useful to me
-//            print_r($torcachelinksarray_pertorrent);echo "</br>";echo "</br>";
-//            print_r($sizeMBarray_pertorrent);echo "</br>";echo "</br>";
 
                     /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
                     $largestsizeindex = 0;
@@ -441,44 +280,9 @@ for($lang = 0;$lang < count($languagearray);$lang++)
                 fclose($handle);
             }
         }//end of for loop across all movies
-//        for($i = 0;$i < count($torrentlinkarray);$i++)
-//        {
-//            if($torrentlinkarray[$i] != "404")
-//                $torrentlinkarray[$i] = "https:".$torrentlinkarray[$i];
-//        }
-
-        //to get rid of the label
-//    echo "<script type=\"text/javascript\">"."updateLabelText"."(".strval(count($movienamearray)-$i).");"."</script>";
-//    print_r($torrentlinkarray);
-//    print_r($sizeMBarray);
 
         /* populating table */
         populateDB($language,$year,$movienamearray,$torrentlinkarray);
-
-//        /* putting it in a table */
-//        echo "<table name=\"myTable\" id=\"myTable\" width=100% border=1 cellspacing=0 cellpadding=0>";
-//        echo "<tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr>";
-//        for($i = 0;$i < count($torrentlinkarray);$i++)
-//        {
-//            $serial = $i + 1;
-//
-//            if($torrentlinkarray[$i] == "404")
-//                echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."<td>"."torrent not present"."</td>"."</tr>";
-//
-//            else
-//            {
-//                $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
-//
-////            //using checkbox : <input id="cb1" type="checkbox" onchange="window.location.href='https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv'" download>
-////            $cbcode = "<label><input id=\"cb".$i."\" type=\"checkbox\" onchange=\"window.location.href='".$torrentlinkarray[$i]."'\" download>Click here for direct download</label>";
-////            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$cbcode."</td>"."</tr>";
-//
-//                //using ahref : <a href="https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv" download>Click here</a>
-//                $ahrefcode = "<a href="."\""."https:".$torrentlinkarray[$i]."\""." download>Click here for direct download link</a>";
-//                echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$ahrefcode."</td>"."</tr>";
-//            }
-//        }
-//        echo "</table>";
     }
 }
 ?>
