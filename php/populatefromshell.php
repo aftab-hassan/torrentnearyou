@@ -246,9 +246,9 @@ function dropAndCreateTable()
    - delete previous records for that movie and insert into database */
 function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
-    echo "called populateDB with language==".$language.",year==".$year;
+    echo "called populateDB with language==".$language.",year==".$year.",movie count==".count($movienamearray);
 
-    $txt = "called populateDB with language==".$language.",year==".$year;
+    $txt = "called populateDB with language==".$language.",year==".$year.",movie count==".count($movienamearray);
     addDebug($txt);
 
     $servername = "localhost";
