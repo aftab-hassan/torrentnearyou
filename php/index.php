@@ -69,6 +69,7 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 
 //    $sql = "SELECT * FROM movieTbl where movieName='"."Bodyguard"."'";
     $sql = "select * from movieTbl where movieLanguage = " . "'" .$_GET['languagedropdown'] . "'" . " and " . "movieYear=" . "'" . $_GET['yeardropdown'] . "'";
+    echo $sql;
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0)
