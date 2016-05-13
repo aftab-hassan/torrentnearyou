@@ -245,6 +245,10 @@ for($lang = 0;$lang < count($languagearray);$lang++)
 //    for($year = 2014;$year <= 2016;$year++)
     {
         echo "Processing...".$language."_".$year."</br>";
+        $myfile = fopen("/var/www/data/updateStatus.txt", "w") or die("Unable to open file!");
+        $txt = "Processing...".$language."_".$year;
+        fwrite($myfile, $txt);
+        fclose($myfile);
 
         /* wikipedia */
         switch ($language)
