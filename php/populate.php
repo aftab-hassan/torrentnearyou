@@ -50,10 +50,90 @@ function searchDB($movieName, $movieLanguage, $movieYear)
     return 0;
 }
 
+function backup_drop_create_movieTbl()
+{
+    $servername = "localhost";
+    $username = "root";
+    $password = "aftab";
+    $dbname = "torrentnearyoudb";
+
+// Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // take backup
+    $sql = "SHOW TABLES LIKE 'movieTbl'";
+    $result = $conn->query($sql);
+    $tableExists = mysql_num_rows($result) > 0;
+    if($tableExists)
+    {
+        // drop backupmovieTbl
+        $sql = "SHOW TABLES LIKE 'backupmovieTbl'";
+        $result = $conn->query($sql);
+        $tableExists = mysql_num_rows($result) > 0;
+        if($tableExists)
+        {
+            $sql = "drop table backupmovieTbl";
+            if ($conn->query($sql) === TRUE) {
+                echo "Table movieTbl dropped successfully";
+            } else {
+                echo "Error while trying to drop table: " . $conn->error;
+            }
+        }
+
+        //copy movieTbl to backupmovieTbl
+        $sql = "CREATE TABLE backupmovieTbl LIKE movieTbl";
+        if ($conn->query($sql) === TRUE) {
+            echo "Table backupmovieTbl schema created successfully";
+        } else {
+            echo "Error while trying to create schema for backupmovieTbl: " . $conn->error;
+        }
+        $sql = "INSERT INTO backupmovieTbl SELECT * FROM movieTbl";
+        if ($conn->query($sql) === TRUE) {
+            echo "Contents transferred from backupmovieTbl to movieTbl successfully!";
+        } else {
+            echo "Error while trying to copy contents from movieTbl to backupmovieTbl: " . $conn->error;
+        }
+
+        // drop movieTbl
+        $sql = "drop table movieTbl";
+        if ($conn->query($sql) === TRUE) {
+            echo "Table movieTbl dropped successfully";
+        } else {
+            echo "Error while trying to drop table: " . $conn->error;
+        }
+    }
+
+    // sql to create table
+        $sql = "CREATE TABLE movieTbl (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    movieName VARCHAR(100) NOT NULL,
+    movieLanguage VARCHAR(100) NOT NULL,
+    movieYear int NOT NULL,
+    pageLink VARCHAR(500) NOT NULL,
+    directLink VARCHAR(500) NOT NULL,
+    updateDate VARCHAR(500) NOT NULL
+    )";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Table movieTbl created successfully";
+    } else {
+        echo "Error creating table: " . $conn->error;
+    }
+
+    $conn->close();
+
+}
+
 /* inserting a new movie into the database
    - delete previous records for that movie and insert into database */
 function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
+
+
     // debug print
     for($i =0;$i < count($movienamearray);$i++)
     {
