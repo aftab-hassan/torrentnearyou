@@ -48,6 +48,12 @@ function searchDB($movieName, $movieLanguage, $movieYear)
    - delete previous records for that movie and insert into database */
 function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
+    // debug print
+    for($i =0;$i < count($movienamearray);$i++)
+    {
+        echo $i.".".$movienamearray[$i]."</br>";
+    }
+
     $servername = "localhost";
     $username = "root";
     $password = "aftab";
@@ -68,27 +74,27 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
         // delete previous records for that movie from database
         // sql to delete a record
         $sql = "DELETE FROM movieTbl WHERE movieName='".$movienamearray[$i]."'"." and movieYear = '".$year."'"." and movieLanguage='".$language."'";
-        echo $sql;
+//        echo $sql;
         if ($conn->query($sql) === TRUE)
         {
-            echo "Record deleted successfully";
+//            echo "Record deleted successfully";
         }
         else
         {
-            echo "Error deleting record: " . $conn->error;
+//            echo "Error deleting record: " . $conn->error;
         }
 
         // insert new record/movie details into database
         $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
         $sql = "INSERT INTO movieTbl (movieName, movieLanguage, movieYear, pageLink, directLink, updateDate) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "','" . $updateDate . "')";
-        echo $sql;
+//        echo $sql;
         if ($conn->query($sql) === TRUE)
         {
-            echo "New record created successfully";
+//            echo "New record created successfully";
         }
         else
         {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+//            echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 
@@ -207,7 +213,6 @@ for($lang = 0;$lang < count($languagearray);$lang++)
         $torrentlinkarray = array();
         $sizeMBarray = array();
 
-        echo "<br/>";
         for($i = 0;$i < count($movienamearray);$i++)
         {
             $searchStatus = searchDB($movienamearray[$i],$language,$year);
