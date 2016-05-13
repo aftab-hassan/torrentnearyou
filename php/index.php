@@ -88,9 +88,9 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     }
     $conn->close();
 
-    print_r($movienamearray); echo "</br>";
-    print_r($pageLinkarray); echo "</br>";
-    print_r($torrentlinkarray); echo "</br>";
+//    print_r($movienamearray); echo "</br>";
+//    print_r($pageLinkarray); echo "</br>";
+//    print_r($torrentlinkarray); echo "</br>";
 
     /* putting it in a table */
     echo "<table name=\"myTable\" id=\"myTable\" width=100% border=1 cellspacing=0 cellpadding=0>";
