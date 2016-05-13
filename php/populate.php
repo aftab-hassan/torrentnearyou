@@ -230,7 +230,7 @@ function GetBetween($var1="",$var2="",$pool){
 }
 
 //drop and create movieTbl
-dropAndCreateTable();
+//dropAndCreateTable();
 
 /* Remmeber, the whole point of this is to generate the table code */
 $languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
