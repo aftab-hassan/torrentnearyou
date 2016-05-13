@@ -94,16 +94,21 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 
     /* putting it in a table */
     echo "<table name=\"myTable\" id=\"myTable\" width=100% border=1 cellspacing=0 cellpadding=0>";
-    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
+    echo "<tr><th>Serial</th><th>Movie</th><th>Torrent page link</th><th>Direct link (click to download)</th></tr>";
     for($i = 0;$i < count($torrentlinkarray);$i++)
     {
+        $serial = $i + 1;
+
         if($torrentlinkarray[$i] == "404")
-            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
+            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."<td>"."torrent not present"."</td>"."</tr>";
 
         else
         {
-            $link=$torrentlinkarray[$i];
-            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
+            $link = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$_GET['yeardropdown']."%20".$_GET['languagedropdown'];
+
+            //using ahref : <a href="https://torcache.net/torrent/6430CFD62C88F994AC6F158AB3CD903A09EE87D7.torrent?title=[kat.cr]monsoon.mangoes.2016.malayalam.dvdrip.x264.800mb.esubs.mkv" download>Click here</a>
+            $ahrefcode = "<a href="."\""."https:".$torrentlinkarray[$i]."\""." download>Click here for direct download link</a>";
+            echo "<tr>"."<td>".$serial."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."<td>".$ahrefcode."</td>"."</tr>";
         }
     }
     echo "</table>";
