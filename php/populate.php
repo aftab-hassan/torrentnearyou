@@ -138,11 +138,11 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
 //    backup_drop_create_movieTbl();
 
-    // debug print
-    for($i =0;$i < count($movienamearray);$i++)
-    {
-        echo ($i+1).".".$movienamearray[$i]."</br>";
-    }
+//    // debug print
+//    for($i =0;$i < count($movienamearray);$i++)
+//    {
+//        echo ($i+1).".".$movienamearray[$i]."</br>";
+//    }
 
     $servername = "localhost";
     $username = "root";
@@ -158,6 +158,37 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
         die("Connection failed: " . $conn->connect_error);
     }
 
+    //drop table
+    $sql = "drop table movieTbl";
+//        echo $sql;
+    if ($conn->query($sql) === TRUE)
+    {
+            echo "movieTbl dropped successfully";
+    }
+    else
+    {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    //create movieTbl;
+    // sql to create table
+        $sql = "CREATE TABLE movieTbl (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    movieName VARCHAR(100) NOT NULL,
+    movieLanguage VARCHAR(100) NOT NULL,
+    movieYear int NOT NULL,
+    pageLink VARCHAR(500) NOT NULL,
+    directLink VARCHAR(500) NOT NULL,
+    updateDate VARCHAR(500) NOT NULL
+    )";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Table movieTbl created successfully";
+    } else {
+        echo "Error creating table: " . $conn->error;
+    }
+
+    // insert operation
     $updateDate = date("l").",".date("Y-m-d");
     for($i = 0;$i < count($movienamearray);$i++)
     {
