@@ -71,6 +71,8 @@ function backup_drop_create_movieTbl()
     echo "tableExists == ".$tableExists."</br>";
     if($tableExists)
     {
+        echo "came inside the backup part";
+
         // drop backupmovieTbl
         $sql = "SHOW TABLES LIKE 'backupmovieTbl'";
         $result = $conn->query($sql);
@@ -106,6 +108,10 @@ function backup_drop_create_movieTbl()
         } else {
             echo "Error while trying to drop table: " . $conn->error;
         }
+    }
+    else
+    {
+        echo "did not came inside the backup part";
     }
 
     // sql to create table
