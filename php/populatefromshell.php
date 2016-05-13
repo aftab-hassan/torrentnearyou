@@ -135,6 +135,13 @@ function searchDB($movieName, $movieLanguage, $movieYear)
 function dropAndCreateTable()
 {
     echo "came inside the dropAndCreateTable() function";
+    echo "delete the /var/www/data/updateStatus.txt file";
+    unlink('/var/www/data/updateStatus.txt');
+
+    $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
+    $txt = "came inside the dropAndCreateTable() function and deleted the file /var/www/data/updateStatus.txt";
+    fwrite($myfile, $txt);
+    fclose($myfile);
 
     $servername = "localhost";
     $username = "root";
@@ -161,6 +168,10 @@ function dropAndCreateTable()
     {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
+    $txt = "dropped the previous movieTbl";
+    fwrite($myfile, $txt);
+    fclose($myfile);
 
     //create movieTbl;
     // sql to create table
@@ -179,6 +190,11 @@ function dropAndCreateTable()
     } else {
         echo "Error creating table: " . $conn->error;
     }
+
+    $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
+    $txt = "created the new movieTbl";
+    fwrite($myfile, $txt);
+    fclose($myfile);
 }
 
 /* inserting a new movie into the database
@@ -186,6 +202,12 @@ function dropAndCreateTable()
 function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
     echo "called populateDB with language==".$language.",year==".$year;
+
+    $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
+    $txt = "called populateDB with language==".$language.",year==".$year;
+    fwrite($myfile, $txt);
+    fclose($myfile);
+
     $servername = "localhost";
     $username = "root";
     $password = "aftab";
@@ -237,15 +259,15 @@ dropAndCreateTable();
 
 /* Remmeber, the whole point of this is to generate the table code */
 //$languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
-$languagearray = array('english');
+$languagearray = array('english','malayalam');
 for($lang = 0;$lang < count($languagearray);$lang++)
 {
     $language = $languagearray[$lang];
 //    for($year = 2010;$year <= date("Y");$year++)
-    for($year = 2016;$year <= 2016;$year++)
+    for($year = 2015;$year <= 2016;$year++)
     {
         echo "Processing...".$language."_".$year."</br>";
-        $myfile = fopen("/var/www/data/updateStatus.txt", "w") or die("Unable to open file!");
+        $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
         $txt = "Processing...".$language."_".$year;
         fwrite($myfile, $txt);
         fclose($myfile);
