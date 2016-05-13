@@ -133,7 +133,7 @@ function backup_drop_create_movieTbl()
    - delete previous records for that movie and insert into database */
 function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
-
+    backup_drop_create_movieTbl();
 
     // debug print
     for($i =0;$i < count($movienamearray);$i++)
