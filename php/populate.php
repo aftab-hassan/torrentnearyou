@@ -68,6 +68,7 @@ function backup_drop_create_movieTbl()
     $sql = "SHOW TABLES LIKE 'movieTbl'";
     $result = $conn->query($sql);
     $tableExists = mysql_num_rows($result) > 0;
+    echo "tableExists == ".$tableExists."</br>";
     if($tableExists)
     {
         // drop backupmovieTbl
