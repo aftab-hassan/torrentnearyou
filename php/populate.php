@@ -69,7 +69,7 @@ function backup_drop_create_movieTbl()
     $result = $conn->query($sql);
     $tableExists = mysql_num_rows($result) > 0;
     echo "tableExists == ".$tableExists."</br>";
-    if($tableExists)
+    if($tableExists == true)
     {
         echo "came inside the backup part";
 
@@ -77,7 +77,7 @@ function backup_drop_create_movieTbl()
         $sql = "SHOW TABLES LIKE 'backupmovieTbl'";
         $result = $conn->query($sql);
         $tableExists = mysql_num_rows($result) > 0;
-        if($tableExists)
+        if($tableExists == true)
         {
             $sql = "drop table backupmovieTbl";
             if ($conn->query($sql) === TRUE) {
