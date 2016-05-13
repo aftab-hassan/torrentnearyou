@@ -10,6 +10,8 @@ include('simple_html_dom.php');
 /* search if torrent is already present for a given movie */
 function searchDB($movieName, $movieLanguage, $movieYear)
 {
+    echo "came inside searchDB()"."</br>";
+
     $servername = "localhost";
     $username = "root";
     $password = "aftab";
