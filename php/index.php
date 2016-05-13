@@ -158,14 +158,27 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     $sql = "SELECT * FROM movieTbl where movieName='"."Bodyguard"."'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
+    if ($result->num_rows > 0)
+    {
+        /* arrays for pushing */
+        $movienamearray = array();
+        $pageLinkarray = array();
+        $directLinkarray = array();
+
         // output data of each row
-        while($row = $result->fetch_assoc()) {
-            echo "id: " . $row["id"]. " movieName: " . $row["movieName"].  " movieLanguage: " . $row["movieLanguage"].  " movieYear: " . $row["movieYear"].  " pageLink: " . $row["pageLink"]. " directLink: " . $row["directLink"]. "<br>";
-        }
-    } else {
-        echo "0 results";
+        $row = $result->fetch_assoc();
+        array_push($movienamearray,$row["movieName"]);
+        array_push($pageLinkarray,$row["pageLink"]);
+        array_push($directLinkarray,$row["directLink"]);
     }
+//    else
+//    {
+//        echo "0 results";
+//    }
     $conn->close();
+
+    print_r($movienamearray); echo "</br>";
+    print_r($pageLinkarray); echo "</br>";
+    print_r($directLinkarray); echo "</br>";
 }
 ?>
