@@ -217,10 +217,11 @@ for($lang = 0;$lang < count($languagearray);$lang++)
         $torrentlinkarray = array();
         $sizeMBarray = array();
 
+        echo "printing searchStatus"."</br>";
         for($i = 0;$i < count($movienamearray);$i++)
         {
             $searchStatus = searchDB($movienamearray[$i],$language,$year);
-//            echo $searchStatus;
+            echo $searchStatus;
 
             /* if movie was never searched(notfound) or was searched but torrent was not found(404), then hit kat.cr again */
             if($searchStatus == 0)
