@@ -155,7 +155,8 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM movieTbl where movieName='"."Bodyguard"."'";
+//    $sql = "SELECT * FROM movieTbl where movieName='"."Bodyguard"."'";
+    $sql = "select * from movieTbl where movieLanguage = " . "'" .$movieLanguage . "'" . " and " . "movieYear=" . "'" . $movieYear . "'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0)
