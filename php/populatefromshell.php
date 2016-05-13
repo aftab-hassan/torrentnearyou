@@ -7,6 +7,14 @@
  */
 include('simple_html_dom.php');
 
+function addDebug($txt)
+{
+    $textToWrite = "\n".$txt;
+    $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
+    fwrite($myfile, $textToWrite);
+    fclose($myfile);
+}
+
 /* search if torrent is already present for a given movie */
 function searchDB($movieName, $movieLanguage, $movieYear)
 {
@@ -138,10 +146,8 @@ function dropAndCreateTable()
     echo "delete the /var/www/data/updateStatus.txt file";
     unlink('/var/www/data/updateStatus.txt');
 
-    $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
     $txt = "came inside the dropAndCreateTable() function and deleted the file /var/www/data/updateStatus.txt";
-    fwrite($myfile, $txt);
-    fclose($myfile);
+    addDebug($txt);
 
     $servername = "localhost";
     $username = "root";
@@ -168,10 +174,8 @@ function dropAndCreateTable()
     {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
     $txt = "dropped the previous movieTbl";
-    fwrite($myfile, $txt);
-    fclose($myfile);
+    addDebug($txt);
 
     //create movieTbl;
     // sql to create table
@@ -191,10 +195,8 @@ function dropAndCreateTable()
         echo "Error creating table: " . $conn->error;
     }
 
-    $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
     $txt = "created the new movieTbl";
-    fwrite($myfile, $txt);
-    fclose($myfile);
+    addDebug($txt);
 }
 
 /* inserting a new movie into the database
@@ -203,10 +205,8 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
 {
     echo "called populateDB with language==".$language.",year==".$year;
 
-    $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
     $txt = "called populateDB with language==".$language.",year==".$year;
-    fwrite($myfile, $txt);
-    fclose($myfile);
+    addDebug($txt);
 
     $servername = "localhost";
     $username = "root";
@@ -267,10 +267,8 @@ for($lang = 0;$lang < count($languagearray);$lang++)
     for($year = 2015;$year <= 2016;$year++)
     {
         echo "Processing...".$language."_".$year."</br>";
-        $myfile = fopen("/var/www/data/updateStatus.txt", "a") or die("Unable to open file!");
         $txt = "Processing...".$language."_".$year;
-        fwrite($myfile, $txt);
-        fclose($myfile);
+        addDebug($txt);
 
         /* wikipedia */
         switch ($language)
@@ -455,4 +453,7 @@ for($lang = 0;$lang < count($languagearray);$lang++)
         populateDB($language,$year,$movienamearray,$torrentlinkarray);
     }
 }
+
+$txt = "end of script, all writes done!";
+addDebug($txt);
 ?>
