@@ -18,7 +18,8 @@ movieName VARCHAR(100) NOT NULL,
 movieLanguage VARCHAR(100) NOT NULL,
 movieYear int NOT NULL,
 pageLink VARCHAR(500) NOT NULL,
-directLink VARCHAR(500) NOT NULL
+directLink VARCHAR(500) NOT NULL,
+updateDate VARCHAR(500) NOT NULL
 )";
 
 if ($conn->query($sql) === TRUE) {

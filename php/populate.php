@@ -195,12 +195,13 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
         die("Connection failed: " . $conn->connect_error);
     }
 
+    $updateDate = date("l").date("Y-m-d");
     for($i = 0;$i < count($movienamearray);$i++)
     {
 //        $sql = "INSERT INTO movieTbl (year, pageLink, directLink) VALUES ('2010', 'my_pageLink', 'my_directLink')";
         $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
 //        $sql = "INSERT INTO movieTbl (year, pageLink, directLink) VALUES ('".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "')";
-        $sql = "INSERT INTO movieTbl (movieName, movieLanguage, movieYear, pageLink, directLink) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "')";
+        $sql = "INSERT INTO movieTbl (movieName, movieLanguage, movieYear, pageLink, directLink, updateDate) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "','" . $updateDate . "')";
         echo $sql;
         echo "</br>";
 
