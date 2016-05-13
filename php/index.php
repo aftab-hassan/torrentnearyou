@@ -167,10 +167,12 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
         $directLinkarray = array();
 
         // output data of each row
-        $row = $result->fetch_assoc();
-        array_push($movienamearray,$row["movieName"]);
-        array_push($pageLinkarray,$row["pageLink"]);
-        array_push($directLinkarray,$row["directLink"]);
+        while($row = $result->fetch_assoc())
+        {
+            array_push($movienamearray,$row["movieName"]);
+            array_push($pageLinkarray,$row["pageLink"]);
+            array_push($directLinkarray,$row["directLink"]);
+        }
     }
 //    else
 //    {
