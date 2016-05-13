@@ -92,20 +92,20 @@ if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
     print_r($pageLinkarray); echo "</br>";
     print_r($torrentlinkarray); echo "</br>";
 
-//    /* putting it in a table */
-//    echo "<table name=\"myTable\" id=\"myTable\" width=100% border=1 cellspacing=0 cellpadding=0>";
-//    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
-//    for($i = 0;$i < count($torrentlinkarray);$i++)
-//    {
-//        if($torrentlinkarray[$i] == "404")
-//            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
-//
-//        else
-//        {
-//            $link=$torrentlinkarray[$i];
-//            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
-//        }
-//    }
-//    echo "</table>";
+    /* putting it in a table */
+    echo "<table name=\"myTable\" id=\"myTable\" width=100% border=1 cellspacing=0 cellpadding=0>";
+    echo "<tr><th>Serial</th><th>Movie</th><th>Download Torrent?</th></tr>";
+    for($i = 0;$i < count($torrentlinkarray);$i++)
+    {
+        if($torrentlinkarray[$i] == "404")
+            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."torrent not present"."</td>"."</tr>";
+
+        else
+        {
+            $link=$torrentlinkarray[$i];
+            echo "<tr>"."<td>".($i+1)."</td>"."<td>".$movienamearray[$i]."</td>"."<td>"."<a href = \"" . $link . "\">Click here to visit the torrent page.</a>"."</td>"."</tr>";
+        }
+    }
+    echo "</table>";
 }
 ?>
