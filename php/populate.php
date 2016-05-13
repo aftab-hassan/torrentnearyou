@@ -66,10 +66,7 @@ function backup_drop_create_movieTbl()
 
     // take backup
     $sql = "SHOW TABLES LIKE 'movieTbl'";
-    $result = $conn->query($sql);
-    $tableExists = mysql_num_rows($result) > 0;
-    echo "tableExists == ".$tableExists."</br>";
-    if($tableExists == true)
+    if(mysql_num_rows($conn->query($sql))==1)
     {
         echo "came inside the backup part";
 
