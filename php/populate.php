@@ -51,7 +51,7 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
     // debug print
     for($i =0;$i < count($movienamearray);$i++)
     {
-        echo $i.".".$movienamearray[$i]."</br>";
+        echo ($i+1).".".$movienamearray[$i]."</br>";
     }
 
     $servername = "localhost";
