@@ -33,8 +33,8 @@ function searchDB($movieName, $movieLanguage, $movieYear)
 //        die("Connection failed: " . $conn->connect_error);
 //    }
 //
-//    // select * from movieTbl where movieName = $movieName and $movieLanguage = $movieLanguage and $movieYear = $movieYear;
-//    $sql = "select * from movieTbl where movieName = " ."'" .$movieName. "'" . " and " . "movieLanguage = " . "'" .$movieLanguage . "'" . " and " . "movieYear=" . "'" . $movieYear . "'";
+//    // select * from maintenancemovieTbl where movieName = $movieName and $movieLanguage = $movieLanguage and $movieYear = $movieYear;
+//    $sql = "select * from maintenancemovieTbl where movieName = " ."'" .$movieName. "'" . " and " . "movieLanguage = " . "'" .$movieLanguage . "'" . " and " . "movieYear=" . "'" . $movieYear . "'";
 //    echo "query to be executed == ".$sql."</br>";
 //    $result = $conn->query($sql);
 //
@@ -58,7 +58,7 @@ function searchDB($movieName, $movieLanguage, $movieYear)
     return 0;
 }
 
-//function backup_drop_create_movieTbl()
+//function backup_drop_create_maintenancemovieTbl()
 //{
 //    $servername = "localhost";
 //    $username = "root";
@@ -73,43 +73,43 @@ function searchDB($movieName, $movieLanguage, $movieYear)
 //    }
 //
 //    // take backup
-//    $sql = "SHOW TABLES LIKE 'movieTbl'";
+//    $sql = "SHOW TABLES LIKE 'maintenancemovieTbl'";
 //    if(mysql_num_rows($conn->query($sql))==1)
 //    {
 //        echo "came inside the backup part";
 //
-//        // drop backupmovieTbl
-//        $sql = "SHOW TABLES LIKE 'backupmovieTbl'";
+//        // drop backupmaintenancemovieTbl
+//        $sql = "SHOW TABLES LIKE 'backupmaintenancemovieTbl'";
 //        $result = $conn->query($sql);
 //        $tableExists = mysql_num_rows($result) > 0;
 //        if($tableExists == true)
 //        {
-//            $sql = "drop table backupmovieTbl";
+//            $sql = "drop table backupmaintenancemovieTbl";
 //            if ($conn->query($sql) === TRUE) {
-//                echo "Table movieTbl dropped successfully";
+//                echo "Table maintenancemovieTbl dropped successfully";
 //            } else {
 //                echo "Error while trying to drop table: " . $conn->error;
 //            }
 //        }
 //
-//        //copy movieTbl to backupmovieTbl
-//        $sql = "CREATE TABLE backupmovieTbl LIKE movieTbl";
+//        //copy maintenancemovieTbl to backupmaintenancemovieTbl
+//        $sql = "CREATE TABLE backupmaintenancemovieTbl LIKE maintenancemovieTbl";
 //        if ($conn->query($sql) === TRUE) {
-//            echo "Table backupmovieTbl schema created successfully";
+//            echo "Table backupmaintenancemovieTbl schema created successfully";
 //        } else {
-//            echo "Error while trying to create schema for backupmovieTbl: " . $conn->error;
+//            echo "Error while trying to create schema for backupmaintenancemovieTbl: " . $conn->error;
 //        }
-//        $sql = "INSERT INTO backupmovieTbl SELECT * FROM movieTbl";
+//        $sql = "INSERT INTO backupmaintenancemovieTbl SELECT * FROM maintenancemovieTbl";
 //        if ($conn->query($sql) === TRUE) {
-//            echo "Contents transferred from backupmovieTbl to movieTbl successfully!";
+//            echo "Contents transferred from backupmaintenancemovieTbl to maintenancemovieTbl successfully!";
 //        } else {
-//            echo "Error while trying to copy contents from movieTbl to backupmovieTbl: " . $conn->error;
+//            echo "Error while trying to copy contents from maintenancemovieTbl to backupmaintenancemovieTbl: " . $conn->error;
 //        }
 //
-//        // drop movieTbl
-//        $sql = "drop table movieTbl";
+//        // drop maintenancemovieTbl
+//        $sql = "drop table maintenancemovieTbl";
 //        if ($conn->query($sql) === TRUE) {
-//            echo "Table movieTbl dropped successfully";
+//            echo "Table maintenancemovieTbl dropped successfully";
 //        } else {
 //            echo "Error while trying to drop table: " . $conn->error;
 //        }
@@ -120,7 +120,7 @@ function searchDB($movieName, $movieLanguage, $movieYear)
 //    }
 //
 //    // sql to create table
-//        $sql = "CREATE TABLE movieTbl (
+//        $sql = "CREATE TABLE maintenancemovieTbl (
 //    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 //    movieName VARCHAR(100) NOT NULL,
 //    movieLanguage VARCHAR(100) NOT NULL,
@@ -131,7 +131,7 @@ function searchDB($movieName, $movieLanguage, $movieYear)
 //    )";
 //
 //    if ($conn->query($sql) === TRUE) {
-//        echo "Table movieTbl created successfully";
+//        echo "Table maintenancemovieTbl created successfully";
 //    } else {
 //        echo "Error creating table: " . $conn->error;
 //    }
@@ -139,6 +139,45 @@ function searchDB($movieName, $movieLanguage, $movieYear)
 //    $conn->close();
 //
 //}
+
+function renameTable()
+{
+    echo "came inside the renameTable() function";
+
+    $txt = "came inside the renameTable() function";
+    addDebug($txt);
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "aftab";
+    $dbname = "torrentnearyoudb";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error)
+    {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    //rename table
+    $sql = "RENAME TABLE  backupmovieTbl TO mybackupmovieTbl";
+//        echo $sql;
+    if ($conn->query($sql) === TRUE)
+    {
+        echo "maintenancemovieTbl renamed to movieTbl successfully";
+    }
+    else
+    {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $txt = "maintenancemovieTbl renamed to movieTbl successfully";
+    addDebug($txt);
+
+    // closing the connection
+    $conn->close();
+}
 
 function dropAndCreateTable()
 {
@@ -164,22 +203,22 @@ function dropAndCreateTable()
     }
 
     //drop table
-    $sql = "drop table movieTbl";
+    $sql = "drop table maintenancemovieTbl";
 //        echo $sql;
     if ($conn->query($sql) === TRUE)
     {
-        echo "movieTbl dropped successfully";
+        echo "maintenancemovieTbl dropped successfully";
     }
     else
     {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    $txt = "dropped the previous movieTbl";
+    $txt = "dropped the previous maintenancemovieTbl";
     addDebug($txt);
 
-    //create movieTbl;
+    //create maintenancemovieTbl;
     // sql to create table
-    $sql = "CREATE TABLE movieTbl (
+    $sql = "CREATE TABLE maintenancemovieTbl (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     movieName VARCHAR(100) NOT NULL,
     movieLanguage VARCHAR(100) NOT NULL,
@@ -190,13 +229,17 @@ function dropAndCreateTable()
     )";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Table movieTbl created successfully";
+        echo "Table maintenancemovieTbl created successfully";
     } else {
         echo "Error creating table: " . $conn->error;
     }
 
-    $txt = "created the new movieTbl";
+    $txt = "created the new maintenancemovieTbl";
     addDebug($txt);
+
+    // closing the connection
+    $conn->close();
+
 }
 
 /* inserting a new movie into the database
@@ -228,7 +271,7 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
     {
         // insert new record/movie details into database
         $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
-        $sql = "INSERT INTO movieTbl (movieName, movieLanguage, movieYear, pageLink, directLink, updateDate) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "','" . $updateDate . "')";
+        $sql = "INSERT INTO maintenancemovieTbl (movieName, movieLanguage, movieYear, pageLink, directLink, updateDate) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "','" . $updateDate . "')";
         if ($conn->query($sql) === TRUE)
         {
 
@@ -254,7 +297,7 @@ function GetBetween($var1="",$var2="",$pool){
     return substr($result,0,$dd);
 }
 
-//drop and create movieTbl
+//drop and create maintenancemovieTbl
 dropAndCreateTable();
 
 /* Remmeber, the whole point of this is to generate the table code */
@@ -453,6 +496,9 @@ for($lang = 0;$lang < count($languagearray);$lang++)
         populateDB($language,$year,$movienamearray,$torrentlinkarray);
     }
 }
+
+/* transfer final data to movieTbl */
+renameTable();
 
 $txt = "end of script, all writes done!";
 addDebug($txt);
