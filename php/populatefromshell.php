@@ -26,6 +26,9 @@ function updateScheduledUpdatedInfo()
     fwrite($myfile, $txt);
 
     fclose($myfile);
+
+    $txt= "updated the current and next update schedule info";
+    addDebug($txt);
 }
 
 /* search if torrent is already present for a given movie */
