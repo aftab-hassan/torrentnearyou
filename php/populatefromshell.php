@@ -316,12 +316,12 @@ function GetBetween($var1="",$var2="",$pool){
     return substr($result,0,$dd);
 }
 
+//drop and create maintenancemovieTbl
+dropAndCreateTable();
+
 /* writing date info before writing to the file */
 $txt = date("D M j G:i:s T Y")."\n";
 addDebug($txt);
-
-//drop and create maintenancemovieTbl
-dropAndCreateTable();
 
 /* Remmeber, the whole point of this is to generate the table code */
 //$languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
