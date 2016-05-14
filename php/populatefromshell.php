@@ -324,13 +324,13 @@ $txt = date("D M j G:i:s T Y")."\n";
 addDebug($txt);
 
 /* Remmeber, the whole point of this is to generate the table code */
-//$languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
-$languagearray = array('malayalam');
+$languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
+//$languagearray = array('malayalam');
 for($lang = 0;$lang < count($languagearray);$lang++)
 {
     $language = $languagearray[$lang];
-//    for($year = 2010;$year <= date("Y");$year++)
-    for($year = 2016;$year <= 2016;$year++)
+    for($year = 2010;$year <= date("Y");$year++)
+//    for($year = 2016;$year <= 2016;$year++)
     {
         echo "Processing...".$language."_".$year."</br>";
         $txt = "Processing...".$language."_".$year;
