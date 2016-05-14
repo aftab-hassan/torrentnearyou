@@ -27,8 +27,23 @@ function renameTable()
         die("Connection failed: " . $conn->connect_error);
     }
 
-    //rename table
-    $sql = "drop table movieTbl;RENAME TABLE  maintenancemovieTbl TO movieTbl";
+    //drop movieTbl table
+    $sql = "drop table movieTbl";
+//        echo $sql;
+    if ($conn->query($sql) === TRUE)
+    {
+        echo "original movieTbl dropped successfully";
+    }
+    else
+    {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $txt = "original movieTbl dropped successfully";
+//    addDebug($txt);
+
+
+    //rename maintenancemovieTbl to movieTbl
+    $sql = "rename table maintenancemovieTbl to movieTbl";
 //        echo $sql;
     if ($conn->query($sql) === TRUE)
     {
