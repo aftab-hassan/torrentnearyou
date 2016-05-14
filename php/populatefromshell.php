@@ -142,10 +142,14 @@ function searchDB($movieName, $movieLanguage, $movieYear)
 
 function renameTable()
 {
+    //Aftab wiki : Other way to do it :
+    // CREATE TABLE table2 LIKE table1;
+    //INSERT INTO table2 SELECT * FROM table1
+
     echo "came inside the renameTable() function";
 
     $txt = "came inside the renameTable() function";
-    addDebug($txt);
+//    addDebug($txt);
 
     $servername = "localhost";
     $username = "root";
@@ -161,8 +165,23 @@ function renameTable()
         die("Connection failed: " . $conn->connect_error);
     }
 
-    //rename table
-    $sql = "drop table movieTbl;RENAME TABLE  maintenancemovieTbl TO movieTbl";
+    //drop movieTbl table
+    $sql = "drop table movieTbl";
+//        echo $sql;
+    if ($conn->query($sql) === TRUE)
+    {
+        echo "original movieTbl dropped successfully";
+    }
+    else
+    {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $txt = "original movieTbl dropped successfully";
+//    addDebug($txt);
+
+
+    //rename maintenancemovieTbl to movieTbl
+    $sql = "rename table maintenancemovieTbl to movieTbl";
 //        echo $sql;
     if ($conn->query($sql) === TRUE)
     {
@@ -173,7 +192,7 @@ function renameTable()
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
     $txt = "maintenancemovieTbl renamed to movieTbl successfully";
-    addDebug($txt);
+//    addDebug($txt);
 
     // closing the connection
     $conn->close();
