@@ -162,7 +162,7 @@ function renameTable()
     }
 
     //rename table
-    $sql = "RENAME TABLE  maintenancemovieTbl TO movieTbl";
+    $sql = "drop table movieTbl;RENAME TABLE  maintenancemovieTbl TO movieTbl";
 //        echo $sql;
     if ($conn->query($sql) === TRUE)
     {
