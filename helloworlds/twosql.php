@@ -11,7 +11,7 @@ function renameTable()
     echo "came inside the renameTable() function";
 
     $txt = "came inside the renameTable() function";
-    addDebug($txt);
+//    addDebug($txt);
 
     $servername = "localhost";
     $username = "root";
@@ -39,7 +39,7 @@ function renameTable()
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
     $txt = "maintenancemovieTbl renamed to movieTbl successfully";
-    addDebug($txt);
+//    addDebug($txt);
 
     // closing the connection
     $conn->close();
