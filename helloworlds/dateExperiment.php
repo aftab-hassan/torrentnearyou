@@ -8,7 +8,7 @@
 
 function updateScheduledUpdatedInfo()
 {
-    $myfile = fopen("/var/www/data/scheduledUpdate.txt", "a") or die("Unable to open file!");
+    $myfile = fopen("/var/www/data/scheduledUpdate.txt", "w") or die("Unable to open file!");
 
     $txt = "Library last updated on : ".date("l-Y-m-d")." , ";
     fwrite($myfile, $txt);

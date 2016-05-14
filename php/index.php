@@ -52,6 +52,10 @@
  * Time: 12:07 PM
  */
 
+$myfile = fopen("/var/www/data/scheduledUpdate.txt", "r") or die("Unable to open file!");
+echo fread($myfile,filesize("/var/www/data/scheduledUpdate.txt"));
+fclose($myfile);
+
 /* Remmeber, the whole point of this is to generate the table code */
 if(isset($_GET['languagedropdown']) && isset($_GET['yeardropdown']))
 {
