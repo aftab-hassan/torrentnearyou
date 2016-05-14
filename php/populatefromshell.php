@@ -15,6 +15,19 @@ function addDebug($txt)
     fclose($myfile);
 }
 
+function updateScheduledUpdatedInfo()
+{
+    $myfile = fopen("/var/www/data/scheduledUpdate.txt", "a") or die("Unable to open file!");
+
+    $txt = "Library last updated on : ".date("l-Y-m-d")." , ";
+    fwrite($myfile, $txt);
+
+    $txt = "Next scheduled update on : ".date('l-Y-m-d', strtotime(date("l").",".date("Y-m-d"). ' + 14 days'));
+    fwrite($myfile, $txt);
+
+    fclose($myfile);
+}
+
 /* search if torrent is already present for a given movie */
 function searchDB($movieName, $movieLanguage, $movieYear)
 {
@@ -318,6 +331,9 @@ function GetBetween($var1="",$var2="",$pool){
 
 //drop and create maintenancemovieTbl
 dropAndCreateTable();
+
+//update current and next update info
+updateScheduledUpdatedInfo();
 
 /* writing date info before writing to the file */
 $txt = date("D M j G:i:s T Y")."\n";
