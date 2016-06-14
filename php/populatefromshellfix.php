@@ -278,15 +278,9 @@ function dropAndCreateTable()
 
 }
 
-/* inserting a new movie into the database
-   - delete previous records for that movie and insert into database */
-function populateDB($language, $year, $movienamearray, $directLinkArray)
+//delete records only from 2016
+function delete2016records()
 {
-    echo "called populateDB with language==".$language.",year==".$year.",movie count==".count($movienamearray);
-
-    $txt = "called populateDB with language==".$language.",year==".$year.",movie count==".count($movienamearray);
-    addDebug($txt);
-
     $servername = "localhost";
     $username = "root";
     $password = "aftab";
@@ -313,6 +307,30 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
     {
         $txt =  "Error deleting record: " . $conn->error;
         addDebug($txt);
+    }
+}
+
+/* inserting a new movie into the database
+   - delete previous records for that movie and insert into database */
+function populateDB($language, $year, $movienamearray, $directLinkArray)
+{
+    echo "called populateDB with language==".$language.",year==".$year.",movie count==".count($movienamearray);
+
+    $txt = "called populateDB with language==".$language.",year==".$year.",movie count==".count($movienamearray);
+    addDebug($txt);
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "aftab";
+    $dbname = "torrentnearyoudb";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error)
+    {
+        die("Connection failed: " . $conn->connect_error);
     }
 
     // insert operation
@@ -358,6 +376,8 @@ updateScheduledUpdatedInfo();
 /* writing date info before writing to the file */
 $txt = date("D M j G:i:s T Y")."\n";
 addDebug($txt);
+
+delete2016records();
 
 /* Remmeber, the whole point of this is to generate the table code */
 $languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
