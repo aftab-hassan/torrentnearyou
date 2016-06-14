@@ -7,6 +7,7 @@
  */
 include('simple_html_dom.php');
 
+//START OF FUNCTION DEFINITIONS
 function addDebug($txt)
 {
     $textToWrite = "\n".$txt;
@@ -300,13 +301,27 @@ function populateDB($language, $year, $movienamearray, $directLinkArray)
         die("Connection failed: " . $conn->connect_error);
     }
 
+    //delete records from 2016
+    // sql to delete a record
+    $sql = "DELETE FROM movieTbl WHERE movieYear=2016";
+
+    if ($conn->query($sql) === TRUE)
+    {
+        $txt = "Record deleted successfully";
+        addDebug($txt);
+    } else
+    {
+        $txt =  "Error deleting record: " . $conn->error;
+        addDebug($txt);
+    }
+
     // insert operation
     $updateDate = date("l").",".date("Y-m-d");
     for($i = 0;$i < count($movienamearray);$i++)
     {
         // insert new record/movie details into database
         $pageLink = "https://kat.cr/usearch/".str_replace(" ","%20",$movienamearray[$i])."%20".$year."%20".$language;
-        $sql = "INSERT INTO maintenancemovieTbl (movieName, movieLanguage, movieYear, pageLink, directLink, updateDate) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "','" . $updateDate . "')";
+        $sql = "INSERT INTO movieTbl (movieName, movieLanguage, movieYear, pageLink, directLink, updateDate) VALUES ('".  $movienamearray[$i] . "','".  $language . "','".  $year . "','".  $pageLink . "','" . $directLinkArray[$i] . "','" . $updateDate . "')";
         if ($conn->query($sql) === TRUE)
         {
 
@@ -331,9 +346,11 @@ function GetBetween($var1="",$var2="",$pool){
 
     return substr($result,0,$dd);
 }
+//END OF FUNCTION DEFINITIONS
+
 
 //drop and create maintenancemovieTbl
-dropAndCreateTable();
+//dropAndCreateTable();
 
 //update current and next update info
 updateScheduledUpdatedInfo();
@@ -504,7 +521,7 @@ for($lang = 0;$lang < count($languagearray);$lang++)
                         }
                     }//finished iterating across all torrents
 
-                    /* iterating to find the torrent with the highest size, using only those whose minimum size is 500 MB */
+                    /* iterating to find the torrent with the highest size, using only those whose minimum size is 400 MB */
                     $largestsizeindex = 0;
                     for($j = 0;$j < count($torcachelinksarray_pertorrent);$j++)
                     {
@@ -513,7 +530,7 @@ for($lang = 0;$lang < count($languagearray);$lang++)
                             $largestsizeindex = $j;
                         }
                     }
-                    if($sizeMBarray_pertorrent[$largestsizeindex] > 500)
+                    if($sizeMBarray_pertorrent[$largestsizeindex] >= 400)
                     {
                         array_push($torrentlinkarray,"https:".$torcachelinksarray_pertorrent[$largestsizeindex]);
                         array_push($sizeMBarray,$sizeMBarray_pertorrent[$largestsizeindex]);
@@ -540,7 +557,7 @@ for($lang = 0;$lang < count($languagearray);$lang++)
 }
 
 /* transfer final data to movieTbl */
-renameTable();
+//renameTable();
 
 $txt = "end of script, all writes done!";
 addDebug($txt);
