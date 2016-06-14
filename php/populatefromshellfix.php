@@ -377,6 +377,7 @@ updateScheduledUpdatedInfo();
 $txt = date("D M j G:i:s T Y")."\n";
 addDebug($txt);
 
+//delete records only from 2016
 delete2016records();
 
 /* Remmeber, the whole point of this is to generate the table code */
