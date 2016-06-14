@@ -218,8 +218,6 @@ function renameTable()
 function dropAndCreateTable()
 {
     echo "came inside the dropAndCreateTable() function";
-    echo "delete the /var/www/data/updateStatus.txt file";
-    unlink('/var/www/data/updateStatus.txt');
 
     $txt = "came inside the dropAndCreateTable() function and deleted the file /var/www/data/updateStatus.txt";
     addDebug($txt);
@@ -281,6 +279,9 @@ function dropAndCreateTable()
 //delete records only from 2016
 function delete2016records()
 {
+    echo "delete the /var/www/data/updateStatus.txt file";
+    unlink('/var/www/data/updateStatus.txt');
+
     $servername = "localhost";
     $username = "root";
     $password = "aftab";
