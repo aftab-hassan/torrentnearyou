@@ -382,8 +382,8 @@ addDebug($txt);
 delete2016records();
 
 /* Remmeber, the whole point of this is to generate the table code */
-//$languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
-$languagearray = array('malayalam','tagalog');
+$languagearray = array('malayalam','hindi','english','tamil','telugu','kannada','tagalog');
+//$languagearray = array('malayalam','tagalog');
 for($lang = 0;$lang < count($languagearray);$lang++)
 {
     $language = $languagearray[$lang];
